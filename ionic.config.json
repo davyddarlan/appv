@@ -1,0 +1,7 @@
+{
+  "name": "appv-test-v1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
