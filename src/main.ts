@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import global from './global.js'
 
 import { IonicVue } from '@ionic/vue';
 
@@ -45,3 +46,5 @@ router.isReady().then(() => {
 });
 
 app.provide('questions', questionsStorage)
+
+global(app)

@@ -31,10 +31,33 @@
                         <template v-slot:input>
                             <RadioQuestion :value="question.value" @output="methods.setStatusQuestion" :id="groupQuestions + '_' + question.index"></RadioQuestion>        
                         </template>
+                        <template v-slot:control>
+                            <IonButton v-if="question.requirements" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Adicionar requisitos</IonButton>
+                        </template>
                     </Question>
                 </div>
             </template>
         </MainLayout>
+        <IonModal :is-open="modalStatus">
+            <MainLayout>
+                <template v-slot:header-button>
+                    <IonIcon @click="methods.closeModal()" :icon="closeOutline"></IonIcon>
+                </template>
+                <template v-slot:header-title>
+                    Requisitos de espaço
+                </template>
+                <template v-slot:subheader>
+                    {{ titleRequirements }}
+                </template>
+                <template v-slot:content>
+                    <div id="appv-modal" class="wrapper">
+                        <template v-for="requirement in componentsRequirements">
+                            <component :is="requirement.view"></component>
+                        </template>
+                    </div>
+                </template>
+            </MainLayout>
+        </IonModal>
     </ion-page>
 </template>
 
@@ -45,15 +68,18 @@
     import { 
         IonIcon,
         IonPage,
+        IonButton,
+        IonModal,
     } from '@ionic/vue'
 
     import { 
         chevronBackOutline,
         caretBackOutline,
         caretForwardOutline,
+        closeOutline,
     } from 'ionicons/icons'
     
-    import MainLayout from '@/components/layout/main-layout.vue'
+    import MainLayout from '../components/layout/main-layout.vue'
     import Question from '../components/question/question.vue'
     import RadioQuestion from '../components/question/radio-question.vue'
 
@@ -61,15 +87,19 @@
     const route = useRoute()
     const questionsStorage = inject('questions')
 
+    const modalStatus = ref(false)
+
     const { groupQuestions } = route.query
     const questionGroup = questionsStorage[groupQuestions]
+    const componentsRequirements = ref(null)
+    const titleRequirements = ref(null)
 
     const pagination = {
         questionsLength: questionGroup.questions.length,
         perPage: 2,
         total: null,
         currentPage: ref(1),
-        list: ref([])
+        list: ref([]),
     }
 
     pagination.total = Math.ceil(pagination.questionsLength / pagination.perPage)
@@ -104,6 +134,7 @@
                     index: i,
                     statement: questionGroup.questions[i].statement,
                     value: questionGroup.questions[i].value,
+                    requirements: questionGroup.questions[i].requirements ? true : false,
                 })
             }
         },
@@ -116,6 +147,15 @@
             if (pagination.currentPage.value > 1) {
                 pagination.currentPage.value--
             }
+        },
+        openModal: (questionId) => {
+            componentsRequirements.value = questionGroup.questions[questionId].requirements
+            titleRequirements.value = questionGroup.questions[questionId].title
+
+            modalStatus.value = true
+        },
+        closeModal: () => {
+            modalStatus.value = false
         }
     }
 
@@ -176,4 +216,18 @@
     #appv-step #step,
     #appv-step #divider,
     #appv-step #total { margin-right: 2px; }
+
+    /* modal */
+
+    ion-modal ion-button {
+        --background: #e33922;
+        --color: #ffffff;
+    }
+
+    #appv-modal.wrapper {
+        width: 100%;
+        min-height: 100%;
+        background: #e7e8ec;
+        padding: 10px 20px 10px 20px;
+    }
 </style>
