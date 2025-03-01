@@ -2,14 +2,43 @@
     <Question>
         O lavatório possui torneira que dispense o uso das mãos para ligar e desligar
         <template v-slot:input>
-            <radioQuestion id="automacao-torneira"></radioQuestion>
+            <radioQuestion v-model="model" id="automacao-torneira"></radioQuestion>
         </template>
     </Question>
 </template>
 
 <script setup>
-    import radioQuestion from '../question/radio-question.vue';
+    import { defineProps, defineEmits, ref, watch, defineModel } from 'vue'
+    import radioQuestion from '../question/radio-question-v2.vue';
     import Question from '../question/question.vue'
+
+    const props = defineProps({
+        answerSheet: {
+            required: true,
+        }
+    })
+
+    const emit = defineEmits(['notify'])
+
+    const model = defineModel({
+        default: null,
+    })
+
+    watch(() => model.value, (data) => {
+        if (props.answerSheet != data) {
+            let message
+
+            if (props.answerSheet) {
+                message = 'O uso da torneira que dispense o uso das mãos para ligar ou desligar é obrigatório'
+            } else {
+                message = 'O uso da torneira que dispense o uso das mãos para ligar ou desligar não é obrigatório'
+            }
+
+            emit('notify', {
+                message,
+            })
+        }
+    })
 </script>
 
 <style scoped>

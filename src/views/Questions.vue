@@ -29,10 +29,10 @@
                     <Question v-for="question in pagination.list.value">
                         {{ question.statement }}
                         <template v-slot:input>
-                            <RadioQuestion :value="question.value" @output="methods.setStatusQuestion" :id="groupQuestions + '_' + question.index"></RadioQuestion>        
+                            <RadioQuestion v-model="question.value"></RadioQuestion>
                         </template>
                         <template v-slot:control>
-                            <IonButton v-if="question.requirements" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Adicionar requisitos</IonButton>
+                            <IonButton v-if="question.requirements && question.value" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
                         </template>
                     </Question>
                 </div>
@@ -44,7 +44,7 @@
                     <IonIcon @click="methods.closeModal()" :icon="closeOutline"></IonIcon>
                 </template>
                 <template v-slot:header-title>
-                    Requisitos de espaço
+                    Requisitos de ambiente
                 </template>
                 <template v-slot:subheader>
                     {{ titleRequirements }}
@@ -52,7 +52,7 @@
                 <template v-slot:content>
                     <div id="appv-modal" class="wrapper">
                         <template v-for="requirement in componentsRequirements">
-                            <component :is="requirement.view"></component>
+                            <component v-model="requirement.value" @notify="methods.getNotify" :is="requirement.view" :answerSheet="requirement.answerSheet"></component>
                         </template>
                     </div>
                 </template>
@@ -81,7 +81,7 @@
     
     import MainLayout from '../components/layout/main-layout.vue'
     import Question from '../components/question/question.vue'
-    import RadioQuestion from '../components/question/radio-question.vue'
+    import RadioQuestion from '../components/question/radio-question-v2.vue'
 
     const router = useRouter()
     const route = useRoute()
@@ -156,6 +156,9 @@
         },
         closeModal: () => {
             modalStatus.value = false
+        },
+        getNotify: (data) => {
+            console.log(data.message)
         }
     }
 

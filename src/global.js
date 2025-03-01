@@ -9,7 +9,6 @@ import ReqTeto from './components/requirements/teto.vue'
 import ReqForro from './components/requirements/forro.vue'
 import ReqRodape from './components/requirements/rodape.vue'
 import ReqRalo from './components/requirements/ralo-simfonado.vue'
-import ReqAreaMolhada from './components/requirements/area-molhada.vue'
 import ReqPeDireito from './components/requirements/pe-direito.vue'
 import ReqCubaFuda from './components/requirements/cuba-funda.vue'
 import ReqGasesMedicinais from './components/requirements/gases-medicinais.vue'
@@ -27,7 +26,6 @@ export default (app) => {
     app.component('ReqForro', ReqForro)
     app.component('ReqRodape', ReqRodape)
     app.component('ReqRalo', ReqRalo)
-    app.component('ReqAreaMolhada', ReqAreaMolhada)
     app.component('ReqPeDireito', ReqPeDireito)
     app.component('ReqCubaFuda', ReqCubaFuda)
     app.component('ReqGasesMedicinais', ReqGasesMedicinais)

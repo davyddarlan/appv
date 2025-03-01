@@ -11,9 +11,37 @@
                 Resultado da análise
             </template>
             <template v-slot:content>
-                <div id="appv-card" class="wrapper">
-                    <h3 id="appv-card" class="title">FORAM IDENTIFICADAS {{ results.length }} INCONFORMIDADES:</h3>
-                    <div v-for="result in results" id="appv-card" class="card">{{ result.message }}</div>
+                <div id="appv-parecer" class="wrapper">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <ListComponent>
+                        <template v-slot:title>Sala administrativa de gerência</template>
+                        <template v-slot:content>
+                            <div v-for="(x, index) in 3" id="appv-parecer" class="requirement">
+                                <div class="position">{{ index + 1 }}</div>
+                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                        </template>     
+                    </ListComponent>
+                    <ListComponent>
+                        <template v-slot:title>Sala de nebulização</template>
+                        <template v-slot:content>
+                            <div v-for="(x, index) in 2" id="appv-parecer" class="requirement">
+                                <div class="position">{{ index + 1 }}</div>
+                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                        </template> 
+                    </ListComponent>
+                    <ListComponent>
+                        <template v-slot:title>Consultório odontológico</template>
+                        <template v-slot:content>
+                            <div v-for="(x, index) in 1" id="appv-parecer" class="requirement">
+                                <div class="position">{{ index + 1 }}</div>
+                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                        </template> 
+                    </ListComponent>
                 </div>
             </template>
         </MainLayout>
@@ -30,145 +58,84 @@
     } from '@ionic/vue'
 
     import { 
-        chevronBackOutline,
+        chevronBackOutline
     } from 'ionicons/icons'
 
     import MainLayout from '@/components/layout/main-layout.vue'
+    import ListComponent from '@/components/list/list.vue'
 
     const router = useRouter()
     const data = inject('questions')
-    const results = ref([])
+
+    onMounted(() => {
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Compatível', 'Incompatível'],
+                datasets: [{
+                    label: 'Requisitos',
+                    data: [50, 20],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#4a5d88',
+                        '#e33922',
+                    ],
+                    hoverOffset: 4,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    })
 
     const methods = {
         goBackNavigation: () => { 
             router.go(-1) 
         },
-        analyse: (rules) => {
-            let result = null 
-
-            results.value.splice(0)
-
-            for (let i = 0; i < rules.length; i++) {
-                result = rules[i]()
-
-                if (result != undefined) {
-                    results.value.push(result)
-                }
-            }
-        }
-    }
-
-    // VARIAVEIS
-    const AMB_ODONTOLOGICO = data['PA'].questions[0].value
-    const TEM_CONSULTORIO = data['AO'].questions[0].value
-    const AREA_COMPRESSO = data['AO'].questions[2].value
-    const AREA_BOMBA = data['AO'].questions[3].value
-    const ESCOVARIO = data['AO'].questions[1].value
-    const GINECOLOGICO = data['PA'].questions[3].value
-    const CONSULTORIO_SANITARIO = data['AC'].questions[2].value
-
-    // REGRAS
-    const REGRA_1 = () => {
-        if (AMB_ODONTOLOGICO == false && TEM_CONSULTORIO == true) {
-            return {
-                result: false,
-                message: `Existe um consultório odontológico, mas as atividades 
-                odontológicas não fazem parte da proposta assitencial.`
-            }
-        }
-
-        if (AMB_ODONTOLOGICO == true && TEM_CONSULTORIO == false) {
-            return {
-                result: false,
-                message: `A proposta assistencial prevê atividades odontológicas,
-                mas não há um consultório odontológico.`
-            }
-        }
-    }
-
-    const REGRA_2 = () => {
-        if (AMB_ODONTOLOGICO == false && AREA_COMPRESSO == true) {
-            return {
-                result: false,
-                message: `Existe uma área técnica para área de compressor odontológico, 
-                mas a odontologia não fazem parte da proposta assitencial.`
-            }
-        }
-
-        if (AMB_ODONTOLOGICO == true && AREA_COMPRESSO == false) {
-            return {
-                result: false,
-                message: `A proposta assistencial prevê atividades odontológicas,
-                mas não há uma área de compressor odontológico.`
-            }
-        }
-    }
-
-    const REGRA_3 = () => {
-        if (AMB_ODONTOLOGICO == false && AREA_BOMBA == true) {
-            return {
-                result: false,
-                message: `Existe uma área técnica para bomba vácuo, 
-                mas a odontologia não fazem parte da proposta assitencial.`
-            }
-        }
-
-        if (AMB_ODONTOLOGICO == true && AREA_BOMBA == false) {
-            return {
-                result: false,
-                message: `A proposta assistencial prevê atividades odontológicas,
-                mas não há uma área técnica para bomba vácuo.`
-            }
-        }
-    }
-
-    const REGRA_4 = () => {
-        if (AMB_ODONTOLOGICO == false && ESCOVARIO == true) {
-            return {
-                result: false,
-                message: `Há um área de escovário, porém as atividades odontológicas 
-                não fazem parte da proposta assistencial.`
-            }
-        }
-    }
-
-    const REGRA_5 = () => {
-        if (GINECOLOGICO == true && CONSULTORIO_SANITARIO == false) {
-            return {
-                result: false,
-                message: `As atividades ginecológicas necessitam de um sanitário anexo ao consultório`
-            }
-        }
-    }
-
-    const REGRAS = [
-        REGRA_1,
-        REGRA_2,
-        REGRA_3,
-        REGRA_4,
-        REGRA_5,
-    ]
-
-    onMounted(() => {
-        methods.analyse(REGRAS)
-    })
+    }   
 </script>
 
 <style scoped>
-    #appv-card.card {
-        background: #ffffff;
+    #appv-parecer.wrapper {
         padding: 20px;
-        border-radius: 4px;
-        margin: 15px 0 15px 0;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     }
 
-    #appv-card.title {
-        margin-bottom: 30px;
-    }
-
-    #appv-card.wrapper {
+    #appv-parecer.requirement {
+        display: flex;
+        align-items: center;
         width: 100%;
-        padding: 10px 20px 10px 20px;
+        height: auto;
+        padding: 5px 15px 5px 15px;
+        border-bottom: 1px solid rgba(50, 50, 93, 0.25);
+    }
+
+    #appv-parecer.requirement .position {
+        width: 40px;
+        height: 40px;
+        background: #4a5d88;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    #appv-parecer.requirement .text {
+        width: calc(100% - (40px + 20px));
+        margin-left: 20px; 
+    }
+
+    #appv-parecer.requirement .position,
+    #appv-parecer.requirement .text { float: left; }
+
+    #myChart {
+        margin-bottom: 20px;
     }
 </style>
