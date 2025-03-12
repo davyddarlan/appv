@@ -60,7 +60,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null),                  
+                value: ref(null),    
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de reuniões',
@@ -82,7 +83,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null),                  
+                value: ref(null), 
+                lengthRoom: ref(null),                                
             },
             {
                 title: 'Sala administrativa de agentes comunitários de saúde',
@@ -104,7 +106,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null),                 
+                value: ref(null),  
+                lengthRoom: ref(null),                              
             },
             {
                 title: 'Sala de arquivo e pronturário médico',
@@ -126,7 +129,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null),                 
+                value: ref(null), 
+                lengthRoom: ref(null),                               
             },
             {
                 title: 'Almoxarifado',   
@@ -148,7 +152,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null),                 
+                value: ref(null),  
+                lengthRoom: ref(null),                              
             }
         ]
     },
@@ -178,7 +183,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null), 
+                value: ref(null),
+                lengthRoom: ref(null),                
             },
             {
                 title: 'Consultório médico',
@@ -200,7 +206,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
-                value: ref(null), 
+                value: ref(null),
+                lengthRoom: ref(null),                
             },
             {
                 title: 'Consultório médico com sanitário anexo',
@@ -223,6 +230,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de procedimentos',
@@ -245,6 +253,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de vacinas',
@@ -267,6 +276,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala para coleta',
@@ -289,6 +299,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala para classificação de amostras',
@@ -310,7 +321,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
-                value: ref(null), 
+                value: ref(null),
+                lengthRoom: ref(null),                
             },
             {
                 title: 'Sala de nebulização',
@@ -333,6 +345,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de curativos',
@@ -355,6 +368,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
         ],
     },
@@ -385,6 +399,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), } 
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Escovário',
@@ -407,6 +422,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Área técnica para compressor de ar odontológico',
@@ -429,6 +445,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Área técnica para bomba vácuo',
@@ -451,6 +468,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             }
         ]
     },
@@ -480,7 +498,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: true, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
-                value: ref(null),  
+                value: ref(null), 
+                lengthRoom: ref(null),                
             },
             {
                 title: 'Vestiário para funcionários',
@@ -503,6 +522,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Copa',
@@ -525,6 +545,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de recepção',
@@ -547,6 +568,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de espera',
@@ -568,7 +590,8 @@ export default {
                     { view: 'ReqGasesMedicinais', answerSheet: false, value: ref(null), },
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
-                value: ref(null), 
+                value: ref(null),
+                lengthRoom: ref(null),                
             },
             {
                 title: 'Sanitário de pacientes',
@@ -591,6 +614,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: true, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Depóstio de material de limpeza m(DML)',
@@ -613,6 +637,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
                 value: ref(null), 
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Central de material esterilizada simplificada',
@@ -635,6 +660,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
                 value: ref(null),  
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Sala de utilidades',
@@ -657,6 +683,7 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
                 value: ref(null),  
+                lengthRoom: ref(null),               
             },
             {
                 title: 'Abrigo de resíduos de serviços e saúde',
@@ -679,14 +706,9 @@ export default {
                     { view: 'ReqLuminaria', answerSheet: false, value: ref(null), }
                 ],
                 value: ref(null),  
+                lengthRoom: ref(null),               
             },
         ]
-    },
-    OUTROS: {
-        title: 'Adicionar ambientes',
-        lock: false,
-        percentage: 0,
-        page: 'outros',
     },
     PC: {
         title: 'Parecer técnico',

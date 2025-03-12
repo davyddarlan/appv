@@ -6,6 +6,9 @@
             </div>
             <div class="appv-question-options">
                 <slot name="input"></slot>
+                <div class="appv-question-sub">
+                    <slot name="sub"></slot>
+                </div>
             </div>
         </div>
         <div class="appv-question-control">
@@ -47,4 +50,8 @@
         height: 0;
         border-top: none;
     }
+
+    .appv-question-sub { margin-top: 10px; }
+
+    .appv-question-sub:empty { margin-top: 0; }
 </style>

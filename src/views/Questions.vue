@@ -31,8 +31,14 @@
                         <template v-slot:input>
                             <RadioQuestion v-model="question.value"></RadioQuestion>
                         </template>
+                        <template v-slot:sub>
+                            <div v-if="question.value && question.isThereLengthRoom" class="appv-question-sub">
+                                <p>Digite a quantidade de ambientes</p>
+                                <IonInput v-model="question.lengthRoomValue" type="number" fill="outline" placeholder="Quantidade de ambientes"></IonInput>
+                            </div>
+                        </template>
                         <template v-slot:control>
-                            <IonButton v-if="question.requirements && question.value" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
+                            <IonButton v-if="question.requirements && question.value && +question.lengthRoomValue" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
                         </template>
                     </Question>
                 </div>
@@ -70,6 +76,7 @@
         IonPage,
         IonButton,
         IonModal,
+        IonInput,
     } from '@ionic/vue'
 
     import { 
@@ -135,6 +142,8 @@
                     statement: questionGroup.questions[i].statement,
                     value: questionGroup.questions[i].value,
                     requirements: questionGroup.questions[i].requirements ? true : false,
+                    isThereLengthRoom: questionGroup.questions[i].lengthRoom ? true : false,
+                    lengthRoomValue: questionGroup.questions[i].lengthRoom,
                 })
             }
         },
@@ -189,6 +198,8 @@
         overflow-y: auto;
         padding: 10px 20px 10px 20px;
     }
+
+    .appv-question-sub p { font-weight: 600; }
 
     /* steps */
     #right-btn { margin-left: 8px !important; }
