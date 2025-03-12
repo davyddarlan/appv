@@ -44,7 +44,6 @@ export default {
                 title: 'Sala administrativa de gerência',
                 statement: `Existe sala administrativa de gerência`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 1, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -67,7 +66,6 @@ export default {
                 title: 'Sala de reuniões',
                 statement: `Existe sala de reuniões`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 1, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -90,7 +88,6 @@ export default {
                 title: 'Sala administrativa de agentes comunitários de saúde',
                 statement: `Existe sala administrativa de agentes comuniários de saúde`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 1, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -113,7 +110,6 @@ export default {
                 title: 'Sala de arquivo e pronturário médico',
                 statement: `Existe sala de arquivo e prontuário médico`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 6.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -136,7 +132,6 @@ export default {
                 title: 'Almoxarifado',   
                 statement: `Existe almoxarifado`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 1.5, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -167,7 +162,6 @@ export default {
                 title: 'Farmácia',
                 statement: `Existe farmácia`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 6.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -190,7 +184,6 @@ export default {
                 title: 'Consultório médico',
                 statement: `Existe consultório médico`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 3, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 7.5, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -213,7 +206,6 @@ export default {
                 title: 'Consultório médico com sanitário anexo',
                 statement: `Existe consultório médico com sanitário anexo`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 2, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 7.5, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -236,7 +228,6 @@ export default {
                 title: 'Sala de procedimentos',
                 statement: `Existe sala de procedimentos`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -259,7 +250,6 @@ export default {
                 title: 'Sala de vacinas',
                 statement: `Existe sala de vacinas`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 6.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -282,7 +272,6 @@ export default {
                 title: 'Sala para coleta',
                 statement: `Existe sala para coleta`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 3.2, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -305,7 +294,6 @@ export default {
                 title: 'Sala para classificação de amostras',
                 statement: `Existe sala para classificação de amostras`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 3.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -328,7 +316,6 @@ export default {
                 title: 'Sala de nebulização',
                 statement: `Existe sala de nebulização`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 6.5, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -351,7 +338,6 @@ export default {
                 title: 'Sala de curativos',
                 statement: `Existe sala de curativos`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -382,7 +368,6 @@ export default {
                 title: 'Consultório odontológico',
                 statement: `Existe consultório odontológico`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -405,7 +390,6 @@ export default {
                 title: 'Escovário',
                 statement: `Existe escovário`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 3.3, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: true, value: ref(null), },
@@ -428,7 +412,6 @@ export default {
                 title: 'Área técnica para compressor de ar odontológico',
                 statement: `Existe área técnica para compressor de ar odontológico`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -451,7 +434,6 @@ export default {
                 title: 'Área técnica para bomba vácuo',
                 statement: `Existe área técnica para bomba vácuo`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9.0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -482,7 +464,6 @@ export default {
                 title: 'Banheiro para fucionários',
                 statement: `Existe banheiro para funcionários`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 3.6, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -505,7 +486,6 @@ export default {
                 title: 'Vestiário para funcionários',
                 statement: `Existe vestiário para funcionários`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -528,7 +508,6 @@ export default {
                 title: 'Copa',
                 statement: `Existe copa`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 4.5, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -551,7 +530,6 @@ export default {
                 title: 'Sala de recepção',
                 statement: `Existe sala de recepção`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 0, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -574,7 +552,6 @@ export default {
                 title: 'Sala de espera',
                 statement: `Existe sala de espera`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 5.4, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -597,7 +574,6 @@ export default {
                 title: 'Sanitário de pacientes',
                 statement: `Existe sanitário de pacientes`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 2, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 1.6, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -620,7 +596,6 @@ export default {
                 title: 'Depóstio de material de limpeza m(DML)',
                 statement: `Existe depósito de material de limpeza m(DML)`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 2, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: false, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -643,7 +618,6 @@ export default {
                 title: 'Central de material esterilizada simplificada',
                 statement: `Existe central de material esterilizada simplificada`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 9.6, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
@@ -666,7 +640,6 @@ export default {
                 title: 'Sala de utilidades',
                 statement: `Existe sala de utilidades`,
                 requirements: [
-                    { view: 'ReqQtdAmbientes', answerSheet: 1, value: ref(null), },
                     { view: 'ReqAreaFisica', answerSheet: 6, value: ref(null), },
                     { view: 'ReqLavatorio', answerSheet: true, value: ref(null), },
                     { view: 'ReqAutomacaoTorneira', answerSheet: false, value: ref(null), },
