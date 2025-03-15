@@ -15,6 +15,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/Questions.vue'),
   },
   {
+    path: '/lista-ambientes',
+    component: () => import('../views/ListaAmbientes.vue'),
+  },
+  {
     path: '/parecer',
     component: () => import('../views/Parecer.vue'),
   }

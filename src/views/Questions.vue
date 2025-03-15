@@ -38,32 +38,12 @@
                             </div>
                         </template>
                         <template v-slot:control>
-                            <IonButton v-if="question.requirements && question.value && +question.lengthRoomValue" @click="methods.openModal(question.index)" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
+                            <IonButton v-if="question.requirements && question.value && +question.lengthRoomValue" @click="methods.openRoons({ group: groupQuestions, index: question.index })" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
                         </template>
                     </Question>
                 </div>
             </template>
         </MainLayout>
-        <IonModal :is-open="modalStatus">
-            <MainLayout>
-                <template v-slot:header-button>
-                    <IonIcon @click="methods.closeModal()" :icon="closeOutline"></IonIcon>
-                </template>
-                <template v-slot:header-title>
-                    Requisitos de ambiente
-                </template>
-                <template v-slot:subheader>
-                    {{ titleRequirements }}
-                </template>
-                <template v-slot:content>
-                    <div id="appv-modal" class="wrapper">
-                        <template v-for="requirement in componentsRequirements">
-                            <component v-model="requirement.value" @notify="methods.getNotify" :is="requirement.view" :answerSheet="requirement.answerSheet"></component>
-                        </template>
-                    </div>
-                </template>
-            </MainLayout>
-        </IonModal>
     </ion-page>
 </template>
 
@@ -157,17 +137,14 @@
                 pagination.currentPage.value--
             }
         },
-        openModal: (questionId) => {
-            componentsRequirements.value = questionGroup.questions[questionId].requirements
-            titleRequirements.value = questionGroup.questions[questionId].title
-
-            modalStatus.value = true
-        },
-        closeModal: () => {
-            modalStatus.value = false
-        },
-        getNotify: (data) => {
-            console.log(data.message)
+        openRoons: (data) => {
+            router.push({
+                path: '/lista-ambientes',
+                query: {
+                    group: data.group,
+                    index: data.index,
+                }
+            })
         }
     }
 
