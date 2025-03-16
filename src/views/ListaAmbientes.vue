@@ -15,15 +15,16 @@
                     <template v-for="(room, index) in questionDatabase.valuesRequirements.value">
                         <div id="appv-block" class="wrapper">
                             <div @click="methods.openRequirements(index)" id="appv-block" class="title">Ambiente {{ index + 1 }}</div>
-                            <div id="appv-block" class="button">
+                            <div @click="methods.removeRoom(questionDatabase, index)" id="appv-block" class="button">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </div>
                         </div>
                     </template>
+                    <IonButton @click="methods.addRoom(questionDatabase)" size="full" id="appv-button" class="button">Adicionar um novo ambiente</IonButton>
                 </div>
                 <RequirementsModal :open="modal" @close="modal = false">
                     <template v-slot:title>
-                        Requisito X
+                        Ambiente {{ modalParams.indexQuestion + 1 }}
                     </template>
                     <template v-slot:subheader>
                         {{ questionDatabase.title }}
@@ -52,6 +53,7 @@
     import { 
         IonPage,
         IonIcon,
+        IonButton,
     } from '@ionic/vue'
 
     import { 
@@ -91,12 +93,30 @@
                 }  
             }
         },
+        addRoom: (database) => {
+            const requirements = []
+
+            for (let i = 0; i < database.requirements.length; i++) {
+                requirements.push(null)
+            }
+
+            database.lengthRoom.value = +database.lengthRoom.value + 1
+            database.valuesRequirements.value.push(requirements)
+        },
+        removeRoom: (database, index) => {
+            database.lengthRoom.value = +database.lengthRoom.value - 1
+            database.valuesRequirements.value.splice(index, 1)
+
+            if (!database.lengthRoom.value) {
+                router.go(-1)
+                database.lengthRoom.value = ' '
+
+            }
+        },
         openRequirements: (indexQuestion) => {
             modal.value = true
             modalParams.value.indexQuestion = indexQuestion
-
-            console.log(questionDatabase.valuesRequirements.value[modalParams.value.indexQuestion])
-        }
+        },
     }
 
     methods.fillValuesRequirements(
@@ -145,4 +165,6 @@
 
     #appv-block.button, 
     #appv-block.title { float: left; }
+
+    #appv-button.button { margin-top: 20px; }
 </style>
