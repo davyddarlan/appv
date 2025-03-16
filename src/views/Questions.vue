@@ -34,7 +34,7 @@
                         <template v-slot:sub>
                             <div v-if="question.value && question.isThereLengthRoom" class="appv-question-sub">
                                 <p>Digite a quantidade de ambientes</p>
-                                <IonInput v-model="question.lengthRoomValue" type="number" fill="outline" placeholder="Quantidade de ambientes"></IonInput>
+                                <IonInput :readonly="question.lengthRoomValue > 0" v-model="question.lengthRoomValue" type="number" fill="outline" placeholder="Quantidade de ambientes"></IonInput>
                             </div>
                         </template>
                         <template v-slot:control>
