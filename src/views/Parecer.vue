@@ -12,7 +12,7 @@
             </template>
             <template v-slot:content>
                 <div id="appv-parecer" class="wrapper">
-                    <div>
+                    <!--<div>
                         <canvas id="myChart"></canvas>
                     </div>
                     <ListComponent>
@@ -41,7 +41,7 @@
                                 <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                             </div>
                         </template> 
-                    </ListComponent>
+                    </ListComponent>-->
                 </div>
             </template>
         </MainLayout>
@@ -51,6 +51,8 @@
 <script setup>
     import { inject, ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'  
+
+    import ReqValidation from '../composables/req-validation.js'
 
     import { 
         IonIcon,
@@ -67,8 +69,36 @@
     const router = useRouter()
     const data = inject('questions')
 
+    // teste por ambiente
+    
+    const ambiente = data.project.data.ADM.questions[0]
+    const nomeAmbiente = ambiente.title
+    const requisitos = ambiente.requirements
+    const valores = ambiente.valuesRequirements
+    const qtdAmbientes = ambiente.lengthRoom
+
+    if (+qtdAmbientes.value) {
+        for (let i = 0; i < qtdAmbientes.value; i++) {
+            for (let j = 0; j < requisitos.length; j++) {
+                if (valores.value[i][j]) {
+                    let answerSheet = requisitos[j].answerSheet
+                    let value = valores.value[i][j]
+                    let feedback = ReqValidation[requisitos[j].view](answerSheet, value)
+
+                    if (feedback) {
+                        console.log('Ambiente: ' + (i))
+                        console.log(feedback)
+                        console.log('--------------')
+                    }
+                }
+            }
+        }
+    }
+
+    // fim da área de teste
+
     onMounted(() => {
-        const ctx = document.getElementById('myChart');
+        /*const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
             type: 'pie',
@@ -92,7 +122,7 @@
                     }
                 }
             }
-        });
+        });*/
     })
 
     const methods = {

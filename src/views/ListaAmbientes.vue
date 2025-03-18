@@ -71,7 +71,7 @@
 
     const { group, index } = route.query
 
-    const questionDatabase = database[group]['questions'][index]
+    const questionDatabase = database['project']['data'][group]['questions'][index]
 
     const modal = ref(false)
     const modalParams = ref({

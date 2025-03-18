@@ -4,6 +4,10 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/nova-compatibilizacao',
     component: () => import('../views/NovaCompatibilizacao.vue')
   }, 
   {
@@ -21,6 +25,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/parecer',
     component: () => import('../views/Parecer.vue'),
+  },
+  {
+    path: '/lista-projetos',
+    component: () => import('../views/ListaProjetos.vue')
   }
 ]
 

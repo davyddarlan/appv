@@ -2,7 +2,7 @@
     <ion-page>
         <MainLayout>
             <template v-slot:header-button>
-                <IonIcon :icon="closeOutline"></IonIcon>
+                <IonIcon @click="methods.closeProject" :icon="closeOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
                 Compatibilização
@@ -13,7 +13,7 @@
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
-                    <div @click="methods.goToQuestions(grupo)" v-for="grupo in questionsStorage" class="box ion-activatable" :class="{ lock: grupo.lock}">
+                    <div @click="methods.goToQuestions(grupo)" v-for="grupo in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock}">
                         <IonIcon v-if="grupo.lock" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
                         <IonIcon v-if="!grupo.lock && grupo.percentage == 100" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
                         <span class="progress" v-if="!grupo.lock">100% concluído</span>
@@ -66,7 +66,10 @@
                     }
                 }
             }
-        }
+        },
+        closeProject: () => {
+            router.replace('/')  
+        },
     }
 </script>
 

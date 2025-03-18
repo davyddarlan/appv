@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    import { defineProps, defineEmits, ref, watch, defineModel, } from 'vue'
+    import { defineProps, defineModel } from 'vue'
     import radioQuestion from '../question/radio-question-v2.vue';
     import Question from '../question/question.vue'
 
@@ -18,26 +18,8 @@
         }
     })
 
-    const emit = defineEmits(['notify'])
-
     const model = defineModel({
         default: null,
-    })
-
-    watch(() => model.value, (data) => {
-        if (props.answerSheet != data) {
-            let message
-
-            if (props.answerSheet) {
-                message = 'É preciso que a parede seja feita de material impermeável'
-            } else {
-                message = 'Não é preciso que a parede seja feita de material impermeável'
-            }
-
-            emit('notify', {
-                message,
-            })
-        }
     })
 </script>
 

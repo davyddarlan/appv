@@ -2,7 +2,7 @@
     <ion-page>
         <MainLayout>
             <template v-slot:header-button>
-                <IonIcon :icon="closeOutline"></IonIcon>
+                <IonIcon @click="methods.goToHome" :icon="closeOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
                 Informações da unidade
@@ -15,22 +15,29 @@
                     <Question>
                         Dê um nome para identificação desta unidade de saúde da família
                         <template v-slot:input>
-                            <IonInput type="text" fill="outline" placeholder="Nome da unidade"></IonInput>
+                            <IonInput v-model="data.name.value" type="text" fill="outline" placeholder="Nome da unidade"></IonInput>
                         </template>
                     </Question>
                     <Question>
                         Esta unidade de saúde é composta por quantas equipes?
                         <template v-slot:input>
-                            <IonInput type="number" fill="outline" placeholder="Número de equipes"></IonInput>
+                            <IonInput v-model="data.lengthTeam.value" type="number" fill="outline" placeholder="Número de equipes"></IonInput>
                         </template>
                     </Question>
                     <Question>
                         Esta análise de projeto arquitetônico está sendo feita In Loco?
                         <template v-slot:input>
-                            <RadioQuestion></RadioQuestion>
+                            <RadioQuestion v-model="data.isInLoco.value"></RadioQuestion>
                         </template>
                     </Question>
-                    <IonButton @click="methods.iniciar" id="appv-nova-compatibilizacao" class="iniciar-btn" size="full">Inicializar compatibilização</IonButton>
+                    <IonButton 
+                        :disabled="disabled" 
+                        @click="methods.iniciar" 
+                        id="appv-nova-compatibilizacao" 
+                        class="iniciar-btn" 
+                        size="full"
+                        >Inicializar compatibilização
+                    </IonButton>
                 </div>
             </template>
         </MainLayout>
@@ -38,7 +45,7 @@
 </template>
 
 <script setup>
-    import { inject, ref, onMounted } from 'vue'
+    import { inject, ref, onMounted, computed } from 'vue'
     import { useRouter } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
@@ -58,14 +65,25 @@
     import MainLayout from '@/components/layout/main-layout.vue'
 
     const router = useRouter()
-    const data = inject('questions')
+    const data = inject('questions').project
+
+    const disabled = computed(() => {
+        return data.isInLoco.value == null 
+        || !data.lengthTeam.value 
+        || data.lengthTeam.value == 0
+        || data.name.value == null
+        || !data.name.value
+    })
 
     const methods = {
         iniciar: () => {
             router.push({
                 path: '/map',
             })
-        }
+        },
+        goToHome: () => {
+            router.go(-1)
+        },
     }
 </script>
 

@@ -77,7 +77,7 @@
     const modalStatus = ref(false)
 
     const { groupQuestions } = route.query
-    const questionGroup = questionsStorage[groupQuestions]
+    const questionGroup = questionsStorage.project.data[groupQuestions]
     const componentsRequirements = ref(null)
     const titleRequirements = ref(null)
 
