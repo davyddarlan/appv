@@ -82,13 +82,24 @@
         goBackNavigation: () => {
             router.go(-1)
         },
-        fillValuesRequirements: (database, lengthRoons, lengthRequirements) => {
+        fillValuesRequirements: (database, lengthRoons, requirements) => {
             if (!database.length) {
                 for (let i = 0; i < lengthRoons; i++) {
                     database.push([])
 
-                    for (let j = 0; j < lengthRequirements; j++) {
-                        database[i].push(null)
+                    for (let j = 0; j < requirements.length; j++) {
+                        if (requirements[j].answerSheet instanceof Array) {
+                            let arrayValues = []
+                            let dataLength = requirements[j].answerSheet.length
+
+                            for (let k = 0; k < dataLength; k++) {
+                                arrayValues.push(null)
+                            }
+
+                            database[i].push(arrayValues)
+                        } else {
+                            database[i].push(null)    
+                        }
                     }
                 }  
             }
@@ -122,7 +133,7 @@
     methods.fillValuesRequirements(
         questionDatabase.valuesRequirements.value,
         questionDatabase.lengthRoom.value, 
-        questionDatabase.requirements.length
+        questionDatabase.requirements
     )
 </script>
 

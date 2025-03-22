@@ -2,13 +2,13 @@
     <Question>
         O ambiente possuí lavatório 
         <template v-slot:input>
-            <radioQuestion v-model="values[0]" id="lavatorio"></radioQuestion>
+            <radioQuestion v-model="model[0]" id="lavatorio"></radioQuestion>
         </template>
         <template v-slot:sub>
-            <template v-if="values[0]">
+            <template v-if="model[0]">
                 <div class="question">
                     <p class="statement">O lavatório possui torneira que dispense o uso das mãos para ligar e desligar</p>
-                    <radioQuestion v-model="values[1]" id="automacao-torneira"></radioQuestion>
+                    <radioQuestion v-model="model[1]" id="automacao-torneira"></radioQuestion>
                 </div>
             </template>
         </template>
@@ -19,14 +19,15 @@
     import radioQuestion from '../question/radio-question-v2.vue';
     import Question from '../question/question.vue'
 
-    import { defineModel, ref, watch } from 'vue'
+    import { defineModel, watch } from 'vue'
 
-    const model = defineModel()
-    const values = ref([null, null])
+    const model = defineModel({
+        type: Array,
+    })
 
-    watch (() => values.value[0], (data) => {
+    watch(() => model.value[0], (data) => {
         if (!data) {
-            values.value[1] = 0
+            model.value[1] = data
         }
     })
 </script>
