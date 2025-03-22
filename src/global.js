@@ -1,7 +1,6 @@
 import ReqQtdAmbientes from './components/requirements/qtd-ambientes.vue'
 import ReqAreaFisica from './components/requirements/area-fisica.vue'
 import ReqLavatorio from './components/requirements/lavatorio.vue'
-import ReqAutomacaoTorneira from './components/requirements/automacao-torneira.vue'
 import ReqVentilacao from './components/requirements/ventilacao.vue'
 import ReqPiso from './components/requirements/piso.vue'
 import ReqParede from './components/requirements/parede.vue'
@@ -18,7 +17,6 @@ export default (app) => {
     app.component('ReqQtdAmbientes', ReqQtdAmbientes)
     app.component('ReqAreaFisica', ReqAreaFisica)
     app.component('ReqLavatorio', ReqLavatorio)
-    app.component('ReqAutomacaoTorneira', ReqAutomacaoTorneira)
     app.component('ReqVentilacao', ReqVentilacao)
     app.component('ReqPiso', ReqPiso)
     app.component('ReqParede', ReqParede)

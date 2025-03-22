@@ -50,8 +50,7 @@ export default {
                         statement: `Existe sala administrativa de gerência`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -60,7 +59,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -73,8 +72,7 @@ export default {
                         statement: `Existe sala de reuniões`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -83,7 +81,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -96,8 +94,7 @@ export default {
                         statement: `Existe sala administrativa de agentes comuniários de saúde`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -106,7 +103,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -119,8 +116,7 @@ export default {
                         statement: `Existe sala de arquivo e prontuário médico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -129,7 +125,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -142,8 +138,7 @@ export default {
                         statement: `Existe almoxarifado`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1.5 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -152,7 +147,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -173,8 +168,7 @@ export default {
                         statement: `Existe farmácia`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.0 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -183,7 +177,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -196,8 +190,7 @@ export default {
                         statement: `Existe consultório médico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 7.5 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -206,7 +199,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -219,8 +212,7 @@ export default {
                         statement: `Existe consultório médico com sanitário anexo`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 7.5 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -229,7 +221,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -242,8 +234,7 @@ export default {
                         statement: `Existe sala de procedimentos`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -252,7 +243,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -265,8 +256,7 @@ export default {
                         statement: `Existe sala de vacinas`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.0 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -275,7 +265,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -288,8 +278,7 @@ export default {
                         statement: `Existe sala para coleta`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.2 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -298,7 +287,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -311,8 +300,7 @@ export default {
                         statement: `Existe sala para classificação de amostras`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -321,7 +309,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -334,8 +322,7 @@ export default {
                         statement: `Existe sala de nebulização`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.5 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -344,7 +331,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -357,8 +344,7 @@ export default {
                         statement: `Existe sala de curativos`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -367,7 +353,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -388,8 +374,7 @@ export default {
                         statement: `Existe consultório odontológico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -398,7 +383,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true},
                             { view: 'ReqLuminaria', answerSheet: true } 
                         ],
@@ -411,8 +396,7 @@ export default {
                         statement: `Existe escovário`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.3 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -421,7 +405,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -434,8 +418,7 @@ export default {
                         statement: `Existe área técnica para compressor de ar odontológico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -444,7 +427,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -457,8 +440,7 @@ export default {
                         statement: `Existe área técnica para bomba vácuo`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -467,7 +449,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -488,8 +470,7 @@ export default {
                         statement: `Existe banheiro para funcionários`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.6 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [true, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -498,7 +479,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -511,8 +492,7 @@ export default {
                         statement: `Existe vestiário para funcionários`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -521,7 +501,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -534,8 +514,7 @@ export default {
                         statement: `Existe copa`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 4.5 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [true, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -544,7 +523,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -557,8 +536,7 @@ export default {
                         statement: `Existe sala de recepção`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -567,7 +545,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -580,8 +558,7 @@ export default {
                         statement: `Existe sala de espera`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 5.4 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -590,7 +567,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -603,8 +580,7 @@ export default {
                         statement: `Existe sanitário de pacientes`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1.6 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [true, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -613,7 +589,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
@@ -626,8 +602,7 @@ export default {
                         statement: `Existe depósito de material de limpeza m(DML)`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 2 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -636,7 +611,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -649,8 +624,7 @@ export default {
                         statement: `Existe central de material esterilizada simplificada`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.6 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [true, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -659,7 +633,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -672,8 +646,7 @@ export default {
                         statement: `Existe sala de utilidades`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6 },
-                            { view: 'ReqLavatorio', answerSheet: true },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [true, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -682,7 +655,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
-                            { view: 'ReqCubaFuda', answerSheet: true },
+                            { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
@@ -696,8 +669,7 @@ export default {
                         requirements: [
                             { view: 'ReqQtdAmbientes', answerSheet: 1 },
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: false },
-                            { view: 'ReqAutomacaoTorneira', answerSheet: false },
+                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -706,7 +678,7 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 0 },
-                            { view: 'ReqCubaFuda', answerSheet: false },
+                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: false }
                         ],
