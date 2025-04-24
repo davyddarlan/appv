@@ -34,6 +34,8 @@
         width: 100%;
         height: 100%;
         background: #e33922;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     #appv-home.content {

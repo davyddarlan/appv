@@ -1,10 +1,14 @@
 <template>
   <ion-app>
-    <ion-router-outlet />
+    <BottomMenu>
+      <ion-router-outlet />
+    </BottomMenu>
   </ion-app>
 </template>
 
 <script setup lang="ts">
+  import BottomMenu from './components/layout/bottom-menu.vue'
+
   import { 
     IonApp, 
     IonRouterOutlet,

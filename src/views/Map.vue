@@ -13,12 +13,22 @@
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
-                    <div @click="methods.goToQuestions(grupo)" v-for="grupo in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock}">
-                        <IonIcon v-if="grupo.lock" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
-                        <IonIcon v-if="!grupo.lock && grupo.percentage == 100" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
-                        <span class="progress" v-if="!grupo.lock">100% concluído</span>
-                        <span class="title">{{ grupo.title }}</span>
-                        <IonRippleEffect></IonRippleEffect>
+                    <div class="header-map">
+                        <p class="title">Você está na trilha do projeto <b>{{ name }}</b></p>
+                        <div class="button-edit">
+                            <ion-button size="small" @click="methods.editProfile">
+                                <ion-icon slot="icon-only" :icon="settingsOutline"></ion-icon>
+                            </ion-button>
+                        </div>
+                    </div>
+                    <div>
+                        <div @click="methods.goToQuestions(grupo)" v-for="grupo in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock}">
+                            <IonIcon v-if="grupo.lock" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
+                            <IonIcon v-if="!grupo.lock && grupo.percentage == 100" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
+                            <span class="progress" v-if="!grupo.lock">100% concluído</span>
+                            <span class="title">{{ grupo.title }}</span>
+                            <IonRippleEffect></IonRippleEffect>
+                        </div>
                     </div>
                 </div>
                 <!-- fim conteúdo -->
@@ -36,17 +46,20 @@
         IonIcon,
         IonRippleEffect,
         IonPage,
+        IonButton,
     } from '@ionic/vue'
 
     import { 
         closeOutline,
         lockClosedSharp,
         checkmarkDoneSharp,
+        settingsOutline,
     } from 'ionicons/icons';
     
     import MainLayout from '@/components/layout/main-layout.vue';
 
     const questionsStorage = inject('questions')
+    const name = questionsStorage.project.name
 
     const router = useRouter()
 
@@ -67,6 +80,14 @@
                 }
             }
         },
+        editProfile: () => {
+            router.push({
+                path: '/nova-compatibilizacao',
+                query: {
+                    edit: true,
+                }
+            })
+        },
         closeProject: () => {
             router.replace('/')  
         },
@@ -75,7 +96,7 @@
 
 <style scoped>
     #appv-box-wrapper {
-        padding: 30px 20px 10px 20px;
+        padding: 20px;
         --color-bar: #4a5d88;
         --width-bar: 6px;
         --height-bar: 30px;
@@ -197,4 +218,22 @@
         height: var(--width-bar);
         background: var(--color-bar);
     }
+
+    .header-map {
+        width: 100%;
+        display: table;
+        margin-bottom: 20px;
+    }
+
+    .header-map .title {
+        font-size: 1.1em;
+        margin: 0;
+        width: 80%;
+        font-style: italic;
+        float: left;
+    }
+    
+    .header-map .button-edit {
+        float: right;
+    } 
 </style>
