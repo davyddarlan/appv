@@ -29,7 +29,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/lista-projetos',
     component: () => import('../views/ListaProjetos.vue')
-  }
+  },
+  {
+    path: '/sobre',
+    component: () => import('../views/Sobre.vue')
+  },
 ]
 
 const router = createRouter({

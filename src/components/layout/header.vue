@@ -25,7 +25,7 @@
         padding: 0 20px 0 15px;
         overflow: hidden;
     }
-
+    
     #appv-header.button {
         display: flex;
         align-items: center;

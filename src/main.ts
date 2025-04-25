@@ -6,6 +6,7 @@ import global from './global.js'
 import { IonicVue } from '@ionic/vue';
 
 import questionsStorage from './data/questions'
+import storage from './data/storage.js'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -45,6 +46,9 @@ router.isReady().then(() => {
   app.mount('#app');
 });
 
+storage.create()
+
 app.provide('questions', questionsStorage)
+app.provide('storage', storage)
 
 global(app)

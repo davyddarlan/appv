@@ -66,6 +66,7 @@
 
     const router = useRouter()
     const data = inject('questions').project
+    const storage = inject('storage')
 
     const disabled = computed(() => {
         return data.isInLoco.value == null 
@@ -77,6 +78,12 @@
 
     const methods = {
         iniciar: () => {
+            storage.createProject({
+                name: data.name.value,
+                lengthTeam: +data.lengthTeam.value,
+                isInLoco: data.isInLoco.value,
+            })
+
             router.push({
                 path: '/map',
             })

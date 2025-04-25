@@ -21,7 +21,7 @@
     const methods = {
         createProject: () => {
             router.push('/nova-compatibilizacao')
-        }
+        },
     }
 </script>
 

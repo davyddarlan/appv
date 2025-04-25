@@ -11,11 +11,23 @@ export default {
     ReqLavatorio: (answerSheet, value) => {
         let feedback = null
 
-        if (value != answerSheet) {
-            if (answerSheet) {
-                feedback = 'O uso do lavatório é obrigatório'
-            } else {
-                feedback = 'O ambiente possui um lavatório, porém não é necessário'
+        if (answerSheet[0] == false && value[0]) {
+            feedback = 'Embora este ambiente possua lavatório, ele não é necessário.'
+
+            if (answerSheet[1] == false && value[1]) {
+                feedback += ' Além disso, não é precisso que se utilize torneiras que dispensem o uso das mãos.'
+            }
+        }
+
+        if (answerSheet[0] && value[0] == false) {
+            feedback = 'O ambiente precisa de um lavatório'
+
+            if (answerSheet[1] && value[1] == false) {
+                feedback += ' e também necessita de uma torneira que dispense o uso das mãos para ligas e deligar.'
+            }
+
+            if (answerSheet[1] == false && value[1]) {
+                feedback += ', mas descarta o uso de torneiras que dispensam o uso das mãos para ligar e desligar.'
             }
         }
 
@@ -38,7 +50,7 @@ export default {
         let feedback = null
 
         if (answerSheet != value) {
-            if (props.answerSheet) {
+            if (answerSheet) {
                 feedback = 'A ventilação natural ou mecânica é obrigatória'
             } else {
                 feedback = 'A ventilação natural ou mecânica não é obrigatória'
@@ -137,11 +149,23 @@ export default {
     ReqCubaFuda: (answerSheet, value) => {
         let feedback = null
 
-        if (answerSheet != value) {
-            if (answerSheet) {
-                feedback = 'É necessário a existência de uma bancada com pia de cuba funda'
-            } else {
-                feedback = 'Não é necessário a existência de uma bancada com pia de cuba funda'
+        if (answerSheet[0] == false && value[0]) {
+            feedback = 'Embora este ambiente possua bancada com pia de cuba funda, ela não é necessária.'
+
+            if (answerSheet[1] == false && value[1]) {
+                feedback += ' Além disso, não é precisso que se utilize torneiras que dispensem o uso das mãos.'
+            }
+        }
+
+        if (answerSheet[0] && value[0] == false) {
+            feedback = 'O ambiente precisa de uma bancada com pia de cuba funda'
+
+            if (answerSheet[1] && value[1] == false) {
+                feedback += '. Também necessita de uma torneira que dispense o uso das mãos para ligas e deligar.'
+            }
+
+            if (answerSheet[1] == false && value[1]) {
+                feedback += ', mas descarta o uso de torneiras que dispensam o uso das mãos para ligar e desligar.'
             }
         }
 
@@ -165,9 +189,9 @@ export default {
 
         if (answerSheet != value) {
             if (answerSheet) {
-                message = 'É preciso que o ambiente possua luminárias com proteção contra quedas, acidentes e explosões'
+                feedback = 'É preciso que o ambiente possua luminárias com proteção contra quedas, acidentes e explosões'
             } else {
-                message = 'Não é preciso que o ambiente possua luminárias com proteção contra quedas, acidentes e explosões'
+                feedback = 'Não é preciso que o ambiente possua luminárias com proteção contra quedas, acidentes e explosões'
             }
         }
 

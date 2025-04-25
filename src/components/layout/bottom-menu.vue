@@ -12,7 +12,7 @@
                 <ion-icon :icon="mapOutline"></ion-icon>
                 Projetos
             </div>
-            <div class="item">
+            <div class="item" @click="methods.goTo('/sobre')">
                 <ion-icon :icon="informationCircleOutline"></ion-icon>
                 Sobre
             </div>

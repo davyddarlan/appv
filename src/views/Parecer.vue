@@ -12,7 +12,7 @@
             </template>
             <template v-slot:content>
                 <div id="appv-parecer" class="wrapper">
-                    <!--<div>
+                    <div>
                         <canvas id="myChart"></canvas>
                     </div>
                     <ListComponent>
@@ -41,7 +41,7 @@
                                 <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                             </div>
                         </template> 
-                    </ListComponent>-->
+                    </ListComponent>
                 </div>
             </template>
         </MainLayout>
@@ -77,18 +77,38 @@
     const valores = ambiente.valuesRequirements
     const qtdAmbientes = ambiente.lengthRoom
 
+    // verifica se é um array nulo
+    function isNullArray (vector) {
+        let isNull = false
+
+        for (let i = 0; i < vector.length; i++) {
+            if (vector[i] === null) {
+                isNull = true
+                break
+            }
+        }
+
+        return isNull
+    }
+
+    function computeAnswer (validator, answerSheet, data) {
+        console.log(ReqValidation[validator](answerSheet, data))
+    }
+
     if (+qtdAmbientes.value) {
         for (let i = 0; i < qtdAmbientes.value; i++) {
             for (let j = 0; j < requisitos.length; j++) {
-                if (valores.value[i][j]) {
-                    let answerSheet = requisitos[j].answerSheet
-                    let value = valores.value[i][j]
-                    let feedback = ReqValidation[requisitos[j].view](answerSheet, value)
+                const validator = requisitos[j].view
+                const answerSheet = requisitos[j].answerSheet
+                const data = valores.value[i][j]
 
-                    if (feedback) {
-                        console.log('Ambiente: ' + (i))
-                        console.log(feedback)
-                        console.log('--------------')
+                if (Array.isArray(data)) {
+                    if (!isNullArray(data)) {
+                        computeAnswer(validator, answerSheet, data)
+                    }
+                } else {
+                    if (data !== null) {
+                        computeAnswer(validator, answerSheet, data)
                     }
                 }
             }
@@ -98,7 +118,7 @@
     // fim da área de teste
 
     onMounted(() => {
-        /*const ctx = document.getElementById('myChart');
+        const ctx = document.getElementById('myChart');
 
         new Chart(ctx, {
             type: 'pie',
@@ -122,7 +142,7 @@
                     }
                 }
             }
-        });*/
+        });
     })
 
     const methods = {
