@@ -108,11 +108,26 @@
             const requirements = []
 
             for (let i = 0; i < database.requirements.length; i++) {
-                requirements.push(null)
+                const data = database.requirements[i].answerSheet
+
+                if (Array.isArray(data)) {
+                    requirements.push(methods.fillArray(data.length))
+                } else {
+                    requirements.push(null)
+                }
             }
 
             database.lengthRoom.value = +database.lengthRoom.value + 1
             database.valuesRequirements.value.push(requirements)
+        },
+        fillArray: (legnth) => {
+            const vector = []
+
+            for (let i = 0; i < length; i++) {
+                vector.push(null)
+            }
+
+            return vector
         },
         removeRoom: (database, index) => {
             database.lengthRoom.value = +database.lengthRoom.value - 1

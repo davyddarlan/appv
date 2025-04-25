@@ -52,7 +52,7 @@
     import { inject, ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'  
 
-    import ReqValidation from '../composables/req-validation.js'
+    import Analyse from '../composables/analyse.js'
 
     import { 
         IonIcon,
@@ -71,49 +71,9 @@
 
     // teste por ambiente
     
-    const ambiente = data.project.data.ADM.questions[0]
-    const nomeAmbiente = ambiente.title
-    const requisitos = ambiente.requirements
-    const valores = ambiente.valuesRequirements
-    const qtdAmbientes = ambiente.lengthRoom
-
-    // verifica se é um array nulo
-    function isNullArray (vector) {
-        let isNull = false
-
-        for (let i = 0; i < vector.length; i++) {
-            if (vector[i] === null) {
-                isNull = true
-                break
-            }
-        }
-
-        return isNull
-    }
-
-    function computeAnswer (validator, answerSheet, data) {
-        console.log(ReqValidation[validator](answerSheet, data))
-    }
-
-    if (+qtdAmbientes.value) {
-        for (let i = 0; i < qtdAmbientes.value; i++) {
-            for (let j = 0; j < requisitos.length; j++) {
-                const validator = requisitos[j].view
-                const answerSheet = requisitos[j].answerSheet
-                const data = valores.value[i][j]
-
-                if (Array.isArray(data)) {
-                    if (!isNullArray(data)) {
-                        computeAnswer(validator, answerSheet, data)
-                    }
-                } else {
-                    if (data !== null) {
-                        computeAnswer(validator, answerSheet, data)
-                    }
-                }
-            }
-        }
-    }
+    const question = data.project.data.ADM.questions[0]
+    
+    console.log(Analyse.analyse(question))
 
     // fim da área de teste
 
