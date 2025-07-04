@@ -2,7 +2,7 @@
     <IonPage>
         <div id="appv-home" class="wrapper">
             <div id="appv-home" class="content">
-                <h1 class="logo">APPV</h1>
+                <h1 class="logo">AEAPAF</h1>
                 <button @click="methods.createProject" class="start">Analisar USF</button>
             </div>
         </div> 
@@ -11,12 +11,20 @@
 
 <script setup>
     import { useRouter } from 'vue-router'
+    import { inject } from 'vue'
+    import { onIonViewWillEnter } from '@ionic/vue'
     
     import {
         IonPage,
     } from '@ionic/vue'
  
     const router = useRouter()
+    const storage = inject('storage')
+    const questions = inject('questions')
+
+    onIonViewWillEnter(() => {
+        storage.resetQuestionsData(questions.project)
+    })
 
     const methods = {
         createProject: () => {

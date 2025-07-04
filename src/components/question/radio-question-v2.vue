@@ -24,6 +24,8 @@
     const trueValue = ref(null)
     const falseValue = ref(null)
 
+    const emits = defineEmits(['setData'])
+
     watch(() => radioValue.value, (data) => {
         if (data == 0) {
             model.value = 0
@@ -48,7 +50,9 @@
         if (data == null) {
             trueValue.value.checked = false
             falseValue.value.checked = false
-        }     
+        }    
+        
+        emits('setData', data)
     })
 
     onMounted(() => {

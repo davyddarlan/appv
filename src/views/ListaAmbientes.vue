@@ -5,13 +5,14 @@
                 <IonIcon @click="methods.goBackNavigation" :icon="chevronBackOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
-                Verificar requisitos
+                Preencher requisitos
             </template>
             <template v-slot:subheader>
                 {{ questionDatabase.title }}
             </template>
             <template v-slot:content>
                 <div id="appv-content">
+                    <p>Clique em um dos ambientes abaixo para preencher o formulário de requisitos técnico:</p>
                     <template v-for="(room, index) in questionDatabase.valuesRequirements.value">
                         <div id="appv-block" class="wrapper">
                             <div @click="methods.openRequirements(index)" id="appv-block" class="title">Ambiente {{ index + 1 }}</div>
@@ -36,6 +37,7 @@
                                     :is="requirement.view" 
                                     :answerSheet="requirement.answerSheet"
                                     v-model="questionDatabase.valuesRequirements.value[modalParams.indexQuestion][index]"
+                                    @setData="methods.getDataRequerements($event, requirement.view, modalParams, questionDatabase.id)"
                                 ></component>
                             </template>
                         </div>
@@ -65,6 +67,7 @@
     import RequirementsModal from './Requirements.vue'
 
     const database = inject('questions')
+    const storage = inject('storage')
 
     const router = useRouter()
     const route = useRoute()
@@ -76,6 +79,8 @@
     const modal = ref(false)
     const modalParams = ref({
         indexQuestion: 0,
+        groupQuestion: group,
+        projectId: database.project.projectId.value
     })
 
     const methods = {
@@ -143,6 +148,18 @@
             modal.value = true
             modalParams.value.indexQuestion = indexQuestion
         },
+        getDataRequerements: (data, viewName, modalParams, hashId) => {
+            const namespace = modalParams.projectId + '_' + modalParams.groupQuestion + '_REQS'
+
+            const entity = {
+                hashId: hashId,
+                reqId: modalParams.indexQuestion,
+                viewId: viewName,
+                data,
+            }
+
+            storage.createReq(namespace, entity)
+        }
     }
 
     methods.fillValuesRequirements(

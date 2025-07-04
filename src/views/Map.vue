@@ -5,16 +5,18 @@
                 <IonIcon @click="methods.closeProject" :icon="closeOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
-                Compatibilização
+                Trilha
             </template>
             <template v-slot:subheader>
-                Trilha de compatibilização
+                Trilha para análise de projeto e fiscalização
             </template>
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
                     <div class="header-map">
-                        <p class="title">Você está na trilha do projeto <b>{{ name }}</b></p>
+                        <p class="title">Você está na trilha do projeto <b>{{ name }}.</b>
+                        Siga as etapas do mapa abaixo para obter o parecer técnico desta USF.
+                        </p>
                         <div class="button-edit">
                             <ion-button size="small" @click="methods.editProfile">
                                 <ion-icon slot="icon-only" :icon="settingsOutline"></ion-icon>
@@ -222,7 +224,7 @@
     .header-map {
         width: 100%;
         display: table;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
     .header-map .title {

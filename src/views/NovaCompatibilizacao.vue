@@ -12,6 +12,7 @@
             </template>
             <template v-slot:content>
                 <div id="appv-nova-compatibilizacao" class="wrapper">
+                    <h3 style="margin-top: 0; font-weight: bold;">Preencha o formulário abaixo para iniciar a análise da USF (Unidade de Saúde da Família):</h3>
                     <Question>
                         Dê um nome para identificação desta unidade de saúde da família
                         <template v-slot:input>
@@ -45,8 +46,8 @@
 </template>
 
 <script setup>
-    import { inject, ref, onMounted, computed } from 'vue'
-    import { useRouter } from 'vue-router'  
+    import { inject, computed, onMounted } from 'vue'
+    import { useRouter, useRoute } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
     import RadioQuestion from '../components/question/radio-question-v2.vue'
@@ -65,6 +66,7 @@
     import MainLayout from '@/components/layout/main-layout.vue'
 
     const router = useRouter()
+    const route = useRoute()
     const data = inject('questions').project
     const storage = inject('storage')
 
@@ -82,10 +84,12 @@
                 name: data.name.value,
                 lengthTeam: +data.lengthTeam.value,
                 isInLoco: data.isInLoco.value,
-            })
-
-            router.push({
-                path: '/map',
+            }).then((dataReturn) => {
+                data.projectId.value = dataReturn.key
+            
+                router.push({
+                    path: '/map',
+                })
             })
         },
         goToHome: () => {

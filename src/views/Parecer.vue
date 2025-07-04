@@ -15,34 +15,45 @@
                     <div>
                         <canvas id="myChart"></canvas>
                     </div>
-                    <ListComponent>
-                        <template v-slot:title>Sala administrativa de gerência</template>
-                        <template v-slot:content>
-                            <div v-for="(x, index) in 3" id="appv-parecer" class="requirement">
-                                <div class="position">{{ index + 1 }}</div>
-                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </template>     
-                    </ListComponent>
-                    <ListComponent>
-                        <template v-slot:title>Sala de nebulização</template>
-                        <template v-slot:content>
-                            <div v-for="(x, index) in 2" id="appv-parecer" class="requirement">
-                                <div class="position">{{ index + 1 }}</div>
-                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </template> 
-                    </ListComponent>
-                    <ListComponent>
-                        <template v-slot:title>Consultório odontológico</template>
-                        <template v-slot:content>
-                            <div v-for="(x, index) in 1" id="appv-parecer" class="requirement">
-                                <div class="position">{{ index + 1 }}</div>
-                                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            </div>
-                        </template> 
-                    </ListComponent>
+                    <template v-for="(room, indexSection) in dataAnalyse">
+                        <ListComponent>
+                            <template v-slot:title>{{ room.title }}</template>
+                            <template v-slot:content>
+                                <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
+                                    <div @click="methods.seeRequirements(indexSection, indexRoom)">
+                                        <div class="position">{{ indexRoom + 1 }}</div>
+                                        <p class="text">Ambiente {{ indexRoom + 1 }}</p>
+                                    </div>
+                                </div>
+                            </template>     
+                        </ListComponent>
+                    </template>
                 </div>
+                <ListaImcompatibilidadeModal :open="modal" @close="modal = false">
+                    <template v-slot:title>
+                        Incompatibilidades
+                    </template>
+                    <template v-slot:subheader>
+                        {{ dataAnalyse[getDataRoom.section].title }}
+                    </template>
+                    <template v-slot:content>
+                        <div id="appv-modal-parecer" class="wrapper">
+                            <h1 id="appv-modal-parecer" class="title">O ambiente <b>{{ dataAnalyse[getDataRoom.section].title }} {{ getDataRoom.room + 1 }}</b> possui as seguintes incompatibilidades:</h1>
+                            <template v-for="(alerts, index) in dataAnalyse[getDataRoom.section].roons[getDataRoom.room]">
+                                <template v-if="alerts">
+                                    <ListComponent>
+                                        <template v-slot:title>Incompatibilidade {{ index + 1 }}</template>
+                                        <template v-slot:content>
+                                            <div id="appv-parecer" class="requirement">
+                                                <p class="text">{{ alerts }}</p>
+                                            </div>
+                                        </template>     
+                                    </ListComponent>
+                                </template>
+                            </template>
+                        </div>
+                    </template>
+                </ListaImcompatibilidadeModal>
             </template>
         </MainLayout>
     </ion-page>
@@ -65,6 +76,7 @@
 
     import MainLayout from '@/components/layout/main-layout.vue'
     import ListComponent from '@/components/list/list.vue'
+    import ListaImcompatibilidadeModal from './ListaImcompatibilidade.vue'
 
     const router = useRouter()
     const data = inject('questions')
@@ -72,8 +84,12 @@
     // teste por ambiente
     
     const question = data.project.data.ADM.questions[0]
-    
-    console.log(Analyse.analyse(question))
+    const modal = ref(false)
+    const dataAnalyse = ref(null)
+    const getDataRoom = ref({
+        section: null,
+        room: null,
+    })
 
     // fim da área de teste
 
@@ -109,13 +125,44 @@
         goBackNavigation: () => { 
             router.go(-1) 
         },
-    }   
+        seeRequirements: (section, room) => {
+            modal.value = true
+            
+            getDataRoom.value.section = section
+            getDataRoom.value.room = room
+
+            console.log(dataAnalyse.value[getDataRoom.value.section])
+        },
+        listQuestios: (questionDb) => {
+            const listGroup = ['ADM', 'AC', 'AO', 'AP']
+            const analyseResult = []
+
+            for (let i = 0; i < listGroup.length; i++) {
+                let questionsLength = questionDb[listGroup[i]].questions.length
+
+                for (let j = 0; j < questionsLength; j++) {
+                    let getRoons = Analyse.analyse(questionDb[listGroup[i]].questions[j])
+
+                    if (getRoons.roons.length) {
+                        analyseResult.push(getRoons)
+                    }
+                }
+            }
+
+            return analyseResult
+        },
+    }  
+    
+    dataAnalyse.value = methods.listQuestios(data.project.data)
 </script>
 
 <style scoped>
-    #appv-parecer.wrapper {
+    #appv-parecer.wrapper,
+    #appv-modal-parecer.wrapper {
         padding: 20px;
     }
+
+    #appv-modal-parecer.title { margin-bottom: 30px; }
 
     #appv-parecer.requirement {
         display: flex;
@@ -129,7 +176,7 @@
     #appv-parecer.requirement .position {
         width: 40px;
         height: 40px;
-        background: #4a5d88;
+        background: #e33922;
         border-radius: 50%;
         text-align: center;
         line-height: 40px;

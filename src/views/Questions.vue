@@ -26,21 +26,13 @@
                     </div>
                 </div>
                 <div class="appv-question-wrapper">
-                    <Question v-for="question in pagination.list.value">
-                        {{ question.statement }}
-                        <template v-slot:input>
-                            <RadioQuestion v-model="question.value"></RadioQuestion>
-                        </template>
-                        <template v-slot:sub>
-                            <div v-if="question.value && question.isThereLengthRoom" class="appv-question-sub">
-                                <p>Digite a quantidade de ambientes</p>
-                                <IonInput :readonly="question.lengthRoomValue > 0" v-model="question.lengthRoomValue" type="number" fill="outline" placeholder="Quantidade de ambientes"></IonInput>
-                            </div>
-                        </template>
-                        <template v-slot:control>
-                            <IonButton v-if="question.requirements && question.value && +question.lengthRoomValue" @click="methods.openRoons({ group: groupQuestions, index: question.index })" size="small" id="open-modal" expand="block">Verificar requisitos</IonButton>
-                        </template>
-                    </Question>
+                    <template v-for="question in pagination.list.value" :key="question.id">
+                        <RoomQuestion :question="question" 
+                            @pressBtn="methods.openRoons({ group: groupQuestions, index: question.index })"
+                            @setValue="methods.setValueQuestion"
+                            @setLengthRoom="methods.setValueQuestion"
+                        ></RoomQuestion>
+                    </template>
                 </div>
             </template>
         </MainLayout>
@@ -54,32 +46,24 @@
     import { 
         IonIcon,
         IonPage,
-        IonButton,
-        IonModal,
-        IonInput,
     } from '@ionic/vue'
 
     import { 
         chevronBackOutline,
         caretBackOutline,
         caretForwardOutline,
-        closeOutline,
     } from 'ionicons/icons'
     
     import MainLayout from '../components/layout/main-layout.vue'
-    import Question from '../components/question/question.vue'
-    import RadioQuestion from '../components/question/radio-question-v2.vue'
+    import RoomQuestion from '../components/question/room-question.vue'
 
     const router = useRouter()
     const route = useRoute()
     const questionsStorage = inject('questions')
-
-    const modalStatus = ref(false)
+    const storage = inject('storage')
 
     const { groupQuestions } = route.query
     const questionGroup = questionsStorage.project.data[groupQuestions]
-    const componentsRequirements = ref(null)
-    const titleRequirements = ref(null)
 
     const pagination = {
         questionsLength: questionGroup.questions.length,
@@ -92,8 +76,19 @@
     pagination.total = Math.ceil(pagination.questionsLength / pagination.perPage)
 
     const methods = {
-        setStatusQuestion: (data) => {           
-            questionsStorage[groupQuestions].questions[data.index].value = data.value          
+        setValueQuestion: (data) => {    
+            const databaseName = questionsStorage.project.projectId.value + '_' + groupQuestions
+            
+            const questionData = {
+                [data.id]: {
+                    value: data.value,
+                    lengthRoom: data.lengthRoom,
+                }
+            }
+
+            storage.setQuestion(databaseName, questionData).then((data) => {
+                console.log('a operação aconteceu como o esperado')
+            })
         },
         goBackNavigation: () => { 
             router.go(-1) 
@@ -121,9 +116,8 @@
                     index: i,
                     statement: questionGroup.questions[i].statement,
                     value: questionGroup.questions[i].value,
-                    requirements: questionGroup.questions[i].requirements ? true : false,
-                    isThereLengthRoom: questionGroup.questions[i].lengthRoom ? true : false,
                     lengthRoomValue: questionGroup.questions[i].lengthRoom,
+                    id: questionGroup.questions[i].id,
                 })
             }
         },

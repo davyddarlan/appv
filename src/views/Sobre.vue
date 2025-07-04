@@ -2,13 +2,13 @@
     <IonPage>
         <SecondLayout>
             <template v-slot:title>
-                Sobre o APPV
+                Sobre o APAF
             </template>
             <template v-slot:content>
                 <div id="appv-sobre" class="wrapper">
-                    <h1>O quê é o APPV?</h1>
-                    <p>O APPV é um aplicativo eletrônico para análise de projeto e fiscalização 
-                    em estabelecimentos assistenciais de saúde (APPV). 
+                    <h1>O quê é o AEAPF?</h1>
+                    <p>O APAF é um aplicativo eletrônico para análise de projeto arquitetônico e fiscalização 
+                    em estabelecimentos assistenciais de saúde (APAF). 
                     Seu uso tem a função de avaliar as condições de adequação das USF, 
                     permitindo ao profissional da VS identificar as inconformidades, 
                     melhorando sua prática.</p>

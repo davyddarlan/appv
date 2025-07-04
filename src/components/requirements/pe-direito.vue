@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    import { defineProps, defineModel } from 'vue'
+    import { defineProps, defineModel, defineEmits, watch } from 'vue'
     import Question from '../question/question.vue'
     import { IonInput } from '@ionic/vue' 
 
@@ -20,6 +20,12 @@
 
     const model = defineModel({
         default: null,
+    })
+
+    const emits = defineEmits(['setData'])
+
+    watch(() => model.value, (data) => {
+        emits('setData', data)
     })
 </script>
 

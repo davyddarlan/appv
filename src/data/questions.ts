@@ -2,154 +2,101 @@ import { ref } from 'vue'
  
 export default {
     project: {
+        projectId: ref(null),
         name: ref(null),
         lengthTeam: ref(null),
         isInLoco: ref(null),
         data: {
-            /*PA: {
-                title: 'Proposta Assistencial',
-                lock: false,
-                percentage: 0,
-                group: 'PA',
-                questions: [
-                    {
-                        statement: `
-                            A unidade de saúde da família realiza consultas 
-                            e procedimentos odontológicos
-                        `,
-                        value: ref(null),
-                    },
-                    {
-                        statement: `
-                            A atividade de coleta de exames laboratoriais 
-                            é realizado por esta unidade
-                        `,
-                        value: ref(null),
-                    },
-                    {
-                        statement: `
-                            A sala de esterilização e estocagem de materiais esterilizados é centralizada em uma unidade de 
-                            esterilização vinculada a unidades de referência ou hospital
-                        `,
-                        value: ref(null),
-                    },
-                    {
-                        statement: `Serão realizadas atividades ginecológicas nesta unidade`,
-                        value: ref(null),
-                    },
-                ]
-            },*/
             ADM: {
                 title: 'Administrativo',
-                lock: false,
                 percentage: 0,
                 group: 'ADM',
                 questions: [
                     {
-                        title: 'Sala administrativa de gerência',
-                        statement: `Existe sala administrativa de gerência`,
+                        id: '2be76ac37ba9437618472176fcc21d3bb105c4ba',
+                        title: 'Sala administrativa e gerência',
+                        statement: `Existe sala administrativa e gerência`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),    
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '83241619142b9c27eddc90d62a801c760446b26b',
                         title: 'Sala de reuniões',
                         statement: `Existe sala de reuniões`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null), 
                         lengthRoom: ref(null),                                
                     },
                     {
-                        title: 'Sala administrativa de agentes comunitários de saúde',
-                        statement: `Existe sala administrativa de agentes comuniários de saúde`,
+                        id: '456cd6da25d023d8a5dd88c8a1c0cb305afcb6cd',
+                        title: 'Sala administrativa de agentes comunitários de saúde - ACS',
+                        statement: `Existe sala administrativa de agentes comuniários de saúde - ACS`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),  
                         lengthRoom: ref(null),                              
                     },
                     {
+                        id: '296c5604a9d23f95498b773af1bc9f85bfc8a649',
                         title: 'Sala de arquivo e pronturário médico',
                         statement: `Existe sala de arquivo e prontuário médico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null), 
                         lengthRoom: ref(null),                               
                     },
                     {
+                        id: 'd7b78576394326e51f7e8dbda9e0c30c87821ae9',
                         title: 'Almoxarifado',   
                         statement: `Existe almoxarifado`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1.5 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),  
@@ -159,11 +106,11 @@ export default {
             },
             AC: {
                 title: 'Atendimento Clínico',
-                lock: false,
                 percentage: 0,
                 group: 'AC',
                 questions: [
                     {
+                        id: 'ef88a8595b256a4e6f500398e325c62dd1729c90',
                         title: 'Farmácia',
                         statement: `Existe farmácia`,
                         requirements: [
@@ -175,17 +122,14 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),
                         lengthRoom: ref(null),                
                     },
                     {
+                        id: 'd75bf18c30d5e3b95257b88ae3ee0cda953390a8',
                         title: 'Consultório médico',
                         statement: `Existe consultório médico`,
                         requirements: [
@@ -197,10 +141,7 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
                         valuesRequirements: ref([]),
@@ -208,6 +149,7 @@ export default {
                         lengthRoom: ref(null),                
                     },
                     {
+                        id: '0309ad70ad7ac565e7e02323baf5a220344b9db7',
                         title: 'Consultório médico com sanitário anexo',
                         statement: `Existe consultório médico com sanitário anexo`,
                         requirements: [
@@ -219,10 +161,7 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
                         valuesRequirements: ref([]),
@@ -230,18 +169,17 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'a7d197efd5e7bd4a8b9eaff9ee4f55033cf95335',
                         title: 'Sala de procedimentos',
                         statement: `Existe sala de procedimentos`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -252,6 +190,7 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'aeb20fe82c1e7bac8446e100f3396ecc634ec91b',
                         title: 'Sala de vacinas',
                         statement: `Existe sala de vacinas`,
                         requirements: [
@@ -263,10 +202,8 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
                         valuesRequirements: ref([]),
@@ -274,6 +211,7 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'f69420d04550168501fffa93b1cffe9d0da17675',
                         title: 'Sala para coleta',
                         statement: `Existe sala para coleta`,
                         requirements: [
@@ -285,10 +223,8 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
                         valuesRequirements: ref([]),
@@ -296,21 +232,19 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'efbe11b804a48f7e6f659ae5979843fcfeb3b51e',
                         title: 'Sala para classificação de amostras',
                         statement: `Existe sala para classificação de amostras`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
                             { view: 'ReqLuminaria', answerSheet: true }
                         ],
                         valuesRequirements: ref([]),
@@ -318,18 +252,17 @@ export default {
                         lengthRoom: ref(null),                
                     },
                     {
+                        id: '3c22de7001c25dc8a729ae1de4e000e26924f7b0',
                         title: 'Sala de nebulização',
                         statement: `Existe sala de nebulização`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.5 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -340,18 +273,17 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '7ce85f8ff27462adceec0fb0dd784da51d69078d',
                         title: 'Sala de curativos',
                         statement: `Existe sala de curativos`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -365,23 +297,21 @@ export default {
             },
             AO: {
                 title: 'Atendimento odontológico',
-                lock: false,
                 percentage: 0,
                 group: 'AO',
                 questions: [
                     {
+                        id: 'b443ffc8f842b08b3fdd07896a7f5cc016680ad9',
                         title: 'Consultório odontológico',
                         statement: `Existe consultório odontológico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true},
@@ -392,6 +322,7 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'dfdaddc0a3c506b07c7a733909581ddf61353358',
                         title: 'Escovário',
                         statement: `Existe escovário`,
                         requirements: [
@@ -403,7 +334,6 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -414,18 +344,17 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '786dd7def42d6bcd3dc7b4bf77b3a6cd6f1864b1',
                         title: 'Área técnica para compressor de ar odontológico',
                         statement: `Existe área técnica para compressor de ar odontológico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -436,18 +365,17 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'e279f00455f290c25ac5212e01bf39917a1cbe93',
                         title: 'Área técnica para bomba vácuo',
                         statement: `Existe área técnica para bomba vácuo`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 9.0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -461,12 +389,12 @@ export default {
             },
             AP: {
                 title: 'Apoio',
-                lock: false,
                 percentage: 0,
                 group: 'AP',
                 questions: [
                     {
-                        title: 'Banheiro para fucionários',
+                        id: 'c1cd18e226da1504a52765fb10a3ed9587571ee8',
+                        title: 'Banheiro para funcionários',
                         statement: `Existe banheiro para funcionários`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 3.6 },
@@ -488,18 +416,17 @@ export default {
                         lengthRoom: ref(null),                
                     },
                     {
+                        id: '5b8925f1d2fba174c5802fe8ddcc0335d8a31cd6',
                         title: 'Vestiário para funcionários',
                         statement: `Existe vestiário para funcionários`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
@@ -510,6 +437,7 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '6b43a0898061147183b3d1eeb28737cb19dd96ca',
                         title: 'Copa',
                         statement: `Existe copa`,
                         requirements: [
@@ -532,50 +460,43 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '9a850a9b53d0060f01a1ed8c9fe2a75ac2837e37',
                         title: 'Sala de recepção',
                         statement: `Existe sala de recepção`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null), 
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '721825e5f75d7c1f155956646eace4b922e1f4fe',
                         title: 'Sala de espera',
                         statement: `Existe sala de espera`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 5.4 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqRalo', answerSheet: false },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),
                         lengthRoom: ref(null),                
                     },
                     {
+                        id: '81ec68d997f2a9e6c4a50dc0ae221a36c2510e32',
                         title: 'Sanitário de pacientes',
                         statement: `Existe sanitário de pacientes`,
                         requirements: [
@@ -598,11 +519,11 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'cc8b84efd4ccfdde2ee82baf4aa424d24b4bed1d',
                         title: 'Depóstio de material de limpeza m(DML)',
                         statement: `Existe depósito de material de limpeza m(DML)`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 2 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -612,14 +533,13 @@ export default {
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null), 
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'a392e8a3d0c5609737562de8320dd3b14a7fe801',
                         title: 'Central de material esterilizada simplificada',
                         statement: `Existe central de material esterilizada simplificada`,
                         requirements: [
@@ -635,13 +555,13 @@ export default {
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),  
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'a1d5b8a5c62c17e24a8dab42c4dba644bc0e6133',
                         title: 'Sala de utilidades',
                         statement: `Existe sala de utilidades`,
                         requirements: [
@@ -657,19 +577,18 @@ export default {
                             { view: 'ReqPeDireito', answerSheet: 2.3 },
                             { view: 'ReqCubaFuda', answerSheet: [true, false] },
                             { view: 'ReqGasesMedicinais', answerSheet: true },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),  
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: 'f483ab4f448f0d731111c9236432eb2ef98fac92',
                         title: 'Abrigo de resíduos de serviços e saúde',
                         statement: `Existe abrigo de resíduos de serviços de saúde`,
                         requirements: [
                             { view: 'ReqQtdAmbientes', answerSheet: 1 },
                             { view: 'ReqAreaFisica', answerSheet: 0 },
-                            { view: 'ReqLavatorio', answerSheet: [false, false] },
                             { view: 'ReqVentilacao', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
@@ -678,9 +597,6 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqPeDireito', answerSheet: 0 },
-                            { view: 'ReqCubaFuda', answerSheet: [false, false] },
-                            { view: 'ReqGasesMedicinais', answerSheet: false },
-                            { view: 'ReqLuminaria', answerSheet: false }
                         ],
                         valuesRequirements: ref([]),
                         value: ref(null),  
