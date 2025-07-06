@@ -38,7 +38,7 @@
                                 <component 
                                     :is="requirement.view" 
                                     :answerSheet="requirement.answerSheet"
-                                    v-model="questionDatabase.valuesRequirements.value[modalParams.indexQuestion][requirement.view]"
+                                    v-model="questionDatabase.valuesRequirements.value[modalParams.indexQuestion]['reqs'][requirement.view]"
                                     @setData="methods.getDataRequerements($event, requirement.view, modalParams, questionDatabase.id)"
                                 ></component>
                             </template>
@@ -89,12 +89,27 @@
         goBackNavigation: () => {
             router.go(-1)
         },
-        fillValuesRequirements: (database, lengthRoons, requirements) => {
-            if (!database.length) {
+        fillValuesRequirements: (geralInfo, modalParams) => {
+            const database = geralInfo.valuesRequirements.value
+            const databaseAux = {}
+            const lengthRoons = geralInfo.lengthRoom.value
+            const requirements = geralInfo.requirements
+            const namespace = modalParams.value.projectId + '_' + modalParams.value.groupQuestion + '_REQS'
+            
+            let countRoom = 0
+
+            for (let room in database) {
+                countRoom++
+            }
+
+            if (!countRoom) {
                 for (let i = 0; i < lengthRoons; i++) {
                     database[i] = {
                         reqs: {},
-                        title: ''
+                    }
+
+                    databaseAux[i] = {
+                        reqs: {},
                     }
 
                     for (let j = 0; j < requirements.length; j++) {
@@ -107,8 +122,40 @@
                             }
 
                             database[i]['reqs'][requirements[j].view] = arrayValues
+                            databaseAux[i]['reqs'][requirements[j].view] = arrayValues
                         } else {
                             database[i]['reqs'][requirements[j].view] = null  
+                            databaseAux[i]['reqs'][requirements[j].view] = null  
+                        }
+                    }
+                }
+
+                const entity = {
+                    [geralInfo.id]: databaseAux,
+                }
+
+                storage.createGroupReq(namespace, entity).then((data) => {
+                    console.log('o dado foi registrado com sucesso')
+                }).catch((error) => {
+                    console.log('algo de errado aconteceu')
+                })
+            } else {
+                // preencher os ambientes existetes
+                for (let element in database) {
+                    for (let i = 0; i < requirements.length; i++) {
+                        if (!database[element]['reqs'].hasOwnProperty(requirements[i].view)) {
+                            if (requirements[i].answerSheet instanceof Array) {
+                                let arrayValues = []
+                                let dataLength = requirements[i].answerSheet.length
+
+                                for (let j = 0; j < dataLength; j++) {
+                                    arrayValues.push(null)
+                                }
+
+                                database[element]['reqs'][requirements[i].view] = arrayValues
+                            } else {
+                                database[element]['reqs'][requirements[i].view] = null  
+                            }
                         }
                     }
                 }
@@ -179,9 +226,8 @@
     }
 
     methods.fillValuesRequirements(
-        questionDatabase.valuesRequirements.value,
-        questionDatabase.lengthRoom.value, 
-        questionDatabase.requirements
+        questionDatabase, 
+        modalParams
     )
 </script>
 

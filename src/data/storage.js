@@ -80,6 +80,15 @@ export default {
 
         return true
     },
+    createGroupReq: async function(namespace, groupEntity) {
+        let database = await this.database.get(namespace)
+
+        if (!database) {
+            database = await this.database.set(namespace, groupEntity)
+        }
+
+        return database
+    },
     createReq: async function(namespace, entity) {
         let database = await this.database.get(namespace)
 
@@ -158,24 +167,22 @@ export default {
         for (let group in localData.data) {
             if (group != 'PC') {
                 let lengthRoom = localData.data[group].questions.length
+                let databaseReqs = await this.database.get(key + '_' + group + '_REQS')
 
                 for (let i = 0; i < lengthRoom; i++) {
                     let hashId = localData.data[group].questions[i].id 
                     
                     if (database[group] && database[group][hashId]) {
                         localData.data[group].questions[i].value.value = database[group][hashId].value
-                        localData.data[group].questions[i].lengthRoom.value = database[group][hashId].lengthRoom
-                    
-                        /*let databaseReqs = await this.database.get(key + '_' + group + '_REQS')
-                        
-                        if (databaseReqs[hashId]) {
-                            localData.data[group].questions[i].valuesRequirements.value
-                            console.log(databaseReqs[hashId])
-                        }*/
+                        localData.data[group].questions[i].lengthRoom.value = database[group][hashId].lengthRoom 
+        
+                        if (databaseReqs && databaseReqs[hashId]) {
+                            localData.data[group].questions[i].valuesRequirements.value = databaseReqs[hashId]
+                        }
                     }
                 }
             }
-        }        
+        }
 
         return localData
     }
