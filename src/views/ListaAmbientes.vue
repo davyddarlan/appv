@@ -15,8 +15,10 @@
                     <p>Clique em um dos ambientes abaixo para preencher o formulário de requisitos técnico:</p>
                     <template v-for="(room, index) in questionDatabase.valuesRequirements.value">
                         <div id="appv-block" class="wrapper">
-                            <div @click="methods.openRequirements(index)" id="appv-block" class="title">Ambiente {{ index + 1 }}</div>
-                            <div @click="methods.removeRoom(questionDatabase, index)" id="appv-block" class="button">
+                            <div @click="methods.openRequirements(index)" id="appv-block" class="title">
+                                Ambiente {{ index + 1 }}
+                            </div>
+                            <div @click="methods.removeRoom(questionDatabase, index, modalParams)" id="appv-block" class="button">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </div>
                         </div>
@@ -36,7 +38,7 @@
                                 <component 
                                     :is="requirement.view" 
                                     :answerSheet="requirement.answerSheet"
-                                    v-model="questionDatabase.valuesRequirements.value[modalParams.indexQuestion][index]"
+                                    v-model="questionDatabase.valuesRequirements.value[modalParams.indexQuestion][requirement.view]"
                                     @setData="methods.getDataRequerements($event, requirement.view, modalParams, questionDatabase.id)"
                                 ></component>
                             </template>
@@ -90,7 +92,10 @@
         fillValuesRequirements: (database, lengthRoons, requirements) => {
             if (!database.length) {
                 for (let i = 0; i < lengthRoons; i++) {
-                    database.push([])
+                    database[i] = {
+                        reqs: {},
+                        title: ''
+                    }
 
                     for (let j = 0; j < requirements.length; j++) {
                         if (requirements[j].answerSheet instanceof Array) {
@@ -101,29 +106,32 @@
                                 arrayValues.push(null)
                             }
 
-                            database[i].push(arrayValues)
+                            database[i]['reqs'][requirements[j].view] = arrayValues
                         } else {
-                            database[i].push(null)    
+                            database[i]['reqs'][requirements[j].view] = null  
                         }
                     }
-                }  
+                }
             }
         },
         addRoom: (database) => {
-            const requirements = []
+            const requirements = {
+                reqs: {},
+                title: ''
+            }
 
             for (let i = 0; i < database.requirements.length; i++) {
                 const data = database.requirements[i].answerSheet
 
                 if (Array.isArray(data)) {
-                    requirements.push(methods.fillArray(data.length))
+                    requirements['reqs'][database.requirements[i].view] = methods.fillArray(data.length)
                 } else {
-                    requirements.push(null)
+                    requirements['reqs'][database.requirements[i].view] = null
                 }
             }
 
             database.lengthRoom.value = +database.lengthRoom.value + 1
-            database.valuesRequirements.value.push(requirements)
+            database.valuesRequirements.value[database.lengthRoom.value - 1] = requirements
         },
         fillArray: (legnth) => {
             const vector = []
@@ -134,15 +142,23 @@
 
             return vector
         },
-        removeRoom: (database, index) => {
-            database.lengthRoom.value = +database.lengthRoom.value - 1
-            database.valuesRequirements.value.splice(index, 1)
+        removeRoom: (database, index, modalParams) => {
+            const namespace = modalParams.projectId + '_' + modalParams.groupQuestion + '_REQS' 
 
-            if (!database.lengthRoom.value) {
-                router.go(-1)
-                database.lengthRoom.value = ' '
-
+            const entity = {
+                hashId: database.id,
+                reqId: index,
             }
+
+            storage.removeReq(namespace, entity).then((data) => {
+                database.lengthRoom.value = +database.lengthRoom.value - 1
+                database.valuesRequirements.value.splice(index, 1)
+
+                if (!database.lengthRoom.value) {
+                    router.go(-1)
+                    database.lengthRoom.value = ''
+                }
+            })
         },
         openRequirements: (indexQuestion) => {
             modal.value = true

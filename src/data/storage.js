@@ -83,11 +83,13 @@ export default {
     createReq: async function(namespace, entity) {
         let database = await this.database.get(namespace)
 
-        if (!database) {
+        if (!database) {           
             const newEntity = {
                 [entity.hashId]: {
                     [entity.reqId]: {
-                        [entity.viewId]: entity.data,
+                        reqs: {
+                            [entity.viewId]: entity.data,
+                        }   
                     }
                 }
             }
@@ -99,7 +101,9 @@ export default {
             if (!database.hasOwnProperty([entity.hashId])) {
                 database[entity.hashId] = {
                     [entity.reqId]: {
-                        [entity.viewId]: entity.data
+                        reqs: {
+                            [entity.viewId]: entity.data,
+                        }
                     }
                 }
 
@@ -108,20 +112,23 @@ export default {
 
             if (!database[entity.hashId].hasOwnProperty([entity.reqId])) {
                 database[entity.hashId][entity.reqId] = {
-                    [entity.viewId]: entity.data
+                    reqs: {
+                        [entity.viewId]: entity.data
+                    }
                 }
 
                 dataChanged = true
             }
-
-            if (!database[entity.hashId][entity.reqId].hasOwnProperty([entity.viewId])) {
-                database[entity.hashId][entity.reqId][entity.viewId] = entity.data
+            
+            if (!database[entity.hashId][entity.reqId]['reqs'].hasOwnProperty([entity.viewId])) {
+                database[entity.hashId][entity.reqId]['reqs'][entity.viewId] = entity.data
 
                 dataChanged = true
             }
 
-            if (database[entity.hashId][entity.reqId][entity.viewId] != entity) {
-                database[entity.hashId][entity.reqId][entity.viewId] = entity.data
+
+            if (database[entity.hashId][entity.reqId]['reqs'][entity.viewId] != entity.data) {
+                database[entity.hashId][entity.reqId]['reqs'][entity.viewId] = entity.data
 
                 dataChanged = true
             }
@@ -130,6 +137,15 @@ export default {
                 database = await this.database.set(namespace, database)
             }
         }
+
+        return database
+    },
+    removeReq: async function(namespace, entity) {
+        let database = await this.database.get(namespace)
+
+        delete database[entity.hashId][entity.reqId]
+
+        database = await this.database.set(namespace, database)
 
         return database
     },
@@ -149,6 +165,13 @@ export default {
                     if (database[group] && database[group][hashId]) {
                         localData.data[group].questions[i].value.value = database[group][hashId].value
                         localData.data[group].questions[i].lengthRoom.value = database[group][hashId].lengthRoom
+                    
+                        /*let databaseReqs = await this.database.get(key + '_' + group + '_REQS')
+                        
+                        if (databaseReqs[hashId]) {
+                            localData.data[group].questions[i].valuesRequirements.value
+                            console.log(databaseReqs[hashId])
+                        }*/
                     }
                 }
             }

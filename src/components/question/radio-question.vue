@@ -13,7 +13,7 @@
 
 <script setup>
     import { defineProps, defineEmits, onMounted, ref, watch } from 'vue'
-    import { Random } from '../../composables/random'
+    import { Random } from '../../composables/random.js'
 
     const props = defineProps({
         id: {

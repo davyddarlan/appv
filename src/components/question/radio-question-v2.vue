@@ -13,7 +13,7 @@
 
 <script setup>
     import { defineEmits, ref, watch, defineModel, onMounted, } from 'vue'
-    import { Random } from '../../composables/random'
+    import { Random } from '../../composables/random.js'
 
     const model = defineModel({
         default: null,

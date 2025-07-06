@@ -1,4 +1,4 @@
-export function Random(size: number): string {
+export function Random(size) {
     const values = 'abcdefghijklmnopqrstuvwyxz123456789@_!?'
     const totalValues = values.length
     let hash = '', randomValue = null
