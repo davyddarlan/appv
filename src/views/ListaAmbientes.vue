@@ -16,14 +16,14 @@
                     <template v-for="(room, index) in questionDatabase.valuesRequirements.value">
                         <div id="appv-block" class="wrapper">
                             <div @click="methods.openRequirements(index)" id="appv-block" class="title">
-                                Ambiente {{ index + 1 }}
+                                Ambiente {{ index }}
                             </div>
                             <div @click="methods.removeRoom(questionDatabase, index, modalParams)" id="appv-block" class="button">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </div>
                         </div>
                     </template>
-                    <IonButton @click="methods.addRoom(questionDatabase)" size="full" id="appv-button" class="button">Adicionar um novo ambiente</IonButton>
+                    <IonButton @click="methods.addRoom(questionDatabase, modalParams)" size="full" id="appv-button" class="button">Adicionar um novo ambiente</IonButton>
                 </div>
                 <RequirementsModal :open="modal" @close="modal = false">
                     <template v-slot:title>
@@ -82,7 +82,8 @@
     const modalParams = ref({
         indexQuestion: 0,
         groupQuestion: group,
-        projectId: database.project.projectId.value
+        projectId: database.project.projectId.value,
+        theBiggestIndex: 0,
     })
 
     const methods = {
@@ -112,6 +113,11 @@
                         reqs: {},
                     }
 
+                    // captura do maior index
+                    if (i > modalParams.value.theBiggestIndex) {
+                        modalParams.value.theBiggestIndex = i
+                    }
+
                     for (let j = 0; j < requirements.length; j++) {
                         if (requirements[j].answerSheet instanceof Array) {
                             let arrayValues = []
@@ -136,12 +142,21 @@
 
                 storage.createGroupReq(namespace, entity).then((data) => {
                     console.log('o dado foi registrado com sucesso')
+                    console.log(modalParams.value.theBiggestIndex)
                 }).catch((error) => {
                     console.log('algo de errado aconteceu')
                 })
             } else {
+                // reinicializa o theBiggestIndex 
+                modalParams.value.theBiggestIndex = 0
+
                 // preencher os ambientes existetes
                 for (let element in database) {
+                    // captura do maior index
+                    if (+element > modalParams.value.theBiggestIndex) {
+                        modalParams.value.theBiggestIndex = +element
+                    }
+
                     for (let i = 0; i < requirements.length; i++) {
                         if (!database[element]['reqs'].hasOwnProperty(requirements[i].view)) {
                             if (requirements[i].answerSheet instanceof Array) {
@@ -161,11 +176,12 @@
                 }
             }
         },
-        addRoom: (database) => {
+        addRoom: (database, modalParams) => {
             const requirements = {
                 reqs: {},
-                title: ''
             }
+
+            const namespace = modalParams.projectId + '_' + modalParams.groupQuestion + '_REQS'
 
             for (let i = 0; i < database.requirements.length; i++) {
                 const data = database.requirements[i].answerSheet
@@ -177,8 +193,13 @@
                 }
             }
 
-            database.lengthRoom.value = +database.lengthRoom.value + 1
-            database.valuesRequirements.value[database.lengthRoom.value - 1] = requirements
+            storage.createNewReq(namespace, database.id, modalParams.theBiggestIndex + 1, requirements).then(() => {
+                database.lengthRoom.value = +database.lengthRoom.value + 1
+                database.valuesRequirements.value[modalParams.theBiggestIndex + 1] = requirements
+
+                // atualizar the biggestdata
+                modalParams.theBiggestIndex += 1 
+            })
         },
         fillArray: (legnth) => {
             const vector = []
@@ -199,13 +220,49 @@
 
             storage.removeReq(namespace, entity).then((data) => {
                 database.lengthRoom.value = +database.lengthRoom.value - 1
-                database.valuesRequirements.value.splice(index, 1)
+                delete database.valuesRequirements.value[index]
+                /*database.lengthRoom.value = +database.lengthRoom.value - 1
+                delete database.valuesRequirements.value[index]*/
+
+                //modalParams.theBiggestIndex = 0
+
+                /*for (let hash in database.valuesRequirements.value) {
+                    if (+hash > modalParams.theBiggestIndex) {
+                        modalParams.theBiggestIndex = +hash
+                    }
+                }*/    
+               
+                /*for (let hash in database.valuesRequirements.value) {
+                    console.log(hash)
+                }*/
+            })
+
+            /*storage.removeReq(namespace, entity).then((data) => {
+                database.lengthRoom.value = +database.lengthRoom.value - 1
+                
+                database.valuesRequirements.value
+                    //delete database.valuesRequirements.value[hash]
+                    if (hash == index) {
+                        delete database.valuesRequirements.value[hash]
+
+                        if (+hash == modalParams.theBiggestIndex) {
+                            modalParams.theBiggestIndex = 0
+                        }
+                    }
+                }
+
+                // atualizar hash
+                for (let hash in database.valuesRequirements.value) {
+                    if (+hash > modalParams.theBiggestIndex) {
+                        modalParams.theBiggestIndex = +hash
+                    }
+                }
 
                 if (!database.lengthRoom.value) {
                     router.go(-1)
                     database.lengthRoom.value = ''
                 }
-            })
+            })*/
         },
         openRequirements: (indexQuestion) => {
             modal.value = true

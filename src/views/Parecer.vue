@@ -130,10 +130,8 @@
             
             getDataRoom.value.section = section
             getDataRoom.value.room = room
-
-            console.log(dataAnalyse.value[getDataRoom.value.section])
         },
-        listQuestios: (questionDb) => {
+        listQuestions: (questionDb) => {
             const listGroup = ['ADM', 'AC', 'AO', 'AP']
             const analyseResult = []
 
@@ -147,13 +145,13 @@
                         analyseResult.push(getRoons)
                     }
                 }
-            }
+            }       
 
             return analyseResult
         },
     }  
     
-    dataAnalyse.value = methods.listQuestios(data.project.data)
+    dataAnalyse.value = methods.listQuestions(data.project.data)
 </script>
 
 <style scoped>

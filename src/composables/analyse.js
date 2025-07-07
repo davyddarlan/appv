@@ -19,7 +19,7 @@ export default {
     analyse: function (question) {
         const nomeAmbiente = question.title
         const requisitos = question.requirements
-        const valores = question.valuesRequirements
+        const valores = question.valuesRequirements.value
         const qtdAmbientes = question.lengthRoom
 
         const dataResult = {
@@ -28,13 +28,13 @@ export default {
         }
 
         if (+qtdAmbientes.value) {
-            for (let i = 0; i < qtdAmbientes.value; i++) {
+            for (let i in valores) {
                 const feedback = []
-    
+
                 for (let j = 0; j < requisitos.length; j++) {
                     const validator = requisitos[j].view
                     const answerSheet = requisitos[j].answerSheet
-                    const data = valores.value[i][j]
+                    const data = valores[i]['reqs'][validator]
     
                     if (Array.isArray(data)) {
                         if (!this.isNullArray(data)) {
@@ -46,8 +46,8 @@ export default {
                         }
                     }
                 }
-    
-                dataResult.roons.push(feedback)            
+
+                dataResult.roons.push(feedback) 
             }
         }
 
