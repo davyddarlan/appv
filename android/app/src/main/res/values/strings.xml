@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">appv</string>
-    <string name="title_activity_main">appv</string>
-    <string name="package_name">io.appv.starter</string>
-    <string name="custom_url_scheme">io.appv.starter</string>
-</resources>
