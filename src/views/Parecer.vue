@@ -19,8 +19,11 @@
                         <ListComponent>
                             <template v-slot:title>{{ room.title }}</template>
                             <template v-slot:content>
+                                <div id="appv-parecer" class="appv-data-info">
+                                    {{ room.reqRoom }}
+                                </div>
                                 <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
-                                    <div @click="methods.seeRequirements(indexSection, indexRoom)">
+                                    <div id="appv-parecer" class="wrapper-requirement" @click="methods.seeRequirements(indexSection, indexRoom)">
                                         <div class="position">{{ indexRoom + 1 }}</div>
                                         <p class="text">Ambiente {{ indexRoom + 1 }}</p>
                                     </div>
@@ -131,7 +134,7 @@
             getDataRoom.value.section = section
             getDataRoom.value.room = room
         },
-        listQuestions: (questionDb) => {
+        listQuestions: (questionDb, project) => {
             const listGroup = ['ADM', 'AC', 'AO', 'AP']
             const analyseResult = []
 
@@ -139,19 +142,25 @@
                 let questionsLength = questionDb[listGroup[i]].questions.length
 
                 for (let j = 0; j < questionsLength; j++) {
-                    let getRoons = Analyse.analyse(questionDb[listGroup[i]].questions[j])
+                    let getRoons = Analyse.analyse(questionDb[listGroup[i]].questions[j], project)
 
-                    if (getRoons.roons.length) {
+                    /*if (getRoons.roons.length) {
                         analyseResult.push(getRoons)
-                    }
+                    } else {
+                        analyseResult     
+                    }*/
+
+                    analyseResult.push(getRoons)
                 }
-            }       
+            } 
+            
+            console.log(analyseResult)
 
             return analyseResult
         },
     }  
     
-    dataAnalyse.value = methods.listQuestions(data.project.data)
+    dataAnalyse.value = methods.listQuestions(data.project.data, data.project)
 </script>
 
 <style scoped>
@@ -189,6 +198,19 @@
 
     #appv-parecer.requirement .position,
     #appv-parecer.requirement .text { float: left; }
+
+    #appv-parecer.appv-data-info {
+        padding: 20px;
+    }
+
+    #appv-parecer.appv-data-info:empty {
+        padding: 0;
+    }
+
+    #appv-parecer.wrapper-requirement {
+        display: flex;
+        align-items: center;
+    }
 
     #myChart {
         margin-bottom: 20px;

@@ -26,9 +26,12 @@
                         </template>
                     </Question>
                     <Question>
-                        Esta análise de projeto arquitetônico está sendo feita In Loco?
+                        Qual o tipo de parecer técnico que deseja obter?
                         <template v-slot:input>
-                            <RadioQuestion v-model="data.isInLoco.value"></RadioQuestion>
+                            <ion-select v-model="data.isInLoco.value" label="Tipo de parecer" placeholder="Selecione o objetivo">
+                                <ion-select-option value="0">Análise de um projeto de USF</ion-select-option>
+                                <ion-select-option value="1">Fiscalização de uma USF existente</ion-select-option>
+                            </ion-select>
                         </template>
                     </Question>
                     <IonButton 
@@ -46,7 +49,7 @@
 </template>
 
 <script setup>
-    import { inject, computed, onMounted } from 'vue'
+    import { inject, computed } from 'vue'
     import { useRouter, useRoute } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
@@ -57,6 +60,8 @@
         IonPage,
         IonInput,
         IonButton,
+        IonSelect,
+        IonSelectOption,
     } from '@ionic/vue'
 
     import { 

@@ -16,15 +16,22 @@ export default {
     computeAnswer: function (validator, answerSheet, data) {
         return ReqValidation[validator](answerSheet, data)
     },
-    analyse: function (question) {
+    analyse: function (question, project) {
         const nomeAmbiente = question.title
         const requisitos = question.requirements
         const valores = question.valuesRequirements.value
         const qtdAmbientes = question.lengthRoom
+        
+        const tamanhoEquipe = +project.lengthTeam.value
+        const ambienteExiste = question.value.value
+        const quantidadeAmbientes = +question.lengthRoom.value
+
+        const validacaoAmbiente = ReqValidation['ReqQtdAmbientes'](tamanhoEquipe, ambienteExiste, quantidadeAmbientes, question.id)
 
         const dataResult = {
             title: nomeAmbiente,
             roons: [],
+            reqRoom: validacaoAmbiente,
         }
 
         if (+qtdAmbientes.value) {

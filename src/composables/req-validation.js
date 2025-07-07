@@ -1,3 +1,5 @@
+import Roons from './roons.js'
+
 export default {
     ReqAreaFisica: (answerSheet, value) => {
         let feedback = null
@@ -197,4 +199,71 @@ export default {
 
         return feedback
     },
+    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente) => {
+        let feedback = null
+
+        if (!ambienteExiste) {
+            feedback = 'O ambiente deve existir na composição de uma USF'
+        } else {
+            /*if (tamanhoEquipe < 1) {
+                feedback = 'A quantidade deste ambiente é inferior ao quantitativo necessário'   
+            }*/
+
+            if (idAmbiente == Roons.BANHEIRO_FUNCIONARIOS) {
+                if (tamanhoEquipe >= 4 && quantidadeAmbientes < 2) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                } 
+            }
+
+            if (idAmbiente == Roons.SANITARIO_PACIENTES) {
+                if (tamanhoEquipe == 2 || tamanhoEquipe == 3 && quantidadeAmbientes < 2) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe >= 4 && quantidadeAmbientes < 4) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+            }
+
+            if (idAmbiente == Roons.CONSULTORIO_ODONTOLOGICO) {
+                if (tamanhoEquipe == 2 && quantidadeAmbientes < 2) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe == 3 && quantidadeAmbientes < 3) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe >= 4 && quantidadeAmbientes < 4) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+            }
+
+            if (idAmbiente == Roons.CONSULTORIO_MEDICO) {
+                if (tamanhoEquipe == 2 || tamanhoEquipe == 3 && quantidadeAmbientes < 3) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe == 4 && quantidadeAmbientes < 4) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe == 5 && quantidadeAmbientes < 5) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+            }
+
+            if (idAmbiente == Roons.CONSULTORIO_MEDICO_SANITARIO) {
+                if (tamanhoEquipe == 3 && quantidadeAmbientes < 2) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+
+                if (tamanhoEquipe == 4 || tamanhoEquipe == 5 && quantidadeAmbientes < 3) {
+                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                }
+            }
+        }
+
+        return feedback
+    }
 }
