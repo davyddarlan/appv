@@ -14,8 +14,8 @@ export default {
                 questions: [
                     {
                         id: '2be76ac37ba9437618472176fcc21d3bb105c4ba',
-                        title: 'Sala administrativa e gerência',
-                        statement: `Existe sala administrativa e gerência`,
+                        title: 'Sala administrativa',
+                        statement: `Existe sala de administração e gerência`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 1 },
                             { view: 'ReqVentilacao', answerSheet: true },
@@ -68,8 +68,8 @@ export default {
                     },
                     {
                         id: '296c5604a9d23f95498b773af1bc9f85bfc8a649',
-                        title: 'Sala de arquivo e pronturário médico',
-                        statement: `Existe sala de arquivo e prontuário médico`,
+                        title: 'Sala de arquivo para pronturário médico',
+                        statement: `Existe sala de arquivo para prontuário médico`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6.0 },
                             { view: 'ReqVentilacao', answerSheet: true },
