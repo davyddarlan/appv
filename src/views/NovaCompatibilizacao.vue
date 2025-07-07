@@ -22,7 +22,20 @@
                     <Question>
                         Esta unidade de saúde é composta por quantas equipes?
                         <template v-slot:input>
-                            <IonInput v-model="data.lengthTeam.value" type="number" fill="outline" placeholder="Número de equipes"></IonInput>
+                            <ion-select v-model="data.lengthTeam.value" label="Número de equipes" placeholder="Selecione o número de equipes">
+                                <ion-select-option value="1">1 Equipe</ion-select-option>
+                                <ion-select-option value="2">2 Equipes</ion-select-option>
+                                <ion-select-option value="3">3 Equipes</ion-select-option>
+                                <ion-select-option value="4">4 Equipes</ion-select-option>
+                                <ion-select-option value="5">5 Equipes</ion-select-option>
+                            </ion-select>
+                            <!--<IonInput v-model="data.lengthTeam.value" type="number" fill="outline" placeholder="Número de equipes"></IonInput>-->
+                        </template>
+                    </Question>
+                    <Question>
+                        Esta unidade de saúde da família realiza atividades odontológicas?
+                        <template v-slot:input>
+                            <RadioQuestion v-model="data.odontologico.value"></RadioQuestion>
                         </template>
                     </Question>
                     <Question>
@@ -81,6 +94,7 @@
         || data.lengthTeam.value == 0
         || data.name.value == null
         || !data.name.value
+        || data.odontologico.value == null
     })
 
     const methods = {
@@ -89,6 +103,7 @@
                 name: data.name.value,
                 lengthTeam: +data.lengthTeam.value,
                 isInLoco: data.isInLoco.value,
+                odontologico: data.odontologico.value,
             }).then((dataReturn) => {
                 data.projectId.value = dataReturn.key
             

@@ -153,8 +153,6 @@
                     analyseResult.push(getRoons)
                 }
             } 
-            
-            console.log(analyseResult)
 
             return analyseResult
         },

@@ -6,6 +6,7 @@ export default {
         name: ref(null),
         lengthTeam: ref(null),
         isInLoco: ref(null),
+        odontologico: ref(null),
         data: {
             ADM: {
                 title: 'Administrativo',
@@ -563,7 +564,7 @@ export default {
                     {
                         id: 'a1d5b8a5c62c17e24a8dab42c4dba644bc0e6133',
                         title: 'Sala de utilidades',
-                        statement: `Existe sala de utilidades`,
+                        statement: `Existe sala de utilidades (apoio à esterilização)`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 6 },
                             { view: 'ReqLavatorio', answerSheet: [true, false] },

@@ -141,10 +141,9 @@
                 }
 
                 storage.createGroupReq(namespace, entity).then((data) => {
-                    console.log('o dado foi registrado com sucesso')
-                    console.log(modalParams.value.theBiggestIndex)
+                    
                 }).catch((error) => {
-                    console.log('algo de errado aconteceu')
+                    
                 })
             } else {
                 // reinicializa o theBiggestIndex 

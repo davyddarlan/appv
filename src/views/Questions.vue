@@ -87,7 +87,7 @@
             }
 
             storage.setQuestion(databaseName, questionData).then((data) => {
-                console.log('a operação aconteceu como o esperado')
+        
             })
         },
         goBackNavigation: () => { 

@@ -6,7 +6,7 @@
   </ion-app>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import BottomMenu from './components/layout/bottom-menu.vue'
 
   import { 

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'appv-test-v1',
+  appId: 'io.appv.starter',
+  appName: 'appv',
   webDir: 'dist'
 };
 

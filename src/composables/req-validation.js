@@ -199,15 +199,37 @@ export default {
 
         return feedback
     },
-    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente) => {
+    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, odontologico) => {
         let feedback = null
 
         if (!ambienteExiste) {
             feedback = 'O ambiente deve existir na composição de uma USF'
+
+            if (!odontologico) {
+                if (idAmbiente == Roons.ESCOVARIO) {
+                    return null
+                }
+
+                if(idAmbiente == Roons.COMPRESSOR_ODONTOLOGICO) {
+                    return null
+                }
+
+                if(idAmbiente == Roons.BOMBA_VACUO) {
+                    return null
+                }
+            }
+
+            if (idAmbiente == Roons.ESCOVARIO) {
+                return null
+            }
+
+            if (idAmbiente == Roons.SALA_UTILIDADES) {
+                return null
+            }
         } else {
-            /*if (tamanhoEquipe < 1) {
+            if (tamanhoEquipe < 1) {
                 feedback = 'A quantidade deste ambiente é inferior ao quantitativo necessário'   
-            }*/
+            }
 
             if (idAmbiente == Roons.BANHEIRO_FUNCIONARIOS) {
                 if (tamanhoEquipe >= 4 && quantidadeAmbientes < 2) {

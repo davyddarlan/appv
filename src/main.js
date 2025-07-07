@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router';
+import router from './router/index.js';
 import global from './global.js'
 
 import { IonicVue } from '@ionic/vue';
 
-import questionsStorage from './data/questions'
+import questionsStorage from './data/questions.js'
 import storage from './data/storage.js'
 
 /* Core CSS required for Ionic components to work properly */

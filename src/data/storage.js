@@ -92,10 +92,6 @@ export default {
     createNewReq: async function(namespace, hash, index, entity) {
         let database = await this.database.get(namespace)
 
-        console.log(index)
-        console.log(hash)
-        console.log(entity)
-
         database[hash][index] = entity
         database = await this.database.set(namespace, database)
 

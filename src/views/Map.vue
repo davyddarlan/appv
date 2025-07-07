@@ -5,17 +5,17 @@
                 <IonIcon @click="methods.closeProject" :icon="closeOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
-                Trilha
+                Menu
             </template>
             <template v-slot:subheader>
-                Trilha para análise de projeto e fiscalização
+                Menu para análise de projeto e fiscalização
             </template>
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
                     <div class="header-map">
-                        <p class="title">Você está na trilha do projeto <b>{{ name }}.</b>
-                        Siga as etapas do mapa abaixo para obter o parecer técnico desta USF.
+                        <p class="title">Você está no menu de projeto e fiscalização: <b>{{ name }}.</b>
+                        Siga as etapas dos itens abaixo para obter o parecer técnico desta USF.
                         </p>
                         <div class="button-edit">
                             <ion-button size="small" @click="methods.editProfile">
@@ -103,7 +103,7 @@
         --width-bar: 6px;
         --height-bar: 30px;
         --y-position: 20%;
-        --space-between-boxes: 60px;
+        --space-between-boxes: 30px;
         width: 100%;
         height: 100%;
     }
@@ -142,7 +142,7 @@
         bottom: 0;
         padding: 10px;
         font-size: 0.8em;
-        font-weight: 600;
+        font-weight: bold;
         text-transform: uppercase;
         color: #474749;
         font-family: "Livvic", serif;
@@ -163,62 +163,11 @@
         width: calc(50% - 15px);       
     }
 
-    #appv-box-wrapper .box:nth-child(odd)::before {
-        content: '';
-        position: absolute;
-        right: -30px;
-        top: 50%;
-        transform: translateY(-3px);
-        width: 30px;
-        height: var(--width-bar);
-        background: var(--color-bar);
-    }
-
-    #appv-box-wrapper .box:nth-child(odd)::after {
-        content: '';
-        position: absolute;
-        width: var(--width-bar);
-        height: var(--height-bar);
-        left: var(--y-position);
-        transform: translatex(-3px);
-        top: calc(var(--space-between-boxes) / 2 * -1);
-        background: var(--color-bar);
-    }
-
-    #appv-box-wrapper .box:last-child::before {
-        display: none;
-    }
-
-    #appv-box-wrapper .box:first-child::after {
-        display: none;
-    }
-
     #appv-box-wrapper .box:nth-child(even) {
         position: relative;
         background: #e7e8ec;
         margin-left: 15px;
         width: calc(50% - 15px);       
-    }
-
-    #appv-box-wrapper .box:nth-child(even)::before {
-        content: '';
-        position: absolute;
-        width: var(--width-bar);
-        height: var(--height-bar);
-        background: var(--color-bar);
-        right: var(--y-position);
-        bottom: calc(var(--space-between-boxes) / 2 * -1);
-        transform: translateX(-3px);
-    }
-
-    #appv-box-wrapper .box:nth-child(even)::after {
-        content: '';
-        position: absolute;
-        bottom: calc((var(--height-bar) + var(--width-bar)) * -1);
-        left: calc(0% - 30px - (100% - 20%));
-        width: calc((100% + 30px + (100% - 20%)) - (20% + 3px));
-        height: var(--width-bar);
-        background: var(--color-bar);
     }
 
     .header-map {
@@ -237,5 +186,5 @@
     
     .header-map .button-edit {
         float: right;
-    } 
+    }
 </style>
