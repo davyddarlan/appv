@@ -13,7 +13,7 @@
             <template v-slot:content>
                 <div id="appv-content">
                     <p>Clique em um dos ambientes abaixo para preencher o formulário de requisitos técnico:</p>
-                    <template v-for="(room, index) in questionDatabase.valuesRequirements.value">
+                    <template v-for="(room, index) in questionDatabase.valuesRequirements.value" :key="index">
                         <div id="appv-block" class="wrapper">
                             <div @click="methods.openRequirements(index)" id="appv-block" class="title">
                                 Ambiente {{ index }}
@@ -85,6 +85,8 @@
         projectId: database.project.projectId.value,
         theBiggestIndex: 0,
     })
+
+    const listAmbientes = ref([])
 
     const methods = {
         goBackNavigation: () => {
@@ -174,6 +176,12 @@
                     }
                 }
             }
+
+            for (let hash in database) {
+                listAmbientes.value.push(hash)
+            }
+
+            console.log(listAmbientes.value)
         },
         addRoom: (database, modalParams) => {
             const requirements = {
@@ -219,49 +227,8 @@
 
             storage.removeReq(namespace, entity).then((data) => {
                 database.lengthRoom.value = +database.lengthRoom.value - 1
-                delete database.valuesRequirements.value[index]
-                /*database.lengthRoom.value = +database.lengthRoom.value - 1
-                delete database.valuesRequirements.value[index]*/
-
-                //modalParams.theBiggestIndex = 0
-
-                /*for (let hash in database.valuesRequirements.value) {
-                    if (+hash > modalParams.theBiggestIndex) {
-                        modalParams.theBiggestIndex = +hash
-                    }
-                }*/    
-               
-                /*for (let hash in database.valuesRequirements.value) {
-                    console.log(hash)
-                }*/
+                [delete database.valuesRequirements.value[index]]
             })
-
-            /*storage.removeReq(namespace, entity).then((data) => {
-                database.lengthRoom.value = +database.lengthRoom.value - 1
-                
-                database.valuesRequirements.value
-                    //delete database.valuesRequirements.value[hash]
-                    if (hash == index) {
-                        delete database.valuesRequirements.value[hash]
-
-                        if (+hash == modalParams.theBiggestIndex) {
-                            modalParams.theBiggestIndex = 0
-                        }
-                    }
-                }
-
-                // atualizar hash
-                for (let hash in database.valuesRequirements.value) {
-                    if (+hash > modalParams.theBiggestIndex) {
-                        modalParams.theBiggestIndex = +hash
-                    }
-                }
-
-                if (!database.lengthRoom.value) {
-                    router.go(-1)
-                    database.lengthRoom.value = ''
-                }
-            })*/
         },
         openRequirements: (indexQuestion) => {
             modal.value = true
