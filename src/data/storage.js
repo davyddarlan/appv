@@ -85,6 +85,16 @@ export default {
 
         if (!database) {
             database = await this.database.set(namespace, groupEntity)
+        } else {
+            let hash = null
+
+            for (hash in groupEntity) {}
+
+            database[hash] = groupEntity[hash]
+
+            console.log('entrou aqui')
+
+            database = await this.database.set(namespace, database)
         }
 
         return database

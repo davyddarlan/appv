@@ -139,7 +139,7 @@
                 const entity = {
                     [geralInfo.id]: databaseAux,
                 }
-
+                
                 storage.createGroupReq(namespace, entity).then((data) => {
                     
                 }).catch((error) => {
