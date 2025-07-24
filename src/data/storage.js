@@ -61,9 +61,10 @@ export default {
     },
     resetQuestionsData: async function(localData) {
         localData.isInLoco.value = null
-        localData.lengthTeam.value = ''
+        localData.lengthTeam.value = null
         localData.name.value = null
         localData.projectId.value = null
+        localData.odontologico.value = null
 
         for (let group in localData.data) {
             if (group != 'PC') {
@@ -71,7 +72,7 @@ export default {
                 let lengthRoom = localData.data[group].questions.length
 
                 for (let i = 0; i < lengthRoom; i++) {
-                    localData.data[group].questions[i].valuesRequirements.value = []
+                    localData.data[group].questions[i].valuesRequirements.value = {}
                     localData.data[group].questions[i].value.value = null
                     localData.data[group].questions[i].lengthRoom.value = null
                 }
@@ -91,8 +92,6 @@ export default {
             for (hash in groupEntity) {}
 
             database[hash] = groupEntity[hash]
-
-            console.log('entrou aqui')
 
             database = await this.database.set(namespace, database)
         }
@@ -181,6 +180,7 @@ export default {
         localData.projectId.value = key
         localData.name.value = database.project.name
         localData.lengthTeam.value = database.project.lengthTeam
+        localData.odontologico.value = database.project.odontologico
 
         for (let group in localData.data) {
             if (group != 'PC') {

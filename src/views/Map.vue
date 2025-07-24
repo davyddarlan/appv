@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div>
-                        <div @click="methods.goToQuestions(grupo)" v-for="grupo in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock}">
+                        <div @click="methods.goToQuestions(grupo)" v-for="(grupo, index) in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock, activeParecer: index == 'PC' }">
                             <IonIcon v-if="grupo.lock" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
                             <IonIcon v-if="!grupo.lock && grupo.percentage == 100" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
                             <span class="progress" v-if="!grupo.lock">100% concluído</span>
@@ -186,5 +186,9 @@
     
     .header-map .button-edit {
         float: right;
+    }
+
+    .activeParecer {
+        background: #e8dc93 !important;
     }
 </style>

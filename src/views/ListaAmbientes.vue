@@ -13,12 +13,12 @@
             <template v-slot:content>
                 <div id="appv-content">
                     <p>Clique em um dos ambientes abaixo para preencher o formulário de requisitos técnico:</p>
-                    <template v-for="(room, index) in questionDatabase.valuesRequirements.value" :key="index">
+                    <template v-for="(room, key, index) in questionDatabase.valuesRequirements.value">
                         <div id="appv-block" class="wrapper">
-                            <div @click="methods.openRequirements(index)" id="appv-block" class="title">
-                                Ambiente {{ index }}
+                            <div @click="methods.openRequirements(key, index)" id="appv-block" class="title">
+                                Ambiente {{ index + 1 }}
                             </div>
-                            <div @click="methods.removeRoom(questionDatabase, index, modalParams)" id="appv-block" class="button">
+                            <div @click="methods.removeRoom(questionDatabase, key, modalParams)" id="appv-block" class="button">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                 </div>
                 <RequirementsModal :open="modal" @close="modal = false">
                     <template v-slot:title>
-                        Ambiente {{ modalParams.indexQuestion + 1 }}
+                        Ambiente {{ modalParams.countRoom + 1 }}
                     </template>
                     <template v-slot:subheader>
                         {{ questionDatabase.title }}
@@ -84,9 +84,10 @@
         groupQuestion: group,
         projectId: database.project.projectId.value,
         theBiggestIndex: 0,
+        countRoom: null
     })
 
-    const listAmbientes = ref([])
+    const countRoons = ref(0)
 
     const methods = {
         goBackNavigation: () => {
@@ -110,7 +111,7 @@
                     database[i] = {
                         reqs: {},
                     }
-
+                    
                     databaseAux[i] = {
                         reqs: {},
                     }
@@ -176,12 +177,6 @@
                     }
                 }
             }
-
-            for (let hash in database) {
-                listAmbientes.value.push(hash)
-            }
-
-            console.log(listAmbientes.value)
         },
         addRoom: (database, modalParams) => {
             const requirements = {
@@ -219,6 +214,7 @@
         },
         removeRoom: (database, index, modalParams) => {
             const namespace = modalParams.projectId + '_' + modalParams.groupQuestion + '_REQS' 
+            let countRoons = 0
 
             const entity = {
                 hashId: database.id,
@@ -226,13 +222,24 @@
             }
 
             storage.removeReq(namespace, entity).then((data) => {
+                delete database.valuesRequirements.value[index]
                 database.lengthRoom.value = +database.lengthRoom.value - 1
-                [delete database.valuesRequirements.value[index]]
+                                
+                for (let i in database.valuesRequirements.value) {
+                    countRoons++
+                }    
+                
+                if (!countRoons) {
+                    modalParams.theBiggestIndex = 0
+
+                    router.go(-1)
+                }
             })
         },
-        openRequirements: (indexQuestion) => {
+        openRequirements: (keyQuestion, indexQuestion) => {
             modal.value = true
-            modalParams.value.indexQuestion = indexQuestion
+            modalParams.value.indexQuestion = keyQuestion
+            modalParams.value.countRoom = indexQuestion
         },
         getDataRequerements: (data, viewName, modalParams, hashId) => {
             const namespace = modalParams.projectId + '_' + modalParams.groupQuestion + '_REQS'

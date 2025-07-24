@@ -8,11 +8,17 @@
                 Informações da unidade
             </template>
             <template v-slot:subheader>
-                Perfil da unidade de saúde da família
+                <span v-if="!isEdit">Perfil da unidade de saúde da família</span>
+                <span v-else="isEdit">Editar perfil da unidade de saúde da família</span>
             </template>
             <template v-slot:content>
                 <div id="appv-nova-compatibilizacao" class="wrapper">
-                    <h3 style="margin-top: 0; font-weight: bold;">Preencha o formulário abaixo para iniciar a análise da USF (Unidade de Saúde da Família):</h3>
+                    <h3 v-if="!isEdit" style="margin-top: 0; font-weight: bold;">
+                        Preencha o formulário abaixo para iniciar a análise da USF (Unidade de Saúde da Família):
+                    </h3>
+                    <h3 v-if="isEdit" style="margin-top: 0; font-weight: bold;">
+                        Preencha o formulário abaixo caso queira reconfigurar o perfil de análise da USF (Unidade de Saúde da Família):
+                    </h3>
                     <Question>
                         Dê um nome para identificação desta unidade de saúde da família
                         <template v-slot:input>
@@ -53,7 +59,16 @@
                         id="appv-nova-compatibilizacao" 
                         class="iniciar-btn" 
                         size="full"
+                        v-if="!isEdit"
                         >Inicializar compatibilização
+                    </IonButton>
+                    <IonButton 
+                        :disabled="disabled" 
+                        id="appv-nova-compatibilizacao" 
+                        class="iniciar-btn" 
+                        size="full"
+                        v-if="isEdit"
+                        >Salvar alteração
                     </IonButton>
                 </div>
             </template>
@@ -88,6 +103,14 @@
     const data = inject('questions').project
     const storage = inject('storage')
 
+    const isEdit = computed(() => {
+        if (route.query.edit) {
+            return true
+        } else {
+            return false
+        }
+    })
+
     const disabled = computed(() => {
         return data.isInLoco.value == null 
         || !data.lengthTeam.value 
@@ -111,6 +134,9 @@
                     path: '/map',
                 })
             })
+        },
+        editProject: () => {
+
         },
         goToHome: () => {
             router.go(-1)

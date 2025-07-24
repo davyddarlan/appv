@@ -33,6 +33,13 @@
                             @setLengthRoom="methods.setValueQuestion"
                         ></RoomQuestion>
                     </template>
+                    <ion-alert
+                        header="Atenção!"
+                        sub-header="Como o ambiente anterior continha campos preenchidos, presseguir resultará na perda destas informações."
+                        message="Você deseja informar que este ambiente não existe?"
+                        :is-open="deleteAlert.isOpen"
+                        :buttons="deleteAlert.buttons"
+                    ></ion-alert>
                 </div>
             </template>
         </MainLayout>
@@ -46,6 +53,7 @@
     import { 
         IonIcon,
         IonPage,
+        IonAlert,
     } from '@ionic/vue'
 
     import { 
@@ -62,6 +70,26 @@
     const questionsStorage = inject('questions')
     const storage = inject('storage')
 
+    const deleteAlert = ref({
+        isOpen: false,
+        buttons: [
+            {
+                text: 'Cancelar',
+                role: 'cancel',
+                handler: () => {
+                    deleteAlert.value.isOpen = false
+                },
+            },
+            {
+                text: 'Confirmar',
+                role: 'confirm',
+                handler: () => {
+                    deleteAlert.value.isOpen = false
+                },
+            }
+        ]
+    })
+
     const { groupQuestions } = route.query
     const questionGroup = questionsStorage.project.data[groupQuestions]
 
@@ -76,7 +104,7 @@
     pagination.total = Math.ceil(pagination.questionsLength / pagination.perPage)
 
     const methods = {
-        setValueQuestion: (data) => {    
+        setValueQuestion: (data) => {   
             const databaseName = questionsStorage.project.projectId.value + '_' + groupQuestions
             
             const questionData = {
@@ -86,8 +114,10 @@
                 }
             }
 
-            storage.setQuestion(databaseName, questionData).then((data) => {
-        
+            storage.setQuestion(databaseName, questionData).then((result) => {
+                if (!data.value) {
+                    deleteAlert.value.isOpen = true
+                }
             })
         },
         goBackNavigation: () => { 
