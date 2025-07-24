@@ -175,6 +175,17 @@ export default {
 
         return database
     },
+    removeQuestion: async function(namespace, key) {
+        let database = await this.database.get(namespace)
+
+        if (database) {
+            delete database[key]
+
+            database = await this.database.set(namespace, database)
+        }
+
+        return database
+    },
     setQuestionsData: async function(database, localData, key) {
         localData.isInLoco.value = database.project.isInLoco
         localData.projectId.value = key

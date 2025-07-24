@@ -78,17 +78,26 @@
                 role: 'cancel',
                 handler: () => {
                     deleteAlert.value.isOpen = false
+                    questionSelected.value.value = 1
                 },
             },
             {
                 text: 'Confirmar',
                 role: 'confirm',
                 handler: () => {
-                    deleteAlert.value.isOpen = false
+                    const namespace = questionsStorage.project.projectId.value + '_' + groupQuestions + '_REQS'
+                    deleteAlert.value.isOpen = false 
+                
+                    storage.removeQuestion(namespace, questionSelected.value.id).then(() => {
+                        questionSelected.value.lengthRoom = 0
+                        questionSelected.value.valuesRequirements = {}
+                    })
                 },
             }
         ]
     })
+
+    const questionSelected = ref(null)
 
     const { groupQuestions } = route.query
     const questionGroup = questionsStorage.project.data[groupQuestions]
@@ -106,6 +115,7 @@
     const methods = {
         setValueQuestion: (data) => {   
             const databaseName = questionsStorage.project.projectId.value + '_' + groupQuestions
+            questionSelected.value = methods.selectedRoom(questionGroup.questions, data.id)
             
             const questionData = {
                 [data.id]: {
@@ -115,7 +125,7 @@
             }
 
             storage.setQuestion(databaseName, questionData).then((result) => {
-                if (!data.value) {
+                if (+data.lengthRoom && !data.value) {
                     deleteAlert.value.isOpen = true
                 }
             })
@@ -169,6 +179,13 @@
                     index: data.index,
                 }
             })
+        },
+        selectedRoom: (questionGroup, questionHash) => {
+            for (let i = 0; i < questionGroup.length; i++) {
+                if (questionGroup[i].id == questionHash) {
+                    return questionGroup[i]
+                }
+            }
         }
     }
 
