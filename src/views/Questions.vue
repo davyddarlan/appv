@@ -35,7 +35,7 @@
                     </template>
                     <ion-alert
                         header="Atenção!"
-                        sub-header="Como o ambiente anterior continha campos preenchidos, presseguir resultará na perda destas informações."
+                        sub-header="Como o ambiente selecionado continha alguns campos preenchidos, presseguir resultará na perda de informações neste ambiente."
                         message="Você deseja informar que este ambiente não existe?"
                         :is-open="deleteAlert.isOpen"
                         :buttons="deleteAlert.buttons"
