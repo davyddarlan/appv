@@ -6,6 +6,9 @@ ion-button {
     --background-activated: #4e68a5;
     --padding-top: 10px;
     --padding-bottom: 10px;
+    --border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 ion-toolbar {

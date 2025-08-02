@@ -58,7 +58,7 @@
                         @click="methods.iniciar" 
                         id="appv-nova-compatibilizacao" 
                         class="iniciar-btn" 
-                        size="full"
+                        expand="block"
                         v-if="!isEdit"
                         >Inicializar compatibilização
                     </IonButton>
@@ -66,7 +66,7 @@
                         :disabled="disabled" 
                         id="appv-nova-compatibilizacao" 
                         class="iniciar-btn" 
-                        size="full"
+                        expand="block"
                         v-if="isEdit"
                         >Salvar alteração
                     </IonButton>
