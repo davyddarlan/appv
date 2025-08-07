@@ -13,12 +13,13 @@
             </template>
             <template v-slot:content>
                 <div id="appv-nova-compatibilizacao" class="wrapper">
-                    <h3 v-if="!isEdit" style="margin-top: 0; font-weight: bold;">
-                        Preencha o formulário abaixo para iniciar a análise da USF (Unidade de Saúde da Família):
-                    </h3>
-                    <h3 v-if="isEdit" style="margin-top: 0; font-weight: bold;">
-                        Preencha o formulário abaixo caso queira reconfigurar o perfil de análise da USF (Unidade de Saúde da Família):
-                    </h3>
+                    <div id="appv-info" class="wrapper">
+                        <IonIcon id="appv-info" class="icon" :icon="informationCircleOutline"></IonIcon>
+                        <p id="appv-info" class="info">
+                            <p v-if="!isEdit">Preencha o formulário abaixo para iniciar a análise da USF (Unidade de Saúde da Família)</p>
+                            <p v-if="isEdit">Preencha o formulário abaixo para alterar o perfil de análise da USF (Unidade de Saúde da Família)</p>
+                        </p>
+                    </div>
                     <Question>
                         Dê um nome para identificação desta unidade de saúde da família
                         <template v-slot:input>
@@ -109,7 +110,8 @@
     } from '@ionic/vue'
 
     import { 
-        closeOutline
+        closeOutline,
+        informationCircleOutline,
     } from 'ionicons/icons'
 
     import MainLayout from '@/components/layout/main-layout.vue'
@@ -248,5 +250,27 @@
 
     #appv-nova-compatibilizacao.iniciar-btn {
         margin-top: 20px;
+    }
+
+        #appv-info.wrapper {  
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #appv-info.icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    #appv-info.icon,
+    #appv-info.info { float: left; }
+
+    #appv-info.info {
+        width: calc(100% - 50px);
+        height: auto;
+        font-weight: bold;
+        font-size: 0.8em;
+        margin-left: 10px;
     }
 </style>
