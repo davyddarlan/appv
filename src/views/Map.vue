@@ -13,15 +13,18 @@
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
-                    <div class="header-map">
-                        <p class="title">Você está no menu de projeto e fiscalização: <b>{{ name }}.</b>
-                        Siga as etapas dos itens abaixo para obter o parecer técnico desta USF.
+                    <div id="appv-info" class="wrapper">
+                        <IonIcon id="appv-info" class="icon" :icon="informationCircleOutline"></IonIcon>
+                        <p id="appv-info" class="info">
+                            Você está no menu de navegação da: <b>{{ name }}.</b>
+                            Preencha os ambientes dos blocos abaixo para obter o parecer técnico desta USF.
                         </p>
-                        <div class="button-edit">
-                            <ion-button size="small" @click="methods.editProfile">
-                                <ion-icon slot="icon-only" :icon="settingsOutline"></ion-icon>
-                            </ion-button>
-                        </div>
+                    </div>
+                    <div id="appv-config" class="config-area">
+                        <ion-button size="small" @click="methods.editProfile">
+                            <span id="appv-config" class="button-txt">Editar perfil da USF</span>
+                            <ion-icon slot="icon-only" :icon="settingsOutline"></ion-icon>
+                        </ion-button>
                     </div>
                     <div>
                         <div @click="methods.goToQuestions(index, grupo)" v-for="(grupo, index) in questionsStorage.project.data" class="box ion-activatable" :class="{ activeParecer: index == 'PC' }">
@@ -64,6 +67,7 @@
         lockClosedSharp,
         checkmarkDoneSharp,
         settingsOutline,
+        informationCircleOutline,
     } from 'ionicons/icons';
     
     import MainLayout from '@/components/layout/main-layout.vue';
@@ -294,4 +298,36 @@
     .activeParecer {
         background: #e8dc93 !important;
     }
+
+       #appv-info.wrapper {  
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #appv-info.icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    #appv-info.icon,
+    #appv-info.info { float: left; }
+
+    #appv-info.info {
+        width: calc(100% - 50px);
+        height: auto;
+        font-weight: bold;
+        font-size: 0.8em;
+        margin-left: 10px;
+    }
+
+    #appv-config.config-area {
+        display: table;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    #appv-config.button-txt { margin-left: 5px; }
+
+    #appv-config ion-button { float: right; }
 </style>
