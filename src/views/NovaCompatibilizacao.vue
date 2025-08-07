@@ -63,7 +63,7 @@
                         >Inicializar compatibilização
                     </IonButton>
                     <IonButton 
-                        :disabled="disabled" 
+                        :disabled="formWasChange" 
                         id="appv-nova-compatibilizacao" 
                         class="iniciar-btn" 
                         expand="block"
@@ -71,6 +71,19 @@
                         @click="methods.editProject"
                         >Salvar alteração
                     </IonButton>
+                    <IonToast
+                        :is-open="toastController.isOpen.value"
+                        :message="toastController.message"
+                        :duration="toastController.duration"
+                        @didDismiss="toastController.didDismiss"
+                    ></IonToast>
+                    <IonAlert
+                        :is-open="alertController.isOpen.value"
+                        :header="alertController.title"
+                        :message="alertController.message"
+                        :buttons="alertController.buttons"
+                        @didDismiss="alertController.didDismiss($event)"
+                    ></IonAlert>
                 </div>
             </template>
         </MainLayout>
@@ -78,7 +91,7 @@
 </template>
 
 <script setup>
-    import { inject, computed, onMounted } from 'vue'
+    import { inject, computed, onBeforeMount, ref } from 'vue'
     import { useRouter, useRoute } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
@@ -91,6 +104,8 @@
         IonButton,
         IonSelect,
         IonSelectOption,
+        IonToast,
+        IonAlert,
     } from '@ionic/vue'
 
     import { 
@@ -111,10 +126,47 @@
         odontologico: null,
     }
 
-    onMounted(() => {
+    const toastController = {
+        isOpen: ref(false),
+        duration: 0,
+        message: '',
+        didDismiss: () => {
+            toastController.isOpen.value = false
+        }
+    }
+
+    const alertController = {
+        title: 'Atenção!',
+        message: 'Você realmente deseja sair sem salvar as alterações?',
+        buttons: [
+            {
+                text: 'SIM',
+                role: 'confirm',
+            },
+            {
+                text: 'NÃO',
+                role: 'cancel',
+            },
+        ],
+        isOpen: ref(false),
+        didDismiss: (event) => {
+            alertController.isOpen.value = false
+
+            if (event.detail.role == 'confirm') {
+                data.isInLoco.value = auxDataForm.isInLoco
+                data.lengthTeam.value = auxDataForm.lengthTeam
+                data.name.value = auxDataForm.name
+                data.odontologico.value = auxDataForm.odontologico
+
+                router.replace('/map')
+            }
+        }
+    }
+
+    onBeforeMount(() => {
         if (route.query.edit) {
             auxDataForm.isInLoco = data.isInLoco.value,
-            auxDataForm.lengthTeam = data.lengthTeam,
+            auxDataForm.lengthTeam = data.lengthTeam.value,
             auxDataForm.name = data.name.value,
             auxDataForm.odontologico = data.odontologico.value
         }
@@ -126,6 +178,13 @@
         } else {
             return false
         }
+    })
+
+    const formWasChange = computed(() => {
+        return (auxDataForm.isInLoco == data.isInLoco.value 
+        && auxDataForm.lengthTeam == data.lengthTeam.value
+        && auxDataForm.name == data.name.value
+        && auxDataForm.odontologico == data.odontologico.value) || data.name.value == ''
     })
 
     const disabled = computed(() => {
@@ -153,10 +212,31 @@
             })
         },
         editProject: () => {
-            console.log(auxDataForm)
+            const updateData = {
+                name: data.name.value,
+                lengthTeam: data.lengthTeam.value,
+                isInLoco: data.isInLoco.value,
+                odontologico: data.odontologico.value
+            }
+
+            storage.updateProject(updateData, data.projectId.value).then(() => {
+                toastController.isOpen.value = true
+                toastController.message = 'O perfil da USF foi alterado'
+                toastController.duration = 2000
+
+                router.replace('/map')
+            })
         },
         goToHome: () => {
-            router.go(-1)
+            if (isEdit.value) {
+                if (!formWasChange.value || disabled.value) {
+                    alertController.isOpen.value = true
+                } else {
+                    router.replace('/map')
+                }
+            } else {
+                router.go(-1)   
+            }
         },
     }
 </script>

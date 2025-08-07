@@ -40,6 +40,19 @@ export default {
             AP: apData,
         }
     },
+    updateProject: async function(data, key) {
+        let project = await this.database.get(key)
+
+        for (let prop in project) {
+            if (data[prop]) {
+                project[prop] = data[prop]
+            }
+        }
+
+        project = await this.database.set(key, project)
+
+        return project
+    },
     setQuestion: async function(key, data) {
         const database = await this.database.get(key)
         let status = null, KeyValue = null, xKey = null
