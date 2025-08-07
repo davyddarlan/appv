@@ -68,6 +68,7 @@
                         class="iniciar-btn" 
                         expand="block"
                         v-if="isEdit"
+                        @click="methods.editProject"
                         >Salvar alteração
                     </IonButton>
                 </div>
@@ -77,7 +78,7 @@
 </template>
 
 <script setup>
-    import { inject, computed } from 'vue'
+    import { inject, computed, onMounted } from 'vue'
     import { useRouter, useRoute } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
@@ -102,6 +103,22 @@
     const route = useRoute()
     const data = inject('questions').project
     const storage = inject('storage')
+
+    const auxDataForm = {
+        isInLoco: null,
+        lengthTeam: null,
+        name: null,
+        odontologico: null,
+    }
+
+    onMounted(() => {
+        if (route.query.edit) {
+            auxDataForm.isInLoco = data.isInLoco.value,
+            auxDataForm.lengthTeam = data.lengthTeam,
+            auxDataForm.name = data.name.value,
+            auxDataForm.odontologico = data.odontologico.value
+        }
+    })
 
     const isEdit = computed(() => {
         if (route.query.edit) {
@@ -136,7 +153,7 @@
             })
         },
         editProject: () => {
-
+            console.log(auxDataForm)
         },
         goToHome: () => {
             router.go(-1)

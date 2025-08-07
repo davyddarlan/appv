@@ -152,7 +152,7 @@
             for (let key in list) {
                 countItens++
 
-                if (list[key] !== null) {
+                if (list[key] != null) {
                     countSets++
                 }
             }

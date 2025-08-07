@@ -152,7 +152,6 @@ export default {
                 dataChanged = true
             }
 
-
             if (database[entity.hashId][entity.reqId]['reqs'][entity.viewId] != entity.data) {
                 database[entity.hashId][entity.reqId]['reqs'][entity.viewId] = entity.data
 
@@ -190,7 +189,7 @@ export default {
         localData.isInLoco.value = database.project.isInLoco
         localData.projectId.value = key
         localData.name.value = database.project.name
-        localData.lengthTeam.value = database.project.lengthTeam
+        localData.lengthTeam.value = database.project.lengthTeam + ""
         localData.odontologico.value = database.project.odontologico
 
         for (let group in localData.data) {
