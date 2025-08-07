@@ -24,15 +24,21 @@
                         </div>
                     </div>
                     <div>
-                        <div @click="methods.goToQuestions(grupo)" v-for="(grupo, index) in questionsStorage.project.data" class="box ion-activatable" :class="{ lock: grupo.lock, activeParecer: index == 'PC' }">
-                            <IonIcon v-if="grupo.lock" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
-                            <IonIcon v-if="!grupo.lock && grupo.percentage == 100" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
-                            <span class="progress" v-if="!grupo.lock">100% concluído</span>
+                        <div @click="methods.goToQuestions(index, grupo)" v-for="(grupo, index) in questionsStorage.project.data" class="box ion-activatable" :class="{ activeParecer: index == 'PC' }">
+                            <IonIcon v-if="grupo.percentage != 1 && index == 'PC'" class="lock-icon" :icon="lockClosedSharp"></IonIcon>
+                            <IonIcon v-if="grupo.percentage == 1" class="right-icon" :icon="checkmarkDoneSharp"></IonIcon>
+                            <span class="progress">{{ methods.formatPercentage(index, grupo.percentage) }} preenchido</span>
                             <span class="title">{{ grupo.title }}</span>
                             <IonRippleEffect></IonRippleEffect>
                         </div>
                     </div>
                 </div>
+                <IonToast
+                    :is-open="toastController.isOpen.value"
+                    :message="toastController.message"
+                    :duration="toastController.duration"
+                    @didDismiss="toastController.didDismiss"
+                ></IonToast>
                 <!-- fim conteúdo -->
             </template>
         </MainLayout>
@@ -40,7 +46,7 @@
 </template>
 
 <script setup>
-    import { inject } from 'vue'
+    import { inject, ref } from 'vue'
 
     import { useRouter } from 'vue-router'
 
@@ -49,6 +55,8 @@
         IonRippleEffect,
         IonPage,
         IonButton,
+        onIonViewWillEnter,
+        IonToast,
     } from '@ionic/vue'
 
     import { 
@@ -65,20 +73,115 @@
 
     const router = useRouter()
 
+    onIonViewWillEnter(() => {
+        const group = ['ADM', 'AC', 'AO', 'AP', 'PC']
+        const percentage = methods.getPercentage(questionsStorage.project.data)
+
+        for (let i = 0; i < group.length; i++) {
+            questionsStorage.project.data[group[i]].percentage = percentage[group[i]]
+        }
+    })
+
+    const toastController = {
+        isOpen: ref(false),
+        duration: 0,
+        message: '',
+        didDismiss: () => {
+            toastController.isOpen.value = false
+        }
+    }
+
     const methods = {
-        goToQuestions: (group) => {
-            if (!group.lock) {
-                if (!group.page) {
-                    router.push({
-                        path: '/questions',
-                        query: {
-                            groupQuestions: group.group,
-                        }
-                    })
-                } else {
-                    if (group.page == 'parecer') {
-                        router.push('parecer')
+        getPercentage: (storage) => {
+            const group = ['ADM', 'AC', 'AO', 'AP']
+            const percetageGroup = {}
+            let questionsGroup = null
+            let sumTotal = 0
+
+            for (let i = 0; i < group.length; i++) {
+                let percentageQuestion = 0
+                questionsGroup = storage[group[i]].questions
+            
+                for (let j = 0; j < questionsGroup.length; j++) {
+                    if (questionsGroup[j].value.value == 0) {
+                        percentageQuestion++
+                    } else if (questionsGroup[j].value.value == 1) {
+                        percentageQuestion += methods.getReqPercentage(questionsGroup[j].valuesRequirements.value, questionsGroup[j].lengthRoom.value)
                     }
+                }
+
+                sumTotal += (percentageQuestion / questionsGroup.length)
+                percetageGroup[group[i]] = percentageQuestion / questionsGroup.length
+            }
+
+            percetageGroup['PC'] = sumTotal / group.length
+
+            return percetageGroup
+        },
+        getReqPercentage: (reqs, lenthRoom) => {
+            let countGroup = 0
+
+            for (let req in reqs) {
+                let countReqGroup = 0
+                let totalReqGroup = 0
+                let groupReqs = reqs[req].reqs
+                
+                for (let reqKey in groupReqs) {
+                    totalReqGroup++
+
+                    if (groupReqs[reqKey] instanceof Array) {
+                        let isFill = true 
+
+                        for (let i = 0; i < groupReqs[reqKey].length; i++) {
+                            if (groupReqs[reqKey][i] == null) {
+                                isFill = false
+                                break
+                            }
+                        }
+
+                        if (!groupReqs[reqKey].length) {
+                            isFill = false
+                        }
+
+                        if (isFill) {
+                            countReqGroup++
+                        }
+                    } else {
+                        if (groupReqs[reqKey] != null) {
+                            countReqGroup++
+                        }
+                    }
+                }
+
+                countGroup += countReqGroup / totalReqGroup
+            }
+
+            return countGroup / lenthRoom
+        },
+        formatPercentage: (group, percentage) => {
+            percentage *= 100 
+
+            if ((/\d+\./).test(percentage)) {
+                percentage = percentage.toFixed(2)
+            }
+
+            return percentage + '%'
+        },
+        goToQuestions: (key, group) => {
+            if (key != 'PC') {
+                router.push({
+                    path: '/questions',
+                    query: {
+                        groupQuestions: group.group,
+                    }
+                })
+            } else {
+                if (group.percentage != 1) {
+                    toastController.isOpen.value = true
+                    toastController.message = "Acesso restrito: complete o preenchimento de todos os ambientes"
+                    toastController.duration = 3000
+                } else {
+                    router.push('parecer')
                 }
             }
         },
@@ -119,7 +222,7 @@
     #appv-box-wrapper .box .lock-icon {
         position: absolute;
         top: 10px;
-        left: 5px;
+        right: 10px;
         font-size: 1.2em;
         color: #474749;
     }
