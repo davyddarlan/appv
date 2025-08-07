@@ -151,13 +151,38 @@
 
             for (let key in list) {
                 countItens++
+               
+                if (list[key] instanceof Array) {
+                    let isFill = true 
 
-                if (list[key] != null) {
-                    countSets++
+                    for (let i = 0; i < list[key].length; i++) {
+                        if (list[key][i] == null) {
+                            isFill = false
+                            break
+                        }
+                    }
+
+                    if (!list[key].length) {
+                        isFill = false
+                    }
+
+                    if (isFill) {
+                        countSets++
+                    }
+                } else {
+                    if (list[key] != null) {
+                        countSets++
+                    }
                 }
             }
 
-            return countSets / countItens * 100 + '%'
+            let calcPercentage = countSets / countItens * 100
+
+            if ((/\d+\./).test(calcPercentage)) {
+                calcPercentage = calcPercentage.toFixed(2)
+            }
+
+            return calcPercentage + '%'
         },
         goBackNavigation: () => {
             router.go(-1)

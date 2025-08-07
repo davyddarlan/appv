@@ -30,6 +30,8 @@
     watch(() => model.value[0], (data) => {
         if (!data) {
             model.value[1] = 0
+        } else {
+            model.value[1] = null
         }
 
         emits('setData', [model.value[0], model.value[1]])
