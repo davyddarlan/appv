@@ -13,19 +13,6 @@
             <template v-slot:content>
                 <!-- início conteúdo -->
                 <div id="appv-box-wrapper">
-                    <!--<div id="appv-info" class="wrapper">
-                        <IonIcon id="appv-info" class="icon" :icon="informationCircleOutline"></IonIcon>
-                        <p id="appv-info" class="info">
-                            Você está no menu de navegação da: <b>{{ name }}.</b>
-                            Preencha os ambientes dos blocos abaixo para obter o parecer técnico desta USF.
-                        </p>
-                    </div>-->
-                    <!--<div id="appv-config" class="config-area">
-                        <ion-button size="small" @click="methods.editProfile">
-                            <span id="appv-config" class="button-txt">Editar perfil da USF</span>
-                            <ion-icon slot="icon-only" :icon="settingsOutline"></ion-icon>
-                        </ion-button>
-                    </div>-->
                     <h1 id="appv-title" class="title">BEM-VINDO AO MENU DE NAVEGAÇÃO DA USF: <span id="appv-title" class="name">{{ name }}</span></h1>
                     <div>
                         <div @click="methods.goToQuestions(index, grupo)" v-for="(grupo, index) in questionsStorage.project.data" class="box ion-activatable" :class="{ activeParecer: index == 'PC' }">

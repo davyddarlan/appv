@@ -49,6 +49,7 @@
         IonCardContent,
         IonButton,
         IonSpinner,
+        onIonViewWillEnter,
     } from '@ionic/vue'
 
     const storage = inject('storage')
@@ -106,7 +107,9 @@
         },
     }
 
-    methods.listProjects(projects.value)
+    onIonViewWillEnter(() => {
+        methods.listProjects(projects.value)
+    })
 </script>
 
 <style scoped>
