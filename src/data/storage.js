@@ -23,6 +23,13 @@ export default {
         return await this.database
     },
     deleteProject: async function(key) {
+        const groups = ['AC', 'ADM', 'AO', 'AP']
+
+        for (let i = 0; i < groups.length; i++) {
+            await this.database.remove(key + '_' + groups[i])
+            await this.database.remove(key + '_' + groups[i] + '_REQS')
+        }
+
         return await this.database.remove(key)
     },
     accessProject: async function(key) {

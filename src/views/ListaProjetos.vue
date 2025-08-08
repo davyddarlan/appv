@@ -13,23 +13,32 @@
                 </div>
                 <div class="appv-alert-project" v-if="!hasProject">
                     <p>Não há qualquer projeto criado</p>
-                    
                 </div>
-                <ion-card v-for="project in projects">
-                    <ion-card-header>
-                    <ion-card-title>{{ project.data.name }}</ion-card-title>
-                    <ion-card-subtitle>{{ methods.getStatusProject(project.data.isInLoco) }}</ion-card-subtitle>
-                    </ion-card-header>
-
-                    <!--<ion-card-content>
-                        Here's a small text description for the card content. Nothing more, nothing less.
-                    </ion-card-content>-->
-
-                    <div style="margin: 10px;">
-                        <ion-button class="project-btn" fill="clear" @click="methods.accessProject(project.key)">Acessar</ion-button>
-                        <ion-button class="project-btn" fill="clear" @click="methods.removeProject(project.key)">Apagar</ion-button>
-                    </div>
-                </ion-card>
+                <div id="appv" class="wrapper-content">
+                    <ion-card v-for="project in projects">
+                        <ion-card-header>
+                        <ion-card-title>Projeto: {{ project.data.name }}</ion-card-title>
+                        <ion-card-subtitle>{{ methods.getStatusProject(project.data.isInLoco) }}</ion-card-subtitle>
+                        </ion-card-header>
+                        <div style="margin: 10px;">
+                            <ion-button size="small" class="project-btn" fill="clear" @click="methods.accessProject(project.key)">Acessar</ion-button>
+                            <ion-button size="small" class="project-btn delete" fill="clear" @click="methods.removeProjectHandler(project.key)">Remover</ion-button>
+                        </div>
+                    </ion-card>
+                </div>
+                <IonAlert
+                    :is-open="alertController.isOpen.value"
+                    :header="alertController.title"
+                    :message="alertController.message"
+                    :buttons="alertController.buttons"
+                    @didDismiss="alertController.didDismiss($event)"
+                ></IonAlert>
+                <IonToast
+                    :is-open="toastController.isOpen.value"
+                    :message="toastController.message"
+                    :duration="toastController.duration"
+                    @didDismiss="toastController.didDismiss"
+                ></IonToast>
             </template>
         </SecondLayout>
     </IonPage>
@@ -50,6 +59,8 @@
         IonButton,
         IonSpinner,
         onIonViewWillEnter,
+        IonAlert,
+        IonToast,
     } from '@ionic/vue'
 
     const storage = inject('storage')
@@ -57,6 +68,40 @@
     const projects = ref({})
     const router = useRouter()    // loading page
     const isLoadList = ref(true)
+
+    const alertController = {
+        title: 'Atenção!',
+        message: 'Você realmente deseja remover este projeto?',
+        buttons: [
+            {
+                text: 'NÃO',
+                role: 'cancel',
+            },
+            {
+                text: 'REMOVER',
+                role: 'confirm',
+            },
+        ],
+        isOpen: ref(false),
+        didDismiss: (event) => {
+            alertController.isOpen.value = false
+            const role = event.detail.role
+
+            if (role == 'confirm') {
+                methods.removeProject(alertController.key)
+            }
+        },
+        key: null,
+    }
+
+    const toastController = {
+        isOpen: ref(false),
+        duration: 0,
+        message: '',
+        didDismiss: () => {
+            toastController.isOpen.value = false
+        }
+    }
 
     const hasProject = computed(() => {
         let count = 0; 
@@ -70,7 +115,7 @@
 
     const methods = {
         getStatusProject: (data) => {
-            return data ? 'Fiscalização de USF' : 'Análise de projeto USF'
+            return +data ? 'Fiscalização de USF' : 'Análise de projeto USF'
         },
         listProjects: (table) => {
             storage.listProjects().then((data) => {
@@ -101,9 +146,16 @@
         removeProject: (key) => {
             storage.deleteProject(key).then((data) => {
                 delete projects.value[key]
+                toastController.isOpen.value = true
+                toastController.message = 'O projeto foi removido'
+                toastController.duration = 2000
             }, (error) => {
                 
             })
+        },
+        removeProjectHandler: (key) => {
+            alertController.isOpen.value = true
+            alertController.key = key
         },
     }
 
@@ -114,7 +166,7 @@
 
 <style scoped>
     .appv-load {
-        display: grid;
+        display: flex;
         position: absolute;
         z-index: 1;
         top: 0;
@@ -143,5 +195,16 @@
 
     .project-btn {
         color: #ffffff;
+    }
+
+    .project-btn.delete {
+        --background: #e33922;
+    }
+
+    ion-card-title {
+        font-weight: bold;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        color: #420000;
     }
 </style>
