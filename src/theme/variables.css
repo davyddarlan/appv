@@ -24,3 +24,7 @@ ion-toast {
     --color: #ffffff;
     opacity: .8;
 }
+
+ion-fab-button {
+    --background: #4a5d88;
+}

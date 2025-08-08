@@ -36,6 +36,11 @@
                             <IonRippleEffect></IonRippleEffect>
                         </div>
                     </div>
+                    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+                        <ion-fab-button @click="methods.editProfile">
+                            <ion-icon :icon="settingsOutline"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
                 </div>
                 <IonToast
                     :is-open="toastController.isOpen.value"
@@ -61,6 +66,8 @@
         IonButton,
         onIonViewWillEnter,
         IonToast,
+        IonFab,
+        IonFabButton,
     } from '@ionic/vue'
 
     import { 
