@@ -252,7 +252,7 @@
         margin-top: 20px;
     }
 
-        #appv-info.wrapper {  
+    #appv-info.wrapper {  
         display: flex;
         align-items: center;
         margin-bottom: 10px;
@@ -273,4 +273,6 @@
         font-size: 0.8em;
         margin-left: 10px;
     }
+
+    #appv-info.info * { margin: 0; }
 </style>
