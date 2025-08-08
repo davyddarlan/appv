@@ -117,7 +117,7 @@
                 for (let j = 0; j < questionsGroup.length; j++) {
                     if (questionsGroup[j].value.value == 0) {
                         percentageQuestion++
-                    } else if (questionsGroup[j].value.value == 1) {
+                    } else if (questionsGroup[j].value.value == 1 && questionsGroup[j].lengthRoom.value > 0) {
                         percentageQuestion += methods.getReqPercentage(questionsGroup[j].valuesRequirements.value, questionsGroup[j].lengthRoom.value)
                     }
                 }
