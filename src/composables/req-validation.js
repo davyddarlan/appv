@@ -130,6 +130,239 @@ export default {
 
         return feedback
     },
+    ReqDispercaoFarma: (answerSheet, value) => {
+        let feedback = null
+
+        if (value < answerSheet) {
+            feedback = 'A área disperção do ambiente deve ser igual ou superior a ' + answerSheet + 'm²'
+        }
+
+        return feedback
+    },
+    ReqArmazenamentoFarma: (answerSheet, value) => {
+        let feedback = null
+
+        if (value < answerSheet) {
+            feedback = 'A área armazenamento do ambiente deve ser igual ou superior a ' + answerSheet + 'm²'
+        }
+
+        return feedback
+    },
+    ReqIluminacao: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente seja bem iluminado'
+        }
+
+        return feedback
+    },
+    ReqFiacaoEletrica: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que a fiação elétrica do ambiente esteja embutida ou recoberta'
+        }
+
+        return feedback
+    },
+    ReqVaoPorta: (answerSheet, value) => {
+        let feedback = null
+
+        if (value[0] < answerSheet[0]) {
+            feedback = ('A largura do vão da porta deve ser igual ou superior a ' + answerSheet[0] + 'm.')
+        }
+
+        if (value[1] < answerSheet[1]) {
+            feedback += (' A altura do vão da porta deve ser igual ou superior a ' + answerSheet[1] + 'm')
+        }
+
+        return feedback
+    },
+    ReqFiacaoLogica: (answerSheet, value) => {
+        let feedback = null
+
+        if (value[0]) {
+            if (answerSheet && value[1] == false) {
+                feedback = 'É preciso que a fiação lógica do ambiente esteja embutida ou recoberta'
+            }
+        }
+
+        return feedback
+    },
+    ReqFiacaoTelefonica: (answerSheet, value) => {
+        let feedback = null
+
+        if (value[0]) {
+            if (answerSheet && value[1] == false) {
+                feedback = 'É preciso que a fiação telefônica do ambiente esteja embutida ou recoberta'
+            }
+        }
+
+        return feedback
+    },
+    ReqMaca: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua maca'
+        }
+
+        return feedback
+    },
+    ReqEscada: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua escada'
+        }
+
+        return feedback
+    },
+    ReqBaciaSanitaria: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua bacia sanitária'
+        }
+
+        return feedback
+    },
+    ReqChuveiro: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua chuveiro'
+        }
+
+        return feedback
+    },
+    ReqBox: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua box'
+        }
+
+        return feedback
+    },
+    ReqBancadaPia: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua bancada com pia'
+        }
+
+        return feedback
+    },
+    ReqTanque: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua tanque'
+        }
+
+        return feedback
+    },
+    ReqPiaLavagem: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua pia de lavagem'
+        }
+
+        return feedback
+    },
+    ReqPiaDespejo: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua pia de despejo'
+        }
+
+        return feedback
+    },
+    ReqDucha: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua ducha'
+        }
+
+        return feedback
+    },
+    ReqSeparacaoResiduos: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua separação para resíduos comuns, químicos e biológicos'
+        }
+
+        return feedback
+    },
+    ReqPontoAgua: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua ponto de água'
+        }
+
+        return feedback
+    },
+    ReqProtecaoRoedores: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua proteção contra roedores'
+        }
+
+        return feedback
+    },
+    ReqEquipamentoRx: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua equipamento de raio X'
+        }
+
+        return feedback
+    },
+    ReqEspelho: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua espelhos com altura adequada para crianças, adolescentes e adultos'
+        }
+
+        return feedback
+    },
+    ReqTorneira: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o ambiente possua torneiras'
+        }
+
+        return feedback
+    },
+    ReqCobertura: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que a área técnica seja coberta'
+        }
+
+        return feedback
+    },
+    ReqProtPorta: (answerSheet, value) => {
+        let feedback = null
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que a área técnica seja protegida com porta'
+        }
+
+        return feedback
+    },
     ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, odontologico) => {
         let feedback = null
 

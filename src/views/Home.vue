@@ -2,7 +2,9 @@
     <IonPage>
         <div id="appv-home" class="wrapper">
             <div id="appv-home" class="content">
-                <h1 class="logo">AEAPAF</h1>
+                <h1 class="logo">
+                    <span>VISA</span><span>ESTRUTURAL</span>
+                </h1>
                 <button @click="methods.createProject" class="start">Analisar USF</button>
             </div>
         </div> 
@@ -53,10 +55,11 @@
 
     #appv-home.content .logo {
         font-family: "Livvic", serif;
-        font-size: 5em;
         font-weight: bold;
         color: #ffffff;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        border-left: 8px solid #4a5d88;
+        padding-left: 15px;
     }
 
     #appv-home.content .start {
@@ -66,5 +69,20 @@
         border-radius: 5px;
         color: #ffffff;
         background: #4a5d88;
+        text-transform: uppercase;
+    }
+
+    .logo span:first-child,
+    .logo span:last-child {
+        display: block;
+    }
+
+    .logo span:first-child {
+        font-size: 3em;
+        line-height: 0.9em;
+    }
+
+    .logo span:last-child {
+        font-size: 1.5em;
     }
 </style>

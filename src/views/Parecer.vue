@@ -89,9 +89,15 @@
     const question = data.project.data.ADM.questions[0]
     const modal = ref(false)
     const dataAnalyse = ref(null)
+    const dataAnalyseFilter = ref(null)
     const getDataRoom = ref({
         section: null,
         room: null,
+    })
+
+    const statistics = ref({
+        compativel: 0,
+        incompativel: 0,
     })
 
     // fim da área de teste
@@ -105,7 +111,7 @@
                 labels: ['Compatível', 'Incompatível'],
                 datasets: [{
                     label: 'Requisitos',
-                    data: [50, 20],
+                    data: [statistics.value.compativel, statistics.value.incompativel],
                     borderWidth: 1,
                     backgroundColor: [
                         '#4a5d88',
@@ -143,22 +149,60 @@
 
                 for (let j = 0; j < questionsLength; j++) {
                     let getRoons = Analyse.analyse(questionDb[listGroup[i]].questions[j], project)
-
-                    /*if (getRoons.roons.length) {
-                        analyseResult.push(getRoons)
-                    } else {
-                        analyseResult     
-                    }*/
-
+                
                     analyseResult.push(getRoons)
                 }
             } 
 
             return analyseResult
         },
+        problems: (data) => {
+            let isProblem = false 
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] != null) {
+                    isProblem = true
+                    break
+                }
+            }
+
+            return isProblem
+        },
+        getStatistics: (data) => {
+            let compativel = 0
+            let incompativel = 0
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].reqRoom == null) {
+                    compativel++
+                } else {
+                    incompativel++
+                }
+
+                if (data[i].roons.length) {
+                    for (let j = 0; j < data[i].roons.length; j++) {
+                        for (let z = 0; z < data[i].roons[j].length; z++) {
+                            if (data[i].roons[j][z] == null) {
+                                compativel++
+                            } else {
+                                incompativel++
+                            }
+                        }
+                    }
+                }
+            }
+
+            return {
+                compativel,
+                incompativel,
+            }
+        }
     }  
     
     dataAnalyse.value = methods.listQuestions(data.project.data, data.project)
+    let getStatisticsResult = methods.getStatistics(dataAnalyse.value)
+    statistics.value.compativel = getStatisticsResult.compativel
+    statistics.value.incompativel = getStatisticsResult.incompativel
 </script>
 
 <style scoped>

@@ -60,6 +60,10 @@
         margin-bottom: 20px;
     }
 
+    /*#appv-list.list {
+        padding: 10px;
+    }*/
+
     #appv-list.header {
         display: flex;
         align-items: center;
