@@ -175,13 +175,13 @@
                     }
                 })
             } else {
-                /*if (group.percentage != 1) {
+                if (group.percentage != 1) {
                     toastController.isOpen.value = true
                     toastController.message = "Acesso restrito: complete o preenchimento de todos os ambientes"
                     toastController.duration = 3000
                 } else {
                     router.push('parecer')
-                }*/
+                }
 
                 router.push('parecer')
             }
