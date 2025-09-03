@@ -12,10 +12,15 @@
             </template>
             <template v-slot:content>
                 <div id="appv-parecer" class="wrapper">
+                    <div id="appv-parecer" class="result-data">
+                        <p>Para o resultado desta análise, foram consultados <b>{{ totalRequisitos }}</b> requisitos,
+                        dos quais, <b>{{ percenteCompativel.toPrecision(4) + '%' }} ({{ statistics.compativel }})</b> estão conformes e <b>{{ percenteIncompativel.toPrecision(4) + '%' }}
+                            ({{ statistics.incompativel }})</b> inconformes.</p>
+                    </div>
                     <div>
                         <canvas id="myChart"></canvas>
                     </div>
-                    <template v-for="(room, indexSection) in dataAnalyse">
+                    <template v-for="(room, indexSection) in dataAnalyseFilter">
                         <ListComponent>
                             <template v-slot:title>{{ room.title }}</template>
                             <template v-slot:content>
@@ -25,7 +30,7 @@
                                 <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
                                     <div id="appv-parecer" class="wrapper-requirement" @click="methods.seeRequirements(indexSection, indexRoom)">
                                         <div class="position">{{ indexRoom + 1 }}</div>
-                                        <p class="text">Ambiente {{ indexRoom + 1 }}</p>
+                                        <p class="text">{{ x.title }}</p>
                                     </div>
                                 </div>
                             </template>     
@@ -37,18 +42,18 @@
                         Incompatibilidades
                     </template>
                     <template v-slot:subheader>
-                        {{ dataAnalyse[getDataRoom.section].title }}
+                        {{ dataAnalyseFilter[getDataRoom.section].title }}
                     </template>
                     <template v-slot:content>
                         <div id="appv-modal-parecer" class="wrapper">
-                            <h1 id="appv-modal-parecer" class="title">O ambiente <b>{{ dataAnalyse[getDataRoom.section].title }} {{ getDataRoom.room + 1 }}</b> possui as seguintes incompatibilidades:</h1>
-                            <template v-for="(alerts, index) in dataAnalyse[getDataRoom.section].roons[getDataRoom.room]">
-                                <template v-if="alerts">
+                            <h1 id="appv-modal-parecer" class="title">O ambiente <b>{{ dataAnalyseFilter[getDataRoom.section].title }} {{ dataAnalyseFilter[getDataRoom.section].roons[getDataRoom.room].index }}</b> possui as seguintes incompatibilidades:</h1>
+                            <template v-for="(alerts, index) in dataAnalyseFilter[getDataRoom.section].roons[getDataRoom.room].roons">
+                                <template v-if="alerts.status == 2">
                                     <ListComponent>
                                         <template v-slot:title>Incompatibilidade {{ index + 1 }}</template>
                                         <template v-slot:content>
                                             <div id="appv-parecer" class="requirement">
-                                                <p class="text">{{ alerts }}</p>
+                                                <p class="text">{{ alerts.feedback }}</p>
                                             </div>
                                         </template>     
                                     </ListComponent>
@@ -63,7 +68,7 @@
 </template>
 
 <script setup>
-    import { inject, ref, onMounted } from 'vue'
+    import { inject, ref, onMounted, computed } from 'vue'
     import { useRouter } from 'vue-router'  
 
     import Analyse from '../composables/analyse.js'
@@ -90,6 +95,7 @@
     const modal = ref(false)
     const dataAnalyse = ref(null)
     const dataAnalyseFilter = ref(null)
+    let getStatisticsResult = null
     const getDataRoom = ref({
         section: null,
         room: null,
@@ -100,6 +106,18 @@
         incompativel: 0,
     })
 
+    const totalRequisitos = computed(() => {
+        return statistics.value.compativel + statistics.value.incompativel
+    })
+
+    const percenteCompativel = computed(() => {
+        return statistics.value.compativel / (statistics.value.compativel + statistics.value.incompativel) * 100
+    })
+
+    const percenteIncompativel = computed(() => {
+        return statistics.value.incompativel / (statistics.value.compativel + statistics.value.incompativel) * 100
+    })
+
     // fim da área de teste
 
     onMounted(() => {
@@ -108,7 +126,7 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Compatível', 'Incompatível'],
+                labels: ['Conformidade', 'Inconformidade'],
                 datasets: [{
                     label: 'Requisitos',
                     data: [statistics.value.compativel, statistics.value.incompativel],
@@ -182,9 +200,9 @@
                 if (data[i].roons.length) {
                     for (let j = 0; j < data[i].roons.length; j++) {
                         for (let z = 0; z < data[i].roons[j].length; z++) {
-                            if (data[i].roons[j][z] == null) {
+                            if (data[i].roons[j][z].status == 1) {
                                 compativel++
-                            } else {
+                            } else if (data[i].roons[j][z].status == 2) {
                                 incompativel++
                             }
                         }
@@ -196,11 +214,59 @@
                 compativel,
                 incompativel,
             }
+        },
+        getFilterQuestions: (data) => {
+            const newList = []
+            let status = false
+            let roons = []
+            
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].reqRoom != null) {
+                    status = true
+                }
+
+                // verificar roons
+                if (data[i].roons.length) {      
+                    // percorrer cada conjunto de salas
+                    for (let j = 0; j < data[i].roons.length; j++) {
+                        for (let z = 0; z < data[i].roons[j].length; z++) {
+                            if (data[i].roons[j][z].status == 2) {
+                                status = true
+
+                                roons.push({
+                                    index: (j + 1),
+                                    title: 'Ambiente ' + (j + 1),
+                                    roons: data[i].roons[j],
+                                })
+
+                                break
+                            }
+                        }
+                    }
+                }
+
+                if (status) {
+                    newList.push({
+                        title: data[i].title,
+                        reqRoom: data[i].reqRoom,
+                        roons: roons,
+                    })
+
+                    roons = []  
+                    status = false
+                }
+            }
+
+            console.log(newList)
+
+            return newList 
         }
     }  
     
     dataAnalyse.value = methods.listQuestions(data.project.data, data.project)
-    let getStatisticsResult = methods.getStatistics(dataAnalyse.value)
+    dataAnalyseFilter.value = methods.getFilterQuestions(dataAnalyse.value)
+    getStatisticsResult = methods.getStatistics(dataAnalyse.value)
+    
     statistics.value.compativel = getStatisticsResult.compativel
     statistics.value.incompativel = getStatisticsResult.incompativel
 </script>
@@ -256,5 +322,13 @@
 
     #myChart {
         margin-bottom: 20px;
+    }
+
+    #appv-parecer.result-data {
+        margin-bottom: 10px;
+    }
+
+    #appv-parecer.result-data p {
+        margin: 0;
     }
 </style>

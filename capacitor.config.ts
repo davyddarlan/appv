@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.appv.beta',
-  appName: 'appv-test-v1',
+  appName: 'Visa estrutural',
   webDir: 'dist',
   android: {
     buildOptions: {
@@ -10,8 +10,10 @@ const config: CapacitorConfig = {
       keystorePassword: '123456789',
       keystoreAlias: 'appv',
       keystoreAliasPassword: '123456789',
-    }
-  }
+      releaseType: 'APK',
+      signingType: 'apksigner',
+    },
+  }, 
 };
 
 export default config;

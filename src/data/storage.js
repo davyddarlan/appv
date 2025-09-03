@@ -51,9 +51,7 @@ export default {
         let project = await this.database.get(key)
 
         for (let prop in project) {
-            if (data[prop]) {
-                project[prop] = data[prop]
-            }
+            project[prop] = data[prop]
         }
 
         project = await this.database.set(key, project)

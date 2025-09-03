@@ -14,7 +14,7 @@
             </div>
             <div class="item" @click="methods.goTo('/sobre')">
                 <ion-icon :icon="informationCircleOutline"></ion-icon>
-                Sobre
+                Faq
             </div>
         </div>
     </div>

@@ -182,8 +182,6 @@
                 } else {
                     router.push('parecer')
                 }
-
-                router.push('parecer')
             }
         },
         editProfile: () => {

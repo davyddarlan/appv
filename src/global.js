@@ -39,6 +39,8 @@ import ReqEspelho from './components/requirements/espelho.vue'
 import ReqTorneira from './components/requirements/torneira.vue'
 import ReqCobertura from './components/requirements/cobertura.vue'
 import ReqProtPorta from './components/requirements/porta.vue'
+import ReqAutoclave from './components/requirements/autoclave.vue'
+import ReqAcessibilidade from './components/requirements/acessibilidade.vue'
 
 export default (app) => {
     app.component('ReqQtdAmbientes', ReqQtdAmbientes)
@@ -64,6 +66,7 @@ export default (app) => {
     app.component('ReqFiacaoTelefonica', ReqFiacaoTelefonica)
     app.component('ReqMaca', ReqMaca)
     app.component('ReqEscada', ReqEscada)
+    app.component('ReqAcessibilidade', ReqAcessibilidade)
     // específicos
     app.component('ReqBaciaSanitaria', ReqBaciaSanitaria)
     app.component('ReqChuveiro', ReqChuveiro)
@@ -81,4 +84,5 @@ export default (app) => {
     app.component('ReqTorneira', ReqTorneira)
     app.component('ReqCobertura', ReqCobertura)
     app.component('ReqProtPorta', ReqProtPorta)
+    app.component('ReqAutoclave', ReqAutoclave)
 }

@@ -1,5 +1,6 @@
 <template>
   <ion-app>
+    <div id="bar" class="overlay"></div>
     <BottomMenu>
       <ion-router-outlet />
     </BottomMenu>
@@ -14,3 +15,11 @@
     IonRouterOutlet,
   } from '@ionic/vue';
 </script>
+
+<style scoped>
+  #bar.overlay {
+    width: 100%;
+    height: 40px;
+    background: #e33922;
+  }
+</style>

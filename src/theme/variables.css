@@ -1,6 +1,11 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
 
+ion-app {
+    margin-top: constant(safe-area-inset-top);
+    margin-top: env(safe-area-inset-top);
+}
+
 ion-button {
     --background: #4a5d88;
     --background-activated: #4e68a5;
