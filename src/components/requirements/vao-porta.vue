@@ -1,6 +1,7 @@
 <template>
     <Question>
         Qual a largura do vão da porta deste ambiente
+        <IonIcon v-if="isChecked" id="checkRequirements" :icon="checkmarkDoneSharp"></IonIcon>
         <template v-slot:input>
             <IonInput v-model="model[0]" type="number" fill="outline" placeholder="Largura do vão da porta"></IonInput>
         </template>
@@ -17,7 +18,17 @@
 
     import Question from '../question/question.vue'
     import { IonInput } from '@ionic/vue';
-    import { defineModel, defineEmits, ref, watch } from 'vue'
+    import { defineModel, defineEmits, watch, computed } from 'vue'
+    import { checkmarkDoneSharp } from 'ionicons/icons'
+    import { IonIcon } from '@ionic/vue'
+
+    const isChecked = computed(() => {
+        if (model.value[0] != null && model.value[1] != null) {
+            return true 
+        } 
+
+        return false
+    })
 
     const model = defineModel({
         default: [null, null],
@@ -47,5 +58,13 @@
 
     .appv-question-sub .statement {
         font-weight: 600;
+    }
+
+    #checkRequirements {
+        position: absolute;
+        top: -13px;
+        right: 10px;
+        color: green;
+        font-size: 2em;
     }
 </style>

@@ -33,3 +33,7 @@ ion-toast {
 ion-fab-button {
     --background: #4a5d88;
 }
+
+ion-modal {
+    margin-top: 40px;
+}

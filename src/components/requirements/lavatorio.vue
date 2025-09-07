@@ -1,6 +1,7 @@
 <template>
     <Question>
         O ambiente possuí lavatório 
+        <IonIcon v-if="isChecked" id="checkRequirements" :icon="checkmarkDoneSharp"></IonIcon>
         <template v-slot:input>
             <radioQuestion v-model="model[0]" id="lavatorio"></radioQuestion>
         </template>
@@ -18,8 +19,17 @@
 <script setup> 
     import radioQuestion from '../question/radio-question-v2.vue';
     import Question from '../question/question.vue'
+    import { defineModel, defineEmits, watch, computed } from 'vue'
+    import { checkmarkDoneSharp } from 'ionicons/icons'
+    import { IonIcon } from '@ionic/vue'
 
-    import { defineModel, defineEmits, ref, watch } from 'vue'
+    const isChecked = computed(() => {
+        if (model.value[0] != null && model.value[1] != null) {
+            return true 
+        } 
+
+        return false
+    })
 
     const model = defineModel({
         default: [0, 0],
@@ -55,5 +65,13 @@
 
     .appv-question-sub .statement {
         font-weight: 600;
+    }
+
+    #checkRequirements {
+        position: absolute;
+        top: -13px;
+        right: 10px;
+        color: green;
+        font-size: 2em;
     }
 </style>

@@ -2,7 +2,7 @@
     <IonModal :is-open="data">
         <MainLayout>
             <template v-slot:header-button>
-                <IonIcon  @click="methods.closeModal" :icon="closeOutline"></IonIcon>
+                <IonIcon  @click="methods.closeModal" :icon="chevronBackOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
                 <slot name="title"></slot>
@@ -25,7 +25,7 @@
         IonIcon,
     } from '@ionic/vue'
 
-    import { closeOutline } from 'ionicons/icons';
+    import { chevronBackOutline } from 'ionicons/icons';
 
     import MainLayout from '../components/layout/main-layout.vue'
 
