@@ -37,10 +37,18 @@
     const emits = defineEmits(['setData'])
 
     watch(() => model.value[0], (data) => {
+        if (data == "") {
+            model.value[0] = null
+        }
+
         emits('setData', [model.value[0], model.value[1]])
     })
 
     watch(() => model.value[1], (data) => {
+        if (data == "") {
+            model.value[1] = null
+        }
+
         emits('setData', [model.value[0], model.value[1]])
     })
 </script>

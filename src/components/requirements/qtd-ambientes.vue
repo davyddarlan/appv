@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-    import { defineProps, defineModel, computed } from 'vue'
+    import { defineProps, defineModel, computed, watch } from 'vue'
     import { IonInput } from '@ionic/vue';
     import Question from '../question/question.vue'
     import { checkmarkDoneSharp } from 'ionicons/icons'
@@ -31,6 +31,12 @@
 
     const model = defineModel({
         default: null,
+    })
+
+    watch(() => model.value, (data) => {
+        if (data == "") {
+            model.value = null
+        }      
     })
 </script>
 

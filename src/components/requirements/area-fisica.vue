@@ -36,6 +36,10 @@
     const emits = defineEmits(['setData'])
 
     watch(() => model.value, (data) => {
+        if (data == '') {
+            model.value = null
+        }
+
         emits('setData', data)
     })
 </script>
