@@ -70,6 +70,7 @@
 <script setup>
     import { inject, ref, onMounted, computed } from 'vue'
     import { useRouter } from 'vue-router'  
+    import Chart from 'chart.js/auto';
 
     import Analyse from '../composables/analyse.js'
 

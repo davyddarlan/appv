@@ -1,6 +1,8 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
 
+@import url(./fonts.css);
+
 ion-app {
     margin-top: constant(safe-area-inset-top);
     margin-top: env(safe-area-inset-top);
