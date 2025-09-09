@@ -7,9 +7,12 @@ export default {
         lengthTeam: ref(null),
         isInLoco: ref(null),
         odontologico: ref(null),
+        centralizacao_rep: ref(null),
+        centralizacao_est: ref(null),
+        centralizacao_armazenagem: ref(null),
         data: {
             ADM: {
-                title: 'Administrativo',
+                title: 'Ambientes administrativos',
                 percentage: 0,
                 group: 'ADM',
                 questions: [
@@ -132,16 +135,15 @@ export default {
                 ]
             },
             AC: {
-                title: 'Atendimento Clínico',
+                title: 'Ambientes médicos',
                 percentage: 0,
                 group: 'AC',
                 questions: [
                     {
                         id: 'ef88a8595b256a4e6f500398e325c62dd1729c90',
-                        title: 'Farmácia',
-                        statement: `Existe farmácia`,
+                        title: 'Farmácia (sala de armazenamento de medicamentos)',
+                        statement: `Existe farmácia (sala de armazenamento de medicamentos)`,
                         requirements: [
-                            { view: 'ReqDispercaoFarma', answerSheet: 10 },
                             { view: 'ReqArmazenamentoFarma', answerSheet: 6 },
                             { view: 'ReqVaoPorta', answerSheet: [0.80, 2.10] },
                             { view: 'ReqLavatorio', answerSheet: [true, true] },
@@ -388,7 +390,7 @@ export default {
                 ],
             },
             AO: {
-                title: 'Atendimento odontológico',
+                title: 'Ambientes odontológicos',
                 percentage: 0,
                 group: 'AO',
                 questions: [
@@ -491,7 +493,7 @@ export default {
                 ]
             },
             AP: {
-                title: 'Apoio',
+                title: 'Ambientes de apoio',
                 percentage: 0,
                 group: 'AP',
                 questions: [
@@ -645,6 +647,29 @@ export default {
                         lengthRoom: ref(null),               
                     },
                     {
+                        id: '0d3c41fe319a7e1a101cd3b354a94a68482c663a',
+                        title: 'Sanitário PCD',
+                        statement: `Existe sanitário PCD`,
+                        requirements: [
+                            { view: 'ReqAreaFisica', answerSheet: 3.2 },
+                            { view: 'ReqPiso', answerSheet: true },
+                            { view: 'ReqParede', answerSheet: true },
+                            { view: 'ReqTeto', answerSheet: true },
+                            { view: 'ReqForro', answerSheet: true },
+                            { view: 'ReqRalo', answerSheet: true },
+                            { view: 'ReqPeDireito', answerSheet: 2.3 },
+                            { view: 'ReqIluminacao', answerSheet: true },
+                            { view: 'ReqLuminaria', answerSheet: true },
+                            { view: 'ReqFiacaoEletrica', answerSheet: true },
+                            { view: 'ReqAcessibilidade', answerSheet: ['?', true] },
+                            { view: 'ReqLavatorioaBarra', answerSheet: true },
+                            { view: 'ReqBaciaSanitariaBarra', answerSheet: true },
+                        ],
+                        valuesRequirements: ref({}),
+                        value: ref(null), 
+                        lengthRoom: ref(null),               
+                    },
+                    {
                         id: 'cc8b84efd4ccfdde2ee82baf4aa424d24b4bed1d',
                         title: 'Depóstio de material de limpeza m(DML)',
                         statement: `Existe depósito de material de limpeza m(DML)`,
@@ -748,6 +773,38 @@ export default {
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqRalo', answerSheet: true },
                             { view: 'ReqAcessibilidade', answerSheet: ['?', true] },
+                        ],
+                        valuesRequirements: ref({}),
+                        value: ref(null),  
+                        lengthRoom: ref(null),               
+                    },
+                    {
+                        id: 'd685644431d76eb4c7fdc0925ad5a710cadfc1ce',
+                        title: 'Área de gurda de macas e cadeiras de rodas',
+                        statement: `Área de gurda de macas e cadeiras de rodas`,
+                        requirements: [
+                            { view: 'ReqVentilacao', answerSheet: true },
+                            { view: 'ReqProtecaoRoedores', answerSheet: true },
+                            { view: 'ReqPiso', answerSheet: true },
+                            { view: 'ReqParede', answerSheet: true },
+                            { view: 'ReqTeto', answerSheet: true },
+                            { view: 'ReqForro', answerSheet: true },
+                            { view: 'ReqRodape', answerSheet: true },
+                            { view: 'ReqFiacaoEletrica', answerSheet: true },
+                            { view: 'ReqFiacaoLogica', answerSheet: ['?', true] },
+                            { view: 'ReqFiacaoTelefonica', answerSheet: ['?', true] },
+                            { view: 'ReqAcessibilidade', answerSheet: ['?', true] },
+                        ],
+                        valuesRequirements: ref({}),
+                        value: ref(null),  
+                        lengthRoom: ref(null),               
+                    },
+                    {
+                        id: '4c81c65e3959f05532e447562383ed60f6e54758',
+                        title: 'Estacionamento de ambulância',
+                        statement: `Estacionamento de ambulância`,
+                        requirements: [
+                            { view: 'ReqQtdAmbulanica', answerSheet: 2 },
                         ],
                         valuesRequirements: ref({}),
                         value: ref(null),  

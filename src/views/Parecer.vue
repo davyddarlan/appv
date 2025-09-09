@@ -39,18 +39,18 @@
                 </div>
                 <ListaImcompatibilidadeModal :open="modal" @close="modal = false">
                     <template v-slot:title>
-                        Incompatibilidades
+                        Inconformidades
                     </template>
                     <template v-slot:subheader>
                         {{ dataAnalyseFilter[getDataRoom.section].title }}
                     </template>
                     <template v-slot:content>
                         <div id="appv-modal-parecer" class="wrapper">
-                            <h1 id="appv-modal-parecer" class="title">O ambiente <b>{{ dataAnalyseFilter[getDataRoom.section].title }} {{ dataAnalyseFilter[getDataRoom.section].roons[getDataRoom.room].index }}</b> possui as seguintes incompatibilidades:</h1>
+                            <h1 id="appv-modal-parecer" class="title">O ambiente <b>{{ dataAnalyseFilter[getDataRoom.section].title }} {{ dataAnalyseFilter[getDataRoom.section].roons[getDataRoom.room].index }}</b> possui as seguintes inconformidades:</h1>
                             <template v-for="(alerts, index) in dataAnalyseFilter[getDataRoom.section].roons[getDataRoom.room].roons">
                                 <template v-if="alerts.status == 2">
                                     <ListComponent>
-                                        <template v-slot:title>Incompatibilidade {{ index + 1 }}</template>
+                                        <template v-slot:title>Inconformidade</template>
                                         <template v-slot:content>
                                             <div id="appv-parecer" class="requirement">
                                                 <p class="text">{{ alerts.feedback }}</p>

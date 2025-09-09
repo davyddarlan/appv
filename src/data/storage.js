@@ -83,6 +83,9 @@ export default {
         localData.name.value = null
         localData.projectId.value = null
         localData.odontologico.value = null
+        localData.centralizacao_rep.value = null
+        localData.centralizacao_est.value = null
+        localData.centralizacao_armazenagem.value = null
 
         for (let group in localData.data) {
             if (group != 'PC') {
@@ -209,6 +212,9 @@ export default {
         localData.name.value = database.project.name
         localData.lengthTeam.value = database.project.lengthTeam + ""
         localData.odontologico.value = database.project.odontologico
+        localData.centralizacao_rep.value = database.project.centralizacao_rep
+        localData.centralizacao_est.value = database.project.centralizacao_est
+        localData.centralizacao_armazenagem.value = database.project.centralizacao_armazenagem
 
         for (let group in localData.data) {
             if (group != 'PC') {

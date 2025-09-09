@@ -25,9 +25,14 @@ export default {
         const tamanhoEquipe = +project.lengthTeam.value
         const ambienteExiste = question.value.value
         const quantidadeAmbientes = +question.lengthRoom.value
-        const odontologico = project.odontologico.value
+        const geral = {
+            odontologico: project.odontologico.value,
+            centralizacao_rep: project.centralizacao_rep.value,
+            centralizacao_est: project.centralizacao_est.value,
+            centralizacao_armazenagem: project.centralizacao_armazenagem.value,
+        }
 
-        const validacaoAmbiente = ReqValidation['ReqQtdAmbientes'](tamanhoEquipe, ambienteExiste, quantidadeAmbientes, question.id, odontologico)
+        const validacaoAmbiente = ReqValidation['ReqQtdAmbientes'](tamanhoEquipe, ambienteExiste, quantidadeAmbientes, question.id, geral)
 
         const dataResult = {
             title: nomeAmbiente,

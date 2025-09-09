@@ -254,11 +254,11 @@ export default {
         }
     },
     ReqVaoPorta: (answerSheet, value) => {
-        let feedback = null
+        let feedback = ''
         let status = 1
 
         if (value[0] < answerSheet[0]) {
-            feedback = ('A largura do vão da porta deve ser igual ou superior a ' + answerSheet[0] + 'm.')
+            feedback += ('A largura do vão da porta deve ser igual ou superior a ' + answerSheet[0] + 'm.')
             status = 2
         }
 
@@ -586,13 +586,55 @@ export default {
             feedback,
         }
     },
-    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, odontologico) => {
+    ReqQtdAmbulanica: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+
+        if (value < answerSheet) {
+            feedback = 'É preciso que a quantidade de vagas seja igual ou maior a ' + answerSheet
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+        }
+    },
+    ReqLavatorioaBarra: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+
+        if (value != answerSheet) {
+            feedback = 'É preciso que ambiente possua um lavatório com barras'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+        }
+    },
+    ReqBaciaSanitariaBarra: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+
+        if (value != answerSheet) {
+            feedback = 'É preciso que ambiente possua uma bacia sanitária com barras'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+        }
+    },
+    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, geral) => {
         let feedback = null
     
         if (!ambienteExiste) {
             feedback = 'O ambiente deve existir na composição de uma USF'
 
-            if (odontologico == false) {                
+            if (geral.odontologico == false) {                
                 if (idAmbiente == Roons.ESCOVARIO) {
                     return null
                 }
@@ -610,6 +652,24 @@ export default {
                 }
             }
 
+            if (geral.centralizacao_rep == false) {
+                if (idAmbiente == Roons.SALA_RECEPCAO_DESCON) {
+                    return null
+                }
+            }
+
+            if (geral.centralizacao_est == false) {
+                if (idAmbiente == Roons.SALA_ESTERILIZACAO) {
+                    return null
+                }
+            }
+
+            if (geral.centralizacao_armazenagem == true) {
+                if(idAmbiente == Roons.FARMACIA) {
+                    return null
+                }
+            }
+ 
             if (idAmbiente == Roons.ESCOVARIO) {
                 return null
             }

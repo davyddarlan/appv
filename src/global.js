@@ -41,6 +41,9 @@ import ReqCobertura from './components/requirements/cobertura.vue'
 import ReqProtPorta from './components/requirements/porta.vue'
 import ReqAutoclave from './components/requirements/autoclave.vue'
 import ReqAcessibilidade from './components/requirements/acessibilidade.vue'
+import ReqQtdAmbulanica from './components/requirements/vaga-ambulancia.vue'
+import ReqLavatorioaBarra from './components/requirements/lavatorio-barra.vue'
+import ReqBaciaSanitariaBarra from './components/requirements/bacia-sanitaria-barra.vue'
 
 export default (app) => {
     app.component('ReqQtdAmbientes', ReqQtdAmbientes)
@@ -85,4 +88,7 @@ export default (app) => {
     app.component('ReqCobertura', ReqCobertura)
     app.component('ReqProtPorta', ReqProtPorta)
     app.component('ReqAutoclave', ReqAutoclave)
+    app.component('ReqQtdAmbulanica', ReqQtdAmbulanica)
+    app.component('ReqLavatorioaBarra', ReqLavatorioaBarra)
+    app.component('ReqBaciaSanitariaBarra', ReqBaciaSanitariaBarra)
 }

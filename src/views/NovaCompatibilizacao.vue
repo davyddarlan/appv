@@ -54,6 +54,26 @@
                             </ion-select>
                         </template>
                     </Question>
+                    <Question>
+                        As atividades de recepção, lavagem
+                        e descontaminação de instrumentos são realizadas por esta USF
+                        <template v-slot:input>
+                            <RadioQuestion v-model="data.centralizacao_rep.value"></RadioQuestion>
+                        </template>
+                    </Question>
+                    <Question>
+                        A atividade de esterelização de instrumentos é realizada por esta USF
+                        <template v-slot:input>
+                            <RadioQuestion v-model="data.centralizacao_est.value"></RadioQuestion>
+                        </template>
+                    </Question>
+                    <Question>
+                        A armazenagem de medicamentos ocorre de forma centralizada, no município
+                        em que esta unidade opera
+                        <template v-slot:input>
+                            <RadioQuestion v-model="data.centralizacao_armazenagem.value"></RadioQuestion>
+                        </template>
+                    </Question>
                     <IonButton 
                         :disabled="disabled" 
                         @click="methods.iniciar" 
@@ -61,7 +81,7 @@
                         class="iniciar-btn" 
                         expand="block"
                         v-if="!isEdit"
-                        >Inicializar compatibilização
+                        >Iniciar análise / fiscalização
                     </IonButton>
                     <IonButton 
                         :disabled="formWasChange" 
@@ -126,6 +146,9 @@
         lengthTeam: null,
         name: null,
         odontologico: null,
+        centralizacao_rep: null,
+        centralizacao_est: null,
+        centralizacao_armazenagem: null,
     }
 
     const toastController = {
@@ -159,6 +182,9 @@
                 data.lengthTeam.value = auxDataForm.lengthTeam
                 data.name.value = auxDataForm.name
                 data.odontologico.value = auxDataForm.odontologico
+                data.centralizacao_rep.value = auxDataForm.centralizacao_rep
+                data.centralizacao_est.value = auxDataForm.centralizacao_est
+                data.centralizacao_armazenagem.value = auxDataForm.centralizacao_armazenagem
 
                 router.replace('/map')
             }
@@ -171,6 +197,9 @@
             auxDataForm.lengthTeam = data.lengthTeam.value,
             auxDataForm.name = data.name.value,
             auxDataForm.odontologico = data.odontologico.value
+            auxDataForm.centralizacao_rep = data.centralizacao_rep.value
+            auxDataForm.centralizacao_est = data.centralizacao_est.value
+            auxDataForm.centralizacao_armazenagem = data.centralizacao_armazenagem.value
         }
     })
 
@@ -186,7 +215,11 @@
         return (auxDataForm.isInLoco == data.isInLoco.value 
         && auxDataForm.lengthTeam == data.lengthTeam.value
         && auxDataForm.name == data.name.value
-        && auxDataForm.odontologico == data.odontologico.value) || data.name.value == ''
+        && auxDataForm.odontologico == data.odontologico.value
+        && auxDataForm.centralizacao_rep == data.centralizacao_rep.value
+        && auxDataForm.centralizacao_est == data.centralizacao_est.value
+        && auxDataForm.centralizacao_armazenagem == data.centralizacao_armazenagem.value)
+        || data.name.value == ''
     })
 
     const disabled = computed(() => {
@@ -196,6 +229,9 @@
         || data.name.value == null
         || !data.name.value
         || data.odontologico.value == null
+        || data.centralizacao_rep.value == null
+        || data.centralizacao_est.value == null
+        || data.centralizacao_armazenagem.value == null
     })
 
     const methods = {
@@ -205,6 +241,9 @@
                 lengthTeam: +data.lengthTeam.value,
                 isInLoco: data.isInLoco.value,
                 odontologico: data.odontologico.value,
+                centralizacao_rep: data.centralizacao_rep.value,
+                centralizacao_est: data.centralizacao_est.value,
+                centralizacao_armazenagem: data.centralizacao_armazenagem.value,
             }).then((dataReturn) => {
                 data.projectId.value = dataReturn.key
             
@@ -218,7 +257,10 @@
                 name: data.name.value,
                 lengthTeam: data.lengthTeam.value,
                 isInLoco: data.isInLoco.value,
-                odontologico: data.odontologico.value
+                odontologico: data.odontologico.value,
+                centralizacao_rep: data.centralizacao_rep.value,
+                centralizacao_est: data.centralizacao_est.value,
+                centralizacao_armazenagem: data.centralizacao_armazenagem.value,
             }
 
             storage.updateProject(updateData, data.projectId.value).then(() => {
