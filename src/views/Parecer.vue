@@ -12,30 +12,48 @@
             </template>
             <template v-slot:content>
                 <div id="appv-parecer" class="wrapper">
-                    <div id="appv-parecer" class="result-data">
-                        <p>Para o resultado desta análise, foram consultados <b>{{ totalRequisitos }}</b> requisitos,
-                        dos quais, <b>{{ percenteCompativel.toPrecision(4) + '%' }} ({{ statistics.compativel }})</b> estão conformes e <b>{{ percenteIncompativel.toPrecision(4) + '%' }}
-                            ({{ statistics.incompativel }})</b> inconformes.</p>
+                    <div v-if="isLoadList" class="appv-load">
+                        <p>
+                            <ion-spinner></ion-spinner>
+                            Analisando dados...
+                        </p>
                     </div>
-                    <div>
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    <template v-for="(room, indexSection) in dataAnalyseFilter">
-                        <ListComponent>
-                            <template v-slot:title>{{ room.title }}</template>
-                            <template v-slot:content>
-                                <div id="appv-parecer" class="appv-data-info">
-                                    {{ room.reqRoom }}
-                                </div>
-                                <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
-                                    <div id="appv-parecer" class="wrapper-requirement" @click="methods.seeRequirements(indexSection, indexRoom)">
-                                        <div class="position">{{ indexRoom + 1 }}</div>
-                                        <p class="text">{{ x.title }}</p>
+                    <div v-show="percenteCompativel < 100">
+                        <div id="appv-parecer" class="result-data">
+                            <p>Para o resultado desta análise, foram consultados <b>{{ totalRequisitos }}</b> requisitos,
+                            dos quais, <b>{{ percenteCompativel.toPrecision(4) + '%' }} ({{ statistics.compativel }})</b> estão conformes e <b>{{ percenteIncompativel.toPrecision(4) + '%' }}
+                                ({{ statistics.incompativel }})</b> inconformes.</p>
+                        </div>
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <p style="font-weight: bold;">Abaixo há um descritivo de todos os ambiente inconformes e seus respectivos requisitos:</p>
+                        <template v-for="(room, indexSection) in dataAnalyseFilter">
+                            <ListComponent>
+                                <template v-slot:title>{{ room.title }}</template>
+                                <template v-slot:content>
+                                    <div id="appv-parecer" class="appv-data-info">
+                                        {{ room.reqRoom }}
                                     </div>
-                                </div>
-                            </template>     
-                        </ListComponent>
-                    </template>
+                                    <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
+                                        <div id="appv-parecer" class="wrapper-requirement" @click="methods.seeRequirements(indexSection, indexRoom)">
+                                            <div class="position">{{ indexRoom + 1 }}</div>
+                                            <p class="text">{{ x.title }}</p>
+                                        </div>
+                                    </div>
+                                </template>     
+                            </ListComponent>
+                        </template>
+                    </div>
+                    <div v-show="percenteCompativel == 100">
+                        <div id="appv-wrapper-success">
+                            <p>Parabéns! A análise apresentou um resultado compatível 
+                            com todos os requisitos técnicos consultados pela aplicação.</p>
+                            <div id="appv-wrapper-image">
+                                <img src="../../public/parabens-analise.png" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <ListaImcompatibilidadeModal :open="modal" @close="modal = false">
                     <template v-slot:title>
@@ -84,6 +102,7 @@
         IonPage,
         IonFab,
         IonFabButton,
+        IonSpinner,
     } from '@ionic/vue'
 
     import { 
@@ -113,10 +132,16 @@
         room: null,
     })
 
+    const isLoadList = ref(true)
+
     const statistics = ref({
         compativel: 0,
         incompativel: 0,
     })
+
+    setTimeout(() => {
+        isLoadList.value = false
+    }, 3000)
 
     const totalRequisitos = computed(() => {
         return statistics.value.compativel + statistics.value.incompativel
@@ -296,6 +321,24 @@
 </script>
 
 <style scoped>
+    .appv-load {
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .appv-load ion-spinner {
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
     #appv-parecer.wrapper,
     #appv-modal-parecer.wrapper {
         padding: 20px;
@@ -354,5 +397,24 @@
 
     #appv-parecer.result-data p {
         margin: 0;
+    }
+
+    #appv-wrapper-success p {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    #appv-wrapper-image {
+        width: 100%;
+        height: 100%;
+        background: #e33922;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    #appv-wrapper-image img { 
+        position: relative;
+        top: 8px;
+        border-radius: 50%; 
     }
 </style>
