@@ -14,9 +14,13 @@
   "dependencies": {
     "@capacitor-community/safe-area": "^7.0.0-alpha.1",
     "@capacitor/android": "^7.4.3",
+    "@capacitor/camera": "^7.0.2",
     "@capacitor/core": "^7.4.3",
+    "@capacitor/file-transfer": "^1.0.5",
+    "@capacitor/filesystem": "^7.1.4",
     "@capacitor/haptics": "^7.0.2",
     "@capacitor/keyboard": "^7.0.2",
+    "@capacitor/share": "^7.0.2",
     "@capacitor/status-bar": "^7.0.2",
     "@fortawesome/duotone-regular-svg-icons": "^6.7.2",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

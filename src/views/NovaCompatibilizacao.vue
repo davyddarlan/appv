@@ -112,7 +112,7 @@
 </template>
 
 <script setup>
-    import { inject, computed, onBeforeMount, ref } from 'vue'
+    import { inject, computed, ref, reactive } from 'vue'
     import { useRouter, useRoute } from 'vue-router'  
 
     import Question from '../components/question/question.vue'
@@ -127,6 +127,7 @@
         IonSelectOption,
         IonToast,
         IonAlert,
+        onIonViewWillEnter,
     } from '@ionic/vue'
 
     import { 
@@ -141,7 +142,7 @@
     const data = inject('questions').project
     const storage = inject('storage')
 
-    const auxDataForm = {
+    const auxDataForm = reactive({
         isInLoco: null,
         lengthTeam: null,
         name: null,
@@ -149,7 +150,7 @@
         centralizacao_rep: null,
         centralizacao_est: null,
         centralizacao_armazenagem: null,
-    }
+    })
 
     const toastController = {
         isOpen: ref(false),
@@ -191,7 +192,7 @@
         }
     }
 
-    onBeforeMount(() => {
+    onIonViewWillEnter(() => {
         if (route.query.edit) {
             auxDataForm.isInLoco = data.isInLoco.value,
             auxDataForm.lengthTeam = data.lengthTeam.value,

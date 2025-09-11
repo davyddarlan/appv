@@ -62,6 +62,11 @@
                         </div>
                     </template>
                 </ListaImcompatibilidadeModal>
+                <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+                    <ion-fab-button @click="methods.shareData">
+                        <ion-icon :icon="shareSocialOutline"></ion-icon>
+                    </ion-fab-button>
+                </ion-fab>
             </template>
         </MainLayout>
     </ion-page>
@@ -77,15 +82,21 @@
     import { 
         IonIcon,
         IonPage,
+        IonFab,
+        IonFabButton,
     } from '@ionic/vue'
 
     import { 
-        chevronBackOutline
+        chevronBackOutline,
+        shareSocialOutline,
     } from 'ionicons/icons'
 
     import MainLayout from '@/components/layout/main-layout.vue'
     import ListComponent from '@/components/list/list.vue'
     import ListaImcompatibilidadeModal from './ListaImcompatibilidade.vue'
+
+    import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+    import { Share } from '@capacitor/share';
 
     const router = useRouter()
     const data = inject('questions')
@@ -258,9 +269,21 @@
                 }
             }
 
-            console.log(newList)
-
             return newList 
+        },
+        shareData: async () => {
+            const dataInfo = await Filesystem.writeFile({
+                path: "relatorio_visa_estrutural.json",
+                data: JSON.stringify({
+                    roons: dataAnalyse.value,
+                }),
+                directory: Directory.Documents,
+                encoding: Encoding.UTF8,
+            })
+
+            await Share.share({
+                url: dataInfo.uri,
+            });
         }
     }  
     

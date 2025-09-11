@@ -4,6 +4,7 @@ export default {
     ReqAreaFisica: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqAreaFisica'
 
         if (value < answerSheet) {
             feedback = 'A área física do ambiente deve ser igual ou superior a ' + answerSheet + 'm²'
@@ -13,11 +14,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqLavatorio: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqLavatorio'
 
         if (answerSheet[0] && value[0] == false) {
             feedback = 'O ambiente precisa de um lavatório'
@@ -34,11 +39,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqVentilacao: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqVentilacao'
 
         if (answerSheet && value == false) {
             feedback = 'A ventilação natural ou mecânica é obrigatória'
@@ -48,11 +57,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqPiso: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqPiso'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o piso seja feito de material impermeável'
@@ -62,11 +75,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqParede: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqParede'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que a parede seja feita de material impermeável'
@@ -76,11 +93,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqTeto: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqTeto'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o teto seja feito de material impermeável'
@@ -90,11 +111,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqForro: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqForro'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o forro seja feito de material impermeável'
@@ -104,11 +129,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqRodape: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqRodape'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o roda-pé seja feito de material impermeável'
@@ -118,11 +147,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqRalo: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqRalo'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua ralo sinfonado com tampa escamotável'
@@ -132,11 +165,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqPeDireito: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqPeDireito'
 
         if (value < answerSheet) {
             feedback = 'É preciso que o pé-direito tenha uma altura igual ou superior a ' + answerSheet + 'm'
@@ -146,11 +183,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqCubaFuda: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqCubaFuda'
 
         if (answerSheet[0] && value[0] == false) {
             feedback = 'O ambiente precisa de uma bancada com uma pia de cuba funda.'
@@ -167,11 +208,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqGasesMedicinais: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqGasesMedicinais'
 
         if (answerSheet && value == false) {
             feedback = 'É necessário que haja a presença de gases medicinais no ambiente'
@@ -181,11 +226,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqLuminaria: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqLuminaria'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua luminárias com proteção contra quedas, acidentes e explosões'
@@ -195,11 +244,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqDispercaoFarma: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqDispercaoFarma'
 
         if (value < answerSheet) {
             feedback = 'A área disperção do ambiente deve ser igual ou superior a ' + answerSheet + 'm²'
@@ -209,11 +262,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqArmazenamentoFarma: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqArmazenamentoFarma'
 
         if (value < answerSheet) {
             feedback = 'A área armazenamento do ambiente deve ser igual ou superior a ' + answerSheet + 'm²'
@@ -223,11 +280,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqIluminacao: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqIluminacao'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente seja bem iluminado'
@@ -237,11 +298,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqFiacaoEletrica: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqFiacaoEletrica'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que a fiação elétrica do ambiente esteja embutida ou recoberta'
@@ -251,11 +316,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqVaoPorta: (answerSheet, value) => {
         let feedback = ''
         let status = 1
+        let id = 'ReqVaoPorta'
 
         if (value[0] < answerSheet[0]) {
             feedback += ('A largura do vão da porta deve ser igual ou superior a ' + answerSheet[0] + 'm.')
@@ -270,11 +339,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqFiacaoLogica: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqFiacaoLogica'
 
         if (value[0]) {
             if (answerSheet && value[1] == false) {
@@ -286,11 +359,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqFiacaoTelefonica: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqFiacaoTelefonica'
 
         if (value[0]) {
             if (answerSheet && value[1] == false) {
@@ -302,11 +379,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqMaca: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqMaca'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua maca'
@@ -316,11 +397,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqEscada: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqEscada'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua escada'
@@ -330,11 +415,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqBaciaSanitaria: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqBaciaSanitaria'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua bacia sanitária'
@@ -344,11 +433,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqChuveiro: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqChuveiro'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua chuveiro'
@@ -358,11 +451,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqBox: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqBox'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua box'
@@ -372,11 +469,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqBancadaPia: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqBancadaPia'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua bancada com pia'
@@ -386,11 +487,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqTanque: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqTanque'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua tanque'
@@ -400,11 +505,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqPiaLavagem: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqPiaLavagem'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua pia de lavagem'
@@ -414,11 +523,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqPiaDespejo: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqPiaDespejo'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua pia de despejo'
@@ -428,11 +541,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqDucha: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqDucha'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua ducha'
@@ -442,11 +559,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqSeparacaoResiduos: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqSeparacaoResiduos'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua separação para resíduos comuns, químicos e biológicos'
@@ -456,11 +577,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqPontoAgua: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqPontoAgua'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua ponto de água'
@@ -470,11 +595,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqProtecaoRoedores: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqProtecaoRoedores'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua proteção contra roedores'
@@ -484,11 +613,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqEquipamentoRx: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqEquipamentoRx'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua equipamento de raio X'
@@ -498,11 +631,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqEspelho: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqEspelho'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua espelhos com altura adequada para crianças, adolescentes e adultos'
@@ -512,11 +649,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqTorneira: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqTorneira'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que o ambiente possua torneiras'
@@ -526,11 +667,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqCobertura: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqCobertura'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que a área técnica seja coberta'
@@ -540,11 +685,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqProtPorta: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqProtPorta'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que a área técnica seja protegida com porta'
@@ -554,11 +703,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqAutoclave: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqAutoclave'
 
         if (answerSheet && value == false) {
             feedback = 'É preciso que haja um autoclave'
@@ -568,11 +721,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqAcessibilidade: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqAcessibilidade'
 
         if (value[0]) {
             if (answerSheet && value[1] == false) {
@@ -584,11 +741,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqQtdAmbulanica: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqQtdAmbulanica'
 
         if (value < answerSheet) {
             feedback = 'É preciso que a quantidade de vagas seja igual ou maior a ' + answerSheet
@@ -598,11 +759,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqLavatorioaBarra: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqLavatorioaBarra'
 
         if (value != answerSheet) {
             feedback = 'É preciso que ambiente possua um lavatório com barras'
@@ -612,11 +777,15 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqBaciaSanitariaBarra: (answerSheet, value) => {
         let feedback = null
         let status = 1
+        let id = 'ReqBaciaSanitariaBarra'
 
         if (value != answerSheet) {
             feedback = 'É preciso que ambiente possua uma bacia sanitária com barras'
@@ -626,6 +795,9 @@ export default {
         return {
             status,
             feedback,
+            answerSheet,
+            value,
+            id,
         }
     },
     ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, geral) => {

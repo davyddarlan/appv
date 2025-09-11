@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.appv.beta',
-  appName: 'Visa estrutural',
+  appId: 'io.appv.sigma',
+  appName: 'Visa Estrutural',
   webDir: 'dist',
   android: {
     buildOptions: {
