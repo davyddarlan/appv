@@ -3,7 +3,7 @@
         Qual é a altura do pé-direito
         <IonIcon v-if="isChecked" id="checkRequirements" :icon="checkmarkDoneSharp"></IonIcon>
         <template v-slot:input>
-            <IonInput v-model="model" type="number" fill="outline" placeholder="Tamanho da área física"></IonInput>
+            <IonInput v-model="model" type="number" fill="outline" placeholder="Altura do pé-direito"></IonInput>
         </template>
     </Question>
 </template>

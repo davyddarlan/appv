@@ -46,15 +46,6 @@
                         </template>
                     </Question>
                     <Question>
-                        Qual o tipo de parecer técnico que deseja obter?
-                        <template v-slot:input>
-                            <ion-select v-model="data.isInLoco.value" label="Tipo de parecer" placeholder="Selecione o objetivo">
-                                <ion-select-option value="0">Análise de um projeto de USF</ion-select-option>
-                                <ion-select-option value="1">Fiscalização de uma USF existente</ion-select-option>
-                            </ion-select>
-                        </template>
-                    </Question>
-                    <Question>
                         As atividades de recepção, lavagem
                         e descontaminação de instrumentos são realizadas por esta USF
                         <template v-slot:input>
@@ -68,10 +59,18 @@
                         </template>
                     </Question>
                     <Question>
-                        A armazenagem de medicamentos ocorre de forma centralizada, no município
-                        em que esta unidade opera
+                        Esta unidade de saúde da família possui farmácia
                         <template v-slot:input>
                             <RadioQuestion v-model="data.centralizacao_armazenagem.value"></RadioQuestion>
+                        </template>
+                    </Question>
+                    <Question>
+                        Qual o tipo de parecer técnico que deseja obter?
+                        <template v-slot:input>
+                            <ion-select v-model="data.isInLoco.value" label="Tipo de parecer" placeholder="Selecione o objetivo">
+                                <ion-select-option value="0">Análise de um projeto de USF</ion-select-option>
+                                <ion-select-option value="1">Fiscalização de uma USF existente</ion-select-option>
+                            </ion-select>
                         </template>
                     </Question>
                     <IonButton 

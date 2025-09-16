@@ -200,6 +200,7 @@
 
 <style scoped>
     #appv-box-wrapper {
+        display: table;
         padding: 20px;
         --color-bar: #4a5d88;
         --width-bar: 6px;
@@ -216,6 +217,7 @@
         margin-bottom: var(--space-between-boxes);
         float: left;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        font-size: 0.8em;
     }
 
     #appv-box-wrapper .box .lock-icon {
@@ -236,7 +238,9 @@
 
     #appv-box-wrapper .box.lock { background: #ededf0 !important; }
 
-    #appv-box-wrapper .box.lock .title { color: #ddd2d7 !important; }
+    #appv-box-wrapper .box.lock .title { 
+        color: #ddd2d7 !important; 
+    }
 
     #appv-box-wrapper .box .title {
         position: absolute;

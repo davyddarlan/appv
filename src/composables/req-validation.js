@@ -836,7 +836,7 @@ export default {
                 }
             }
 
-            if (geral.centralizacao_armazenagem == true) {
+            if (geral.centralizacao_armazenagem == false) {
                 if(idAmbiente == Roons.FARMACIA) {
                     return null
                 }

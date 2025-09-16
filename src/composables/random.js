@@ -1,5 +1,5 @@
 export function Random(size) {
-    const values = 'abcdefghijklmnopqrstuvwyxz123456789@_!?'
+    const values = 'abcdefghijklmnopqrstuvwyxz123456789'
     const totalValues = values.length
     let hash = '', randomValue = null
 

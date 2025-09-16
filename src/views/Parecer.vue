@@ -117,6 +117,8 @@
     import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
     import { Share } from '@capacitor/share';
 
+    import { Random } from '../composables/random.js'
+
     const router = useRouter()
     const data = inject('questions')
 
@@ -297,9 +299,19 @@
             return newList 
         },
         shareData: async () => {
+            let name = data.project.projectId.value + '_' + Random(20) + '_relatorio_.json'
+
             const dataInfo = await Filesystem.writeFile({
-                path: "relatorio_visa_estrutural.json",
+                path: name,
                 data: JSON.stringify({
+                    projectId: data.project.projectId.value,
+                    name: data.project.name.value,
+                    lengthTeam: data.project.lengthTeam.value,
+                    isInLoco: data.project.isInLoco.value,
+                    odontologico: data.project.odontologico.value,
+                    centralizacao_rep: data.project.centralizacao_rep.value,
+                    centralizacao_est: data.project.centralizacao_est.value,
+                    centralizacao_armazenagem: data.project.centralizacao_armazenagem.value,
                     roons: dataAnalyse.value,
                 }),
                 directory: Directory.Documents,
@@ -308,6 +320,11 @@
 
             await Share.share({
                 url: dataInfo.uri,
+            })
+
+            await Filesystem.deleteFile({
+                path: name,
+                directory: Directory.Documents,
             });
         }
     }  
@@ -324,7 +341,7 @@
     .appv-load {
         display: flex;
         position: absolute;
-        z-index: 1;
+        z-index: 3;
         top: 0;
         left: 0;
         width: 100%;

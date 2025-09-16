@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.appv.sigma',
+  appId: 'io.visa.estrutural',
   appName: 'Visa Estrutural',
   webDir: 'dist',
   android: {
@@ -12,7 +12,7 @@ const config: CapacitorConfig = {
       keystoreAliasPassword: '123456789',
       releaseType: 'APK',
       signingType: 'apksigner',
-    },
+    }
   }, 
 };
 

@@ -5,7 +5,7 @@
                 <IonIcon @click="methods.goBackNavigation" :icon="chevronBackOutline"></IonIcon>
             </template>
             <template v-slot:header-title>
-                Questionário
+                {{ titlePage }}
             </template>
             <template v-slot:subheader>
                 {{ questionGroup.title }}
@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-    import { inject, ref, onMounted, watch } from 'vue'
+    import { inject, ref, onMounted, watch, computed } from 'vue'
     import { useRouter, useRoute } from 'vue-router'  
 
     import { 
@@ -69,6 +69,14 @@
     const route = useRoute()
     const questionsStorage = inject('questions')
     const storage = inject('storage')
+
+    const titlePage = computed(() => {
+        if (+questionsStorage.project.isInLoco.value) {
+            return 'Iniciar fiscalização de USF'
+        } else {
+            return 'Iniciar análise de projeto'
+        }
+    })
 
     const deleteAlert = ref({
         isOpen: false,
