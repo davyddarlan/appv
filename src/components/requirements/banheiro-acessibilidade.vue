@@ -1,0 +1,86 @@
+<template>
+    <Question>
+        O sanitário possui recursos de acessibilidade para PCD: barras de apoio.
+        <IonIcon v-if="isChecked" id="checkRequirements" :icon="checkmarkDoneSharp"></IonIcon>
+        <template v-slot:input>
+            <radioQuestion v-model="model[0]" id="sanitario-acessibilidade"></radioQuestion>
+        </template>
+        <template v-slot:sub>
+            <template v-if="model[0]">
+                <div class="question">
+                    <p class="statement">O lavatório deste sanitário possui barras de apoio</p>
+                    <radioQuestion v-model="model[1]" id="sanitario-acessibilidade-lavatorio"></radioQuestion>
+                </div>
+            </template>
+            <template v-if="model[0]">
+                <div class="question">
+                    <p class="statement">A bacia sanitária possui barras de apoio</p>
+                    <radioQuestion v-model="model[2]" id="sanitario-acessibilidade-bacia"></radioQuestion>
+                </div>
+            </template>
+        </template>
+    </Question>
+</template>
+
+<script setup> 
+    import radioQuestion from '../question/radio-question-v2.vue';
+    import Question from '../question/question.vue'
+    import { defineModel, defineEmits, watch, computed } from 'vue'
+    import { checkmarkDoneSharp } from 'ionicons/icons'
+    import { IonIcon } from '@ionic/vue'
+
+    const isChecked = computed(() => {
+        if (model.value[0] != null && model.value[1] != null && model.value[2] != null) {
+            return true 
+        } 
+
+        return false
+    })
+
+    const model = defineModel({
+        default: [0, 0, 0],
+    })
+
+    const emits = defineEmits(['setData'])
+
+    watch(() => model.value[0], (data) => {
+        if (!data) {
+            model.value[1] = 0
+            model.value[2] = 0
+        }
+
+        emits('setData', [model.value[0], model.value[1], model.value[2]])
+    })
+
+    watch(() => model.value[1], (data) => {
+        emits('setData', [model.value[0], model.value[1], model.value[2]])
+    })
+
+    watch(() => model.value[2], (data) => {
+        emits('setData', [model.value[0], model.value[1], model.value[2]])
+    })
+</script>
+
+<style scoped>
+    .appv-question-sub .question {
+        border-top: 1px solid rgba(50, 50, 93, 0.25);
+        margin-top: 20px;
+    }
+
+    .appv-question-sub .question:empty {
+        border-top: none;
+        margin-top: 0;
+    }
+
+    .appv-question-sub .statement {
+        font-weight: 600;
+    }
+
+    #checkRequirements {
+        position: absolute;
+        top: -13px;
+        right: 10px;
+        color: green;
+        font-size: 2em;
+    }
+</style>

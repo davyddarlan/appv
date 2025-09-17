@@ -32,7 +32,7 @@ export default {
             centralizacao_armazenagem: project.centralizacao_armazenagem.value,
         }
 
-        const validacaoAmbiente = ReqValidation['ReqQtdAmbientes'](tamanhoEquipe, ambienteExiste, quantidadeAmbientes, question.id, geral)
+        const validacaoAmbiente = ReqValidation['ReqQtdAmbientes'](tamanhoEquipe, ambienteExiste, quantidadeAmbientes, question.id, geral, question)
 
         const dataResult = {
             title: nomeAmbiente,

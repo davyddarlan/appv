@@ -32,8 +32,8 @@
                             <ListComponent>
                                 <template v-slot:title>{{ room.title }}</template>
                                 <template v-slot:content>
-                                    <div id="appv-parecer" class="appv-data-info">
-                                        {{ room.reqRoom }}
+                                    <div v-for="feedBackRoom in room.reqRoom" id="appv-parecer" class="appv-data-info">
+                                        {{ feedBackRoom }}
                                     </div>
                                     <div v-for="(x, indexRoom) in room.roons" id="appv-parecer" class="requirement">
                                         <div id="appv-parecer" class="wrapper-requirement" @click="methods.seeRequirements(indexSection, indexRoom)">
@@ -233,7 +233,7 @@
                 if (data[i].reqRoom == null) {
                     compativel++
                 } else {
-                    incompativel++
+                    incompativel += data[i].reqRoom.length
                 }
 
                 if (data[i].roons.length) {
@@ -393,7 +393,10 @@
 
     #appv-parecer.appv-data-info {
         padding: 20px;
+        border-bottom: 1px solid rgb(167, 163, 163);
     }
+
+    #appv-parecer.appv-data-info:last-child { border: none; }
 
     #appv-parecer.appv-data-info:empty {
         padding: 0;

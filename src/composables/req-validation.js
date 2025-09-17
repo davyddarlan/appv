@@ -915,11 +915,36 @@ export default {
             id,
         }
     },
-    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, geral) => {
-        let feedback = null
+    ReqBanheiroAcessibilidade: (answerSheet, value) => {
+        let feedback = ''
+        let status = 1
+        let id = 'ReqBanheiroAcessibilidade'
+
+        if (value[0]) {
+            if (answerSheet[1] != value[1]) {
+                feedback += 'É preciso que o lavatório deste ambiente possua barras de apoio para PCD. '
+                status = 2
+            }
+
+            if (answerSheet[2] != value[2]) {
+                feedback += 'É preciso que a bacia sanitária deste ambiente possua barras de apoio para PCD.'
+                status = 2
+            }
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqQtdAmbientes: (tamanhoEquipe, ambienteExiste, quantidadeAmbientes, idAmbiente, geral, question) => {
+        let feedback = []
     
         if (!ambienteExiste) {
-            feedback = 'O ambiente deve existir na composição de uma USF'
+            feedback.push('O ambiente deve existir na composição de uma USF')
 
             if (geral.odontologico == false) {                
                 if (idAmbiente == Roons.ESCOVARIO) {
@@ -966,60 +991,77 @@ export default {
             }
         } else {
             if (tamanhoEquipe < 1) {
-                feedback = 'A quantidade deste ambiente é inferior ao quantitativo necessário'   
+                feedback.push('A quantidade deste ambiente é inferior ao quantitativo necessário') 
             }
 
             if (idAmbiente == Roons.BANHEIRO_FUNCIONARIOS) {
                 if (tamanhoEquipe >= 4 && quantidadeAmbientes < 2) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 } 
             }
 
             if (idAmbiente == Roons.SANITARIO_PACIENTES) {
+                let sanitarioPCD = false
+
+                for (let roomId in question.valuesRequirements.value) {
+                    let ReqAcessibilidade = question.valuesRequirements.value[roomId].reqs['ReqBanheiroAcessibilidade'][0]
+                    let ReqLavatoriAcess = question.valuesRequirements.value[roomId].reqs['ReqBanheiroAcessibilidade'][1]
+                    let ReqBaciaAcess = question.valuesRequirements.value[roomId].reqs['ReqBanheiroAcessibilidade'][2]
+                
+                    if (ReqAcessibilidade == 1 && ReqLavatoriAcess == 1 && ReqBaciaAcess == 1) {
+                        sanitarioPCD = true
+                        break
+                    }
+                }
+
+                if (!sanitarioPCD) {
+                    feedback.push('É preciso que a USF tenha no mínimo um sanitário para PCD.')
+                }
+
                 if (tamanhoEquipe == 2 || tamanhoEquipe == 3 && quantidadeAmbientes < 2) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe >= 4 && quantidadeAmbientes < 4) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
             }
 
             if (idAmbiente == Roons.CONSULTORIO_ODONTOLOGICO) {
                 if (tamanhoEquipe == 2 && quantidadeAmbientes < 2) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe == 3 && quantidadeAmbientes < 3) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe >= 4 && quantidadeAmbientes < 4) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
             }
 
             if (idAmbiente == Roons.CONSULTORIO_MEDICO) {
                 if (tamanhoEquipe == 2 || tamanhoEquipe == 3 && quantidadeAmbientes < 3) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe == 4 && quantidadeAmbientes < 4) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe == 5 && quantidadeAmbientes < 5) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
             }
 
             if (idAmbiente == Roons.CONSULTORIO_MEDICO_SANITARIO) {
                 if (tamanhoEquipe == 3 && quantidadeAmbientes < 2) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
 
                 if (tamanhoEquipe == 4 || tamanhoEquipe == 5 && quantidadeAmbientes < 3) {
-                    feedback = 'O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF'
+                    feedback.push('O quantitativo deste ambiente é menor do que o esperado para o número de equipes desta USF')
                 }
             }
         }

@@ -44,6 +44,7 @@ import ReqAcessibilidade from './components/requirements/acessibilidade.vue'
 import ReqQtdAmbulanica from './components/requirements/vaga-ambulancia.vue'
 import ReqLavatorioaBarra from './components/requirements/lavatorio-barra.vue'
 import ReqBaciaSanitariaBarra from './components/requirements/bacia-sanitaria-barra.vue'
+import ReqBanheiroAcessibilidade from './components/requirements/banheiro-acessibilidade.vue'
 // sanitário anexo
 import ReqSanitarioAnexoBacia from './components/requirements/sanitario-anexo/sanitario-anexo-bacia-sanitaria.vue'
 import ReqSanitarioAnexoLavatorio from './components/requirements/sanitario-anexo/sanitario-anexo-lavatorio.vue'
@@ -98,6 +99,7 @@ export default (app) => {
     app.component('ReqQtdAmbulanica', ReqQtdAmbulanica)
     app.component('ReqLavatorioaBarra', ReqLavatorioaBarra)
     app.component('ReqBaciaSanitariaBarra', ReqBaciaSanitariaBarra)
+    app.component('ReqBanheiroAcessibilidade', ReqBanheiroAcessibilidade)
     // sanitário anexo
     app.component('ReqSanitarioAnexoBacia', ReqSanitarioAnexoBacia)
     app.component('ReqSanitarioAnexoLavatorio', ReqSanitarioAnexoLavatorio)
