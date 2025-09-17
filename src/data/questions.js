@@ -166,8 +166,8 @@ export default {
                     },
                     {
                         id: 'd75bf18c30d5e3b95257b88ae3ee0cda953390a8',
-                        title: 'Consultório médico sem sanitário anexo',
-                        statement: `Existe consultório médico sem sanitário anexo`,
+                        title: 'Consultório sem sanitário anexo',
+                        statement: `Existe consultório sem sanitário anexo`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 7.5 },
                             { view: 'ReqPeDireito', answerSheet: 2.6 },
@@ -194,8 +194,8 @@ export default {
                     },
                     {
                         id: '0309ad70ad7ac565e7e02323baf5a220344b9db7',
-                        title: 'Consultório médico com sanitário anexo',
-                        statement: `Existe consultório médico com sanitário anexo`,
+                        title: 'Consultório com sanitário anexo',
+                        statement: `Existe consultório com sanitário anexo`,
                         requirements: [
                             { view: 'ReqAreaFisica', answerSheet: 7.5 },
                             { view: 'ReqVaoPorta', answerSheet: [0.80, 2.10] },
@@ -414,6 +414,7 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqForro', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
+                            { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
                             { view: 'ReqGasesMedicinais', answerSheet: true},
                             { view: 'ReqLuminaria', answerSheet: true } 
