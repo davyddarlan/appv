@@ -215,6 +215,13 @@ export default {
                             { view: 'ReqLuminaria', answerSheet: true },
                             { view: 'ReqMaca', answerSheet: true },
                             { view: 'ReqEscada', answerSheet: true },
+                            // anexo
+                            { view: 'ReqSanitarioAnexoBacia', answerSheet: true },
+                            { view: 'ReqSanitarioAnexoLavatorio', answerSheet: true },
+                            { view: 'ReqSanitarioAnexoPerede', answerSheet: true },
+                            { view: 'ReqSanitarioAnexoPiso', answerSheet: true },
+                            { view: 'ReqSanitarioAnexoTeto', answerSheet: true },
+                            { view: 'ReqSanitarioAnexoVentilacao', answerSheet: true },
                         ],
                         valuesRequirements: ref({}),
                         value: ref(null), 

@@ -782,6 +782,121 @@ export default {
             id,
         }
     },
+    ReqSanitarioAnexoBacia: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoBacia'
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o sanitário anexo possua bacia sanitária'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqSanitarioAnexoLavatorio: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoLavatorio'
+
+        if (answerSheet[0] && value[0] == false) {
+            feedback = 'O sanitário anexo precisa de um lavatório'
+            status = 2
+        }
+
+        if (answerSheet[0] && value[0]) {
+            if (answerSheet[1] && value[1] == false) {
+                feedback = 'É precisso que a torneira do lavatório possua um mecanismo que dispense o uso das mãos para ligar e deligar.'    
+                status = 2
+            }
+        }   
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqSanitarioAnexoVentilacao: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoVentilacao'
+
+        if (answerSheet && value == false) {
+            feedback = 'A ventilação natural ou mecânica do sanitário anexo é obrigatória'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqSanitarioAnexoPiso: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoPiso'
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o piso do sanitário anexo seja feito de material impermeável'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqSanitarioAnexoPerede: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoPerede'
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que a parede do sanitário anexo seja feita de material impermeável'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
+    ReqSanitarioAnexoTeto: (answerSheet, value) => {
+        let feedback = null
+        let status = 1
+        let id = 'ReqSanitarioAnexoTeto'
+
+        if (answerSheet && value == false) {
+            feedback = 'É preciso que o teto do sanitário anexo seja feito de material impermeável'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
     ReqBaciaSanitariaBarra: (answerSheet, value) => {
         let feedback = null
         let status = 1
