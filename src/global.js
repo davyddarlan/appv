@@ -46,6 +46,7 @@ import ReqLavatorioaBarra from './components/requirements/lavatorio-barra.vue'
 import ReqBaciaSanitariaBarra from './components/requirements/bacia-sanitaria-barra.vue'
 import ReqBanheiroAcessibilidade from './components/requirements/banheiro-acessibilidade.vue'
 import ReqExaustor from './components/requirements/exaustor.vue'
+import ReqLavatorioCubaDispositivo from './components/requirements/lavatorio-cuba-dispositivo.vue'
 // sanitário anexo
 import ReqSanitarioAnexoBacia from './components/requirements/sanitario-anexo/sanitario-anexo-bacia-sanitaria.vue'
 import ReqSanitarioAnexoLavatorio from './components/requirements/sanitario-anexo/sanitario-anexo-lavatorio.vue'
@@ -102,6 +103,7 @@ export default (app) => {
     app.component('ReqBaciaSanitariaBarra', ReqBaciaSanitariaBarra)
     app.component('ReqBanheiroAcessibilidade', ReqBanheiroAcessibilidade)
     app.component('ReqExaustor', ReqExaustor)
+    app.component('ReqLavatorioCubaDispositivo', ReqLavatorioCubaDispositivo)
     // sanitário anexo
     app.component('ReqSanitarioAnexoBacia', ReqSanitarioAnexoBacia)
     app.component('ReqSanitarioAnexoLavatorio', ReqSanitarioAnexoLavatorio)
