@@ -152,6 +152,29 @@ export default {
             id,
         }
     },
+    ReqExaustor: (answerSheet, value) => {
+        let feedback = ''
+        let status = 1
+        let id = 'ReqExaustor'
+
+        if (answerSheet[0] != value[0]) {
+            feedback = ' É preciso que o ambiente possua ventilação natural ou mecânica.'
+            status = 2
+        }
+
+        if (answerSheet[1] != value[1]) {
+            feedback += ' É preciso que o ambiente possua exaustor'
+            status = 2
+        }
+
+        return {
+            status,
+            feedback,
+            answerSheet,
+            value,
+            id,
+        }
+    },
     ReqRalo: (answerSheet, value) => {
         let feedback = ''
         let status = 1

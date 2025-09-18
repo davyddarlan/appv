@@ -670,7 +670,7 @@ export default {
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
-                            { view: 'ReqVentilacao', answerSheet: true },
+                            { view: 'ReqExaustor', answerSheet: [true, true] },
                             { view: 'ReqFiacaoEletrica', answerSheet: true },
                             { view: 'ReqLavatorio', answerSheet: [true, true] },
                             { view: 'ReqAutoclave', answerSheet: true },
