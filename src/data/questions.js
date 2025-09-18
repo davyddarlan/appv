@@ -294,7 +294,6 @@ export default {
                             { view: 'ReqTeto', answerSheet: true },
                             { view: 'ReqRodape', answerSheet: true },
                             { view: 'ReqCubaFuda', answerSheet: [true, true] },
-                            { view: 'ReqCubaFuda', answerSheet: [true, true] },
                         ],
                         valuesRequirements: ref({}),
                         value: ref(null), 
