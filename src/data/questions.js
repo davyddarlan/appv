@@ -644,6 +644,7 @@ export default {
                         title: 'Sala de recepção, lavagem e descontaminação',
                         statement: `Existe sala de recepção, lavagem e descontaminação`,
                         requirements: [
+                            { view: 'ReqAreaFisica', answerSheet: 4.8 },
                             { view: 'ReqPiaLavagem', answerSheet: true },
                             { view: 'ReqPiaDespejo', answerSheet: true },
                             { view: 'ReqPiso', answerSheet: true },
@@ -664,6 +665,7 @@ export default {
                         title: 'Sala de esterilização',
                         statement: `Existe sala de esterilização`,
                         requirements: [
+                            { view: 'ReqAreaFisica', answerSheet: 4.8 },
                             { view: 'ReqPiso', answerSheet: true },
                             { view: 'ReqParede', answerSheet: true },
                             { view: 'ReqTeto', answerSheet: true },
