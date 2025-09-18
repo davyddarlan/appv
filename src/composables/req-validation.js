@@ -153,12 +153,17 @@ export default {
         }
     },
     ReqRalo: (answerSheet, value) => {
-        let feedback = null
+        let feedback = ''
         let status = 1
         let id = 'ReqRalo'
 
-        if (answerSheet && value == false) {
-            feedback = 'É preciso que o ambiente possua ralo sinfonado com tampa escamotável'
+        if (answerSheet[0] != value[0]) {
+            feedback = ' É preciso que o ambiente possua ralo sifonado.'
+            status = 2
+        }
+
+        if (answerSheet[1] != value[1]) {
+            feedback += ' É preciso que a tampa do ralo seja escamoteável'
             status = 2
         }
 
